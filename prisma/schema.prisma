@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  passwordHash  String   @map("password_hash")
+  role          String   @default("ADMIN")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  posts         Post[]
+
+  @@map("users")
+}
+
+model Post {
+  id              String      @id @default(cuid())
+  slug            String      @unique
+  title           String
+  summary         String?
+  coverImageUrl   String?     @map("cover_image_url")
+  contentMd       String      @map("content_md")
+  status          String      @default("DRAFT")
+  publishedAt     DateTime?   @map("published_at")
+  createdById     String      @map("created_by_id")
+  createdBy       User        @relation(fields: [createdById], references: [id])
+  createdAt       DateTime    @default(now()) @map("created_at")
+  updatedAt       DateTime    @updatedAt @map("updated_at")
+
+  @@map("posts")
+  @@index([status, publishedAt])
+  @@index([slug])
+}
+
+model Service {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  descriptionMd String   @map("description_md")
+  sortOrder     Int      @default(0) @map("sort_order")
+  visible       Boolean  @default(true)
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("services")
+  @@index([visible, sortOrder])
+}
+
+model CompanyInfo {
+  id        String   @id @default(cuid())
+  nameVi    String   @map("name_vi")
+  nameEn    String   @map("name_en")
+  phone     String
+  email     String
+  address   String
+  vision    String
+  mission   String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("company_info")
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  url       String
+  alt       String?
+  width     Int?
+  height    Int?
+  mimeType  String?  @map("mime_type")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("media")
+}
+
+model ContactForm {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  company   String?
+  message   String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("contact_forms")
+}

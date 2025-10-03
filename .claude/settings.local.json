@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(cat:*)",
+      "Bash(npx prisma migrate dev:*)",
+      "Bash(npm run prisma:seed:*)",
+      "Bash(npm rebuild:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm uninstall:*)",
+      "Read(//Users/tannx/Documents/**)",
+      "Bash(curl -X POST http://localhost:3000/api/tracking/shipmentlink -H \"Content-Type: application/json\" -d '{\"\"\"\"type\"\"\"\":\"\"\"\"BOOKING\"\"\"\",\"\"\"\"code\"\"\"\":\"\"\"\"235501399132\"\"\"\"}')",
+      "Bash(curl:*)",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
