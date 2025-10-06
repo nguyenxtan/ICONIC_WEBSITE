@@ -25,6 +25,7 @@ export default function AdminMediaPage() {
 
   useEffect(() => {
     fetchMedia()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function fetchMedia() {
@@ -225,9 +226,9 @@ export default function AdminMediaPage() {
       <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
         <h3 className="font-semibold text-blue-900 mb-2">💡 Hướng dẫn sử dụng</h3>
         <ul className="text-sm text-blue-800 space-y-1">
-          <li>• Click "Upload Hình Ảnh" để upload file mới (tối đa 5MB)</li>
+          <li>• Click &ldquo;Upload Hình Ảnh&rdquo; để upload file mới (tối đa 5MB)</li>
           <li>• Hỗ trợ định dạng: JPG, PNG, GIF, WebP</li>
-          <li>• Click "Copy URL" để copy đường dẫn hình ảnh</li>
+          <li>• Click &ldquo;Copy URL&rdquo; để copy đường dẫn hình ảnh</li>
           <li>• Sử dụng URL này trong bài viết, dịch vụ, v.v.</li>
         </ul>
       </div>

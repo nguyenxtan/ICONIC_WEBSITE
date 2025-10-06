@@ -29,7 +29,7 @@ export default async function AdminServicesPage() {
           <div className="space-y-3">
             {services.length === 0 ? (
               <p className="text-center text-gray-500 py-8">
-                Chưa có dịch vụ nào. Nhấn "Thêm Dịch Vụ Mới" để tạo.
+                Chưa có dịch vụ nào. Nhấn &ldquo;Thêm Dịch Vụ Mới&rdquo; để tạo.
               </p>
             ) : (
               services.map((service) => (

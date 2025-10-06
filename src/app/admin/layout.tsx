@@ -77,7 +77,7 @@ export default async function AdminLayout({
             href="/admin/media"
             className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-orange-100 hover:text-brand-orange-primary transition-all group"
           >
-            <Image className="h-5 w-5 transition-transform group-hover:scale-110" />
+            <Image className="h-5 w-5 transition-transform group-hover:scale-110" alt="" />
             <span className="font-medium">Media</span>
           </Link>
         </nav>
