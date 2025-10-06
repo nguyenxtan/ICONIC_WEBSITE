@@ -9,6 +9,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to Cloudflare Pages
+    permissions:
+      contents: read
+      deployments: write
 
     steps:
       - name: Checkout code
@@ -51,6 +54,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: iconic-website
-          directory: .vercel/output/static
+          projectName: iconic-logistics
+          directory: .next
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
