@@ -1,14 +1,16 @@
 import Link from 'next/link'
 import NextImage from 'next/image'
 import { LayoutDashboard, FileText, Briefcase, Building2, Image, LogOut } from 'lucide-react'
-import { getCurrentUser } from '@/lib/auth'
+import { getCurrentUserEdge } from '@/lib/auth-edge'
+
+export const runtime = 'edge'
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const user = await getCurrentUser()
+  const user = await getCurrentUserEdge()
 
   // Login page - render without any wrapper (no Header/Footer from root layout)
   if (!user) {

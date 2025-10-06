@@ -1,4 +1,5 @@
 import { jwtVerify, SignJWT } from 'jose'
+import { cookies } from 'next/headers'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'
 const secret = new TextEncoder().encode(JWT_SECRET)
@@ -28,4 +29,14 @@ export async function generateTokenEdge(payload: JWTPayload): Promise<string> {
     .setIssuedAt()
     .setExpirationTime('7d')
     .sign(secret)
+}
+
+export async function getCurrentUserEdge() {
+  const cookieStore = await cookies()
+  const token = cookieStore.get('auth-token')?.value
+
+  if (!token) return null
+
+  const payload = await verifyTokenEdge(token)
+  return payload
 }
