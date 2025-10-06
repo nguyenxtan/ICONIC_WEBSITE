@@ -33,6 +33,9 @@ jobs:
       # from GitHub Actions runners. Run migrations manually via Supabase SQL Editor instead.
       - name: Validate Prisma schema
         run: npx prisma validate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL }}
 
       - name: Build Next.js application
         run: npm run build
