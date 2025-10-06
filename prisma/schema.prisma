@@ -1,10 +1,14 @@
+// Prisma schema for ICONIC LOGISTICS CMS
+// Using PostgreSQL (Supabase) for production deployment
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL") // For migrations
 }
 
 model User {
@@ -25,7 +29,7 @@ model Post {
   title         String
   summary       String?
   coverImageUrl String?   @map("cover_image_url")
-  contentMd     String    @map("content_md")
+  contentMd     String    @map("content_md") @db.Text
   status        String    @default("DRAFT")
   publishedAt   DateTime? @map("published_at")
   createdById   String    @map("created_by_id")
@@ -43,15 +47,15 @@ model Service {
   slug        String   @unique
   title       String
   description String
-  content     String?
+  content     String?  @db.Text
   icon        String?
   sortOrder   Int      @default(0) @map("sort_order")
   visible     Boolean  @default(true)
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
-  @@map("services")
   @@index([visible, sortOrder])
+  @@map("services")
 }
 
 model CompanyInfo {
@@ -61,8 +65,8 @@ model CompanyInfo {
   phone     String
   email     String
   address   String
-  vision    String
-  mission   String
+  vision    String   @db.Text
+  mission   String   @db.Text
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
@@ -89,22 +93,8 @@ model ContactForm {
   email     String
   phone     String?
   company   String?
-  message   String
+  message   String   @db.Text
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("contact_forms")
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model services_backup {
-  id             String?
-  slug           String?
-  title          String?
-  description_md String?
-  sort_order     Int?
-  visible        Unsupported("num")?
-  created_at     Unsupported("num")?
-  updated_at     Unsupported("num")?
-
-  @@ignore
 }

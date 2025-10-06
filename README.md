@@ -92,13 +92,13 @@ ICONIC_CMS/
 
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript
-- **Database**: PostgreSQL
+- **Database**: PostgreSQL (Supabase)
 - **ORM**: Prisma
 - **UI**: Tailwind CSS v4, shadcn/ui, Lucide Icons
 - **Authentication**: JWT + bcrypt
 - **Markdown**: react-markdown
 - **Web Scraping**: Cheerio (cho tracking)
-- **Deployment**: Vercel (app) + Neon/Render (database)
+- **Deployment**: Cloudflare Pages + Supabase
 
 ## 📦 Cài Đặt
 
@@ -125,42 +125,47 @@ cp .env.example .env
 Sửa file `.env`:
 
 ```env
-DATABASE_URL=postgresql://user:password@localhost:5432/iconic_logistics
-JWT_SECRET=your-super-secret-jwt-key-change-in-production
-SITE_URL=http://localhost:3000
-NODE_ENV=development
+# Supabase PostgreSQL Connection
+DATABASE_URL="postgresql://postgres:[YOUR-PASSWORD]@db.[PROJECT-REF].supabase.co:6543/postgres?pgbouncer=true&connection_limit=1"
+DIRECT_URL="postgresql://postgres:[YOUR-PASSWORD]@db.[PROJECT-REF].supabase.co:5432/postgres"
+
+JWT_SECRET="your-super-secret-jwt-key-change-in-production"
+SITE_URL="http://localhost:3000"
+NODE_ENV="development"
 ```
 
-### 4. Setup Database
+### 4. Setup Database với Supabase
 
-#### Option A: Local PostgreSQL
+#### Tạo Project Supabase
+
+1. Đăng ký/đăng nhập tại [supabase.com](https://supabase.com)
+2. Tạo project mới (chọn region gần Việt Nam: Singapore)
+3. Chờ database khởi tạo (khoảng 2-3 phút)
+4. Vào **Settings** → **Database**
+5. Copy connection string:
+   - **Connection pooling** (cho `DATABASE_URL`) - Port `6543`
+   - **Direct connection** (cho `DIRECT_URL`) - Port `5432`
+6. Thay thế `[YOUR-PASSWORD]` và `[PROJECT-REF]` vào `.env`
+
+#### Chạy Migrations & Seed
 
 ```bash
-# Tạo database
-createdb iconic_logistics
-
-# Chạy migrations
-npm run prisma:migrate
-
 # Generate Prisma Client
 npm run prisma:generate
+
+# Push schema to Supabase (development)
+npm run db:push
+
+# Hoặc chạy migrations (production)
+npm run prisma:deploy
 
 # Seed data mẫu
 npm run prisma:seed
 ```
 
-#### Option B: Neon (Cloud PostgreSQL)
-
-1. Đăng ký tại [neon.tech](https://neon.tech)
-2. Tạo database mới
-3. Copy connection string vào `DATABASE_URL` trong `.env`
-4. Chạy migrations:
-
-```bash
-npm run prisma:migrate
-npm run prisma:generate
-npm run prisma:seed
-```
+**Lưu ý**:
+- `DATABASE_URL` sử dụng connection pooling (port `6543`) - dành cho serverless
+- `DIRECT_URL` sử dụng direct connection (port `5432`) - dành cho migrations
 
 ### 5. Chạy Development Server
 
@@ -198,43 +203,88 @@ npm run prisma:studio    # Mở Prisma Studio (GUI database)
 npm run lint             # Chạy ESLint
 ```
 
-## 🌐 Deploy Production
+## 🌐 Deploy Production (Cloudflare Pages + Supabase)
 
-### Deploy lên Vercel
+### 1. Setup Supabase Production
 
-1. Push code lên GitHub
+1. Tạo project tại [supabase.com](https://supabase.com)
+2. Lấy connection strings từ **Settings** → **Database**
+3. Lưu lại:
+   - `DATABASE_URL` (Connection pooling - port 6543)
+   - `DIRECT_URL` (Direct connection - port 5432)
 
-2. Import project tại [vercel.com](https://vercel.com)
+### 2. Setup GitHub Secrets
 
-3. Thêm Environment Variables:
-   ```
-   DATABASE_URL=postgresql://...
-   JWT_SECRET=your-production-secret
-   SITE_URL=https://iconiclogs.com
-   ```
+Vào repository Settings → Secrets and variables → Actions, thêm:
 
-4. Deploy!
+```
+DATABASE_URL=postgresql://postgres:[PASSWORD]@db.[REF].supabase.co:6543/postgres?pgbouncer=true&connection_limit=1
+DIRECT_URL=postgresql://postgres:[PASSWORD]@db.[REF].supabase.co:5432/postgres
+JWT_SECRET=your-production-secret-key-min-32-characters
+SITE_URL=https://iconiclogs.com
+CLOUDFLARE_API_TOKEN=your-cloudflare-api-token
+CLOUDFLARE_ACCOUNT_ID=your-cloudflare-account-id
+```
 
-### Setup Database Production
+### 3. Tạo Cloudflare Pages Project
 
-#### Option 1: Neon (Khuyến nghị)
+1. Đăng nhập [dash.cloudflare.com](https://dash.cloudflare.com)
+2. Vào **Workers & Pages** → **Create application** → **Pages**
+3. Connect GitHub repository
+4. Cấu hình build settings:
+   - **Framework preset**: Next.js
+   - **Build command**: `npm run build`
+   - **Build output directory**: `.next`
+5. Thêm Environment Variables (same as GitHub Secrets)
 
-1. Tạo database tại [neon.tech](https://neon.tech)
-2. Copy connection string
-3. Thêm vào Vercel environment variables
-4. Build sẽ tự động chạy migrations
+### 4. Lấy Cloudflare API Token
 
-#### Option 2: Railway/Render
+1. Vào **My Profile** → **API Tokens**
+2. Tạo token mới với template **Edit Cloudflare Workers**
+3. Copy và thêm vào GitHub Secrets: `CLOUDFLARE_API_TOKEN`
 
-1. Tạo PostgreSQL instance
-2. Copy connection string
-3. Cập nhật environment variables
-4. Chạy migrations thủ công nếu cần:
+### 5. Lấy Account ID
+
+1. Vào Cloudflare dashboard
+2. Copy Account ID từ sidebar
+3. Thêm vào GitHub Secrets: `CLOUDFLARE_ACCOUNT_ID`
+
+### 6. Deploy
 
 ```bash
-npx prisma migrate deploy
-npx prisma db seed
+# Push code to main branch
+git add .
+git commit -m "chore(db): migrate project from SQLite to Supabase (Postgres) for Cloudflare deployment"
+git push origin main
 ```
+
+GitHub Actions sẽ tự động:
+- Chạy Prisma migrations
+- Build Next.js
+- Deploy lên Cloudflare Pages
+
+### 7. Kiểm Tra Deployment
+
+- Xem logs tại **Actions** tab trên GitHub
+- Truy cập URL Cloudflare Pages sau khi deploy xong
+- Login admin: `https://your-site.pages.dev/admin/login`
+
+### Troubleshooting
+
+**Migration failed?**
+```bash
+# Chạy migration thủ công từ local
+DATABASE_URL="your-supabase-direct-url" npx prisma migrate deploy
+```
+
+**Build failed?**
+- Kiểm tra environment variables đã đủ chưa
+- Xem build logs trên Cloudflare Pages dashboard
+
+**Database connection error?**
+- Kiểm tra Supabase project có đang active
+- Verify connection strings (pooling vs direct)
+- Check IP allowlist nếu có bật
 
 ## 🔍 Container Tracking API
 

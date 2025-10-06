@@ -14,7 +14,11 @@
     "prisma:studio": "prisma studio",
     "prisma:reset": "prisma migrate reset",
     "db:setup": "prisma generate && prisma migrate deploy && prisma db seed",
+    "db:push": "prisma db push",
     "postinstall": "prisma generate"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
