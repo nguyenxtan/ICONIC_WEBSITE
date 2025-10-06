@@ -84,7 +84,7 @@ export default async function HomePage() {
                     </div>
                     <CardTitle className="text-xl">{service.title}</CardTitle>
                     <CardDescription className="line-clamp-3">
-                      {service.descriptionMd.substring(0, 150)}...
+                      {service.description}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>

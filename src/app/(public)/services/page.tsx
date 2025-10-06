@@ -33,7 +33,7 @@ export default async function ServicesPage() {
               </CardHeader>
               <CardContent>
                 <div className="prose prose-lg max-w-none">
-                  <ReactMarkdown>{service.descriptionMd}</ReactMarkdown>
+                  <ReactMarkdown>{service.content || service.description}</ReactMarkdown>
                 </div>
               </CardContent>
             </Card>
