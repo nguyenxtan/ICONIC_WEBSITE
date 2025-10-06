@@ -29,11 +29,10 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DIRECT_URL: ${{ secrets.DIRECT_URL }}
 
-      - name: Run Prisma Migrations
-        run: npx prisma migrate deploy
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DIRECT_URL: ${{ secrets.DIRECT_URL }}
+      # Skip migrations: Supabase free-tier blocks direct TCP connections (port 5432/6543)
+      # from GitHub Actions runners. Run migrations manually via Supabase SQL Editor instead.
+      - name: Validate Prisma schema
+        run: npx prisma validate
 
       - name: Build Next.js application
         run: npm run build
