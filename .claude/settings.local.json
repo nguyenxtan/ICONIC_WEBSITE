@@ -22,7 +22,16 @@
       "Bash(node:*)",
       "Bash(find:*)",
       "Bash(sqlite3:*)",
-      "Bash(npx prisma:*)"
+      "Bash(npx prisma:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)",
+      "Bash(chmod:*)",
+      "Bash(./add-edge-runtime.sh:*)",
+      "Bash(for file in \"src/app/api/admin/posts/route.ts\" \"src/app/api/admin/posts/[id]/route.ts\" \"src/app/api/auth/login/route.ts\" \"src/app/api/auth/logout/route.ts\")",
+      "Bash(do)",
+      "Bash(echo:*)",
+      "Bash(done)",
+      "Bash(for file in \"src/app/(public)/services/page.tsx\" \"src/app/(public)/news/[slug]/page.tsx\")"
     ],
     "deny": [],
     "ask": []
