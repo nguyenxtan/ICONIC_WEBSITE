@@ -1,9 +1,9 @@
-name: Deploy with Docker Compose
+# DISABLED: Uncomment when Docker server is ready
+# name: Deploy with Docker Compose
+
+name: Deploy Docker (Disabled)
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -12,18 +12,22 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Deploy to Server
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: ${{ secrets.SERVER_PORT || 22 }}
-          script: |
-            set -e
-            cd /var/www/iconic-website
-            git pull origin main
-            docker-compose build web
-            docker-compose up -d
-            docker-compose ps
-            docker image prune -f
+      - name: Placeholder
+        run: echo "Docker deployment disabled. Enable when server is ready."
+      
+      # Uncomment when ready:
+      # - name: Deploy to Server
+      #   uses: appleboy/ssh-action@v1.0.3
+      #   with:
+      #     host: ${{ secrets.SERVER_HOST }}
+      #     username: ${{ secrets.SERVER_USER }}
+      #     key: ${{ secrets.SERVER_SSH_KEY }}
+      #     port: ${{ secrets.SERVER_PORT || 22 }}
+      #     script: |
+      #       set -e
+      #       cd /var/www/iconic-website
+      #       git pull origin main
+      #       docker-compose build web
+      #       docker-compose up -d
+      #       docker-compose ps
+      #       docker image prune -f
