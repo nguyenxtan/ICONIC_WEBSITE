@@ -45,7 +45,8 @@ sự chuyên nghiệp, minh bạch và tận tâm trong từng dịch vụ.`,
     {
       slug: 'van-chuyen-duong-bien',
       title: 'Vận Chuyển Đường Biển',
-      descriptionMd: `# Dịch Vụ Vận Chuyển Đường Biển
+      description: 'Dịch vụ vận chuyển container quốc tế đường biển với mạng lưới toàn cầu, giá cả cạnh tranh.',
+      content: `# Dịch Vụ Vận Chuyển Đường Biển
 
 ## Tổng Quan
 ICONIC LOGISTICS cung cấp dịch vụ vận chuyển container đường biển toàn cầu với mạng lưới đối tác uy tín.
@@ -62,12 +63,15 @@ ICONIC LOGISTICS cung cấp dịch vụ vận chuyển container đường biể
 - ✅ Hỗ trợ 24/7
 - ✅ Bảo hiểm hàng hóa
 - ✅ Thủ tục hải quan nhanh chóng`,
+      icon: 'Ship',
       sortOrder: 1,
+      visible: true,
     },
     {
       slug: 'khai-bao-hai-quan',
       title: 'Khai Báo Hải Quan',
-      descriptionMd: `# Dịch Vụ Khai Báo Hải Quan
+      description: 'Hỗ trợ thủ tục hải quan xuất nhập khẩu nhanh chóng, chính xác với đội ngũ chuyên viên giàu kinh nghiệm.',
+      content: `# Dịch Vụ Khai Báo Hải Quan
 
 ## Giới Thiệu
 Đội ngũ chuyên viên hải quan giàu kinh nghiệm của ICONIC LOGISTICS sẽ hỗ trợ bạn hoàn tất mọi thủ tục xuất nhập khẩu.
@@ -85,12 +89,15 @@ ICONIC LOGISTICS cung cấp dịch vụ vận chuyển container đường biể
 3. Nộp hồ sơ lên hải quan
 4. Theo dõi và giải quyết vướng mắc
 5. Thông quan và giao hàng`,
+      icon: 'FileCheck',
       sortOrder: 2,
+      visible: true,
     },
     {
       slug: 'kho-bai-va-van-chuyen-noi-dia',
       title: 'Kho Bãi & Vận Chuyển Nội Địa',
-      descriptionMd: `# Kho Bãi & Vận Chuyển Nội Địa
+      description: 'Dịch vụ kho bãi hiện đại và vận chuyển nội địa toàn quốc với hệ thống quản lý thông minh.',
+      content: `# Kho Bãi & Vận Chuyển Nội Địa
 
 ## Hệ Thống Kho
 ICONIC LOGISTICS sở hữu hệ thống kho bãi hiện đại, đáp ứng đa dạng nhu cầu lưu trữ.
@@ -108,7 +115,9 @@ ICONIC LOGISTICS sở hữu hệ thống kho bãi hiện đại, đáp ứng đa
 - 🚚 Theo dõi lộ trình GPS
 - 🚚 Bốc xếp chuyên nghiệp
 - 🚚 Phủ sóng toàn quốc`,
+      icon: 'Warehouse',
       sortOrder: 3,
+      visible: true,
     },
   ]
 
