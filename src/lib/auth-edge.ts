@@ -12,7 +12,11 @@ export interface JWTPayload {
 export async function verifyTokenEdge(token: string): Promise<JWTPayload | null> {
   try {
     const { payload } = await jwtVerify(token, secret)
-    return payload as JWTPayload
+    return {
+      userId: payload.userId as string,
+      email: payload.email as string,
+      role: payload.role as string,
+    }
   } catch {
     return null
   }
