@@ -11,6 +11,8 @@ export const metadata = genMeta({
   path: '/news',
 })
 
+export const dynamic = 'force-dynamic'
+
 export default async function NewsPage() {
   const posts = await prisma.post.findMany({
     where: { status: 'PUBLISHED' },

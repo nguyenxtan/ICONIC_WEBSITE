@@ -3,6 +3,8 @@ import { prisma } from '@/lib/db'
 
 const SITE_URL = process.env.SITE_URL || 'https://iconiclogs.com'
 
+export const dynamic = 'force-dynamic'
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await prisma.post.findMany({
     where: { status: 'PUBLISHED' },

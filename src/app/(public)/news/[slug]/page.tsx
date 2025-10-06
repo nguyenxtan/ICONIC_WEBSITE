@@ -9,6 +9,8 @@ interface Props {
   params: Promise<{ slug: string }>
 }
 
+export const dynamic = 'force-dynamic'
+
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const post = await prisma.post.findUnique({

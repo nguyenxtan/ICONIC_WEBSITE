@@ -8,6 +8,8 @@ export const metadata = genMeta({
   path: '/about',
 })
 
+export const dynamic = 'force-dynamic'
+
 export default async function AboutPage() {
   const companyInfo = await prisma.companyInfo.findFirst()
 

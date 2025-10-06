@@ -8,6 +8,8 @@ export const metadata = genMeta({
   path: '/vision-mission',
 })
 
+export const dynamic = 'force-dynamic'
+
 export default async function VisionMissionPage() {
   const companyInfo = await prisma.companyInfo.findFirst()
 
