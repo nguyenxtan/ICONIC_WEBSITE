@@ -170,19 +170,30 @@ docker compose exec web npm run prisma:seed
 
 ### CI/CD với GitHub Actions
 
-Workflow tự động deploy khi push lên `main`:
+**⚠️ Workflows hiện đang DISABLED** (manual trigger only) cho đến khi bạn setup server.
 
-**Setup GitHub Secrets:**
+**Để enable auto-deployment:**
+1. Chuẩn bị server Ubuntu/Debian
+2. Setup SSH keys và PostgreSQL
+3. Add 9 GitHub Secrets (xem bên dưới)
+4. Uncomment deployment steps trong workflows
+
+**Xem hướng dẫn chi tiết:** [GITHUB_ACTIONS_SETUP.md](./GITHUB_ACTIONS_SETUP.md)
+
+**Required GitHub Secrets:**
 - `SERVER_HOST` - Server IP/domain
 - `SERVER_USER` - SSH username
 - `SERVER_SSH_KEY` - Private SSH key
 - `SERVER_PORT` - SSH port (default: 22)
 - `DEPLOY_PATH` - App path (default: `/var/www/iconic-website`)
 - `DATABASE_URL` - PostgreSQL connection string
+- `DIRECT_URL` - Same as DATABASE_URL
 - `JWT_SECRET` - JWT secret key
 - `SITE_URL` - Production URL
 
-Xem chi tiết: [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
+**Tài liệu:**
+- [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) - Chi tiết deploy server
+- [GITHUB_ACTIONS_SETUP.md](./GITHUB_ACTIONS_SETUP.md) - Setup CI/CD từng bước
 
 ## 📁 Cấu Trúc Dự Án
 
