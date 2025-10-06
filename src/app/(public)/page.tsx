@@ -5,6 +5,8 @@ import { Ship, FileText, Warehouse, Search, ArrowRight } from 'lucide-react'
 import { prisma } from '@/lib/db'
 import { formatDate } from '@/lib/utils'
 
+export const runtime = 'edge'
+
 export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {

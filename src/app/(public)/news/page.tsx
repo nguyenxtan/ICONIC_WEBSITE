@@ -5,6 +5,8 @@ import { formatDate } from '@/lib/utils'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArrowRight } from 'lucide-react'
 
+export const runtime = 'edge'
+
 export const metadata = genMeta({
   title: 'Tin Tức',
   description: 'Tin tức và cập nhật mới nhất từ ICONIC LOGISTICS',

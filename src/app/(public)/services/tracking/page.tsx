@@ -8,6 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Search, Ship, MapPin, Calendar, ChevronDown } from 'lucide-react'
 import { TrackingResult, Container } from '@/lib/adapters/types'
 
+export const runtime = 'edge'
+
 const SHIPPING_LINES = [
   { value: 'evergreen', label: 'Evergreen Line', status: 'active' },
   { value: 'maersk', label: 'Maersk', status: 'coming' },

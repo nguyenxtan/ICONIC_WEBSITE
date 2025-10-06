@@ -5,6 +5,8 @@ import { formatDate } from '@/lib/utils'
 import ReactMarkdown from 'react-markdown'
 import { Calendar, User } from 'lucide-react'
 
+export const runtime = 'edge'
+
 interface Props {
   params: Promise<{ slug: string }>
 }

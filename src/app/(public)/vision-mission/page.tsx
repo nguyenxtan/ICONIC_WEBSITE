@@ -2,6 +2,8 @@ import { generateMetadata as genMeta } from '@/lib/seo'
 import { prisma } from '@/lib/db'
 import { Eye, Target } from 'lucide-react'
 
+export const runtime = 'edge'
+
 export const metadata = genMeta({
   title: 'Tầm Nhìn & Sứ Mệnh',
   description: 'Tầm nhìn và sứ mệnh của ICONIC LOGISTICS VIETNAM',

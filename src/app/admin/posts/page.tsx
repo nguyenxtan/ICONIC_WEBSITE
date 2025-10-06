@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Plus, Edit, Eye } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
 
+export const runtime = 'edge'
+
 export default async function AdminPostsPage() {
   const posts = await prisma.post.findMany({
     orderBy: { updatedAt: 'desc' },

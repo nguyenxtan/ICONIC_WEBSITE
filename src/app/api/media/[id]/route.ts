@@ -3,6 +3,8 @@ import { unlink } from 'fs/promises'
 import path from 'path'
 import { prisma } from '@/lib/db'
 
+export const runtime = 'nodejs'
+
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }

@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { requireAuth } from '@/lib/auth'
 
+export const runtime = 'edge'
+
 interface Params {
   params: Promise<{ id: string }>
 }

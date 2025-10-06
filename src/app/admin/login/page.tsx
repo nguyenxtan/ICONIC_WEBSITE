@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useToast } from '@/components/ui/use-toast'
 
+export const runtime = 'edge'
+
 export default function AdminLoginPage() {
   const router = useRouter()
   const { toast } = useToast()

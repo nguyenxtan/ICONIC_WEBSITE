@@ -3,6 +3,8 @@ import { prisma } from '@/lib/db'
 import ReactMarkdown from 'react-markdown'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
+export const runtime = 'edge'
+
 export const metadata = genMeta({
   title: 'Dịch Vụ',
   description: 'Dịch vụ logistics chuyên nghiệp: vận chuyển đường biển, khai báo hải quan, kho bãi',

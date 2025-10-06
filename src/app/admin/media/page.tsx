@@ -7,6 +7,8 @@ import { useToast } from '@/components/ui/use-toast'
 import { Upload, Trash2, Copy, ImageIcon } from 'lucide-react'
 import Image from 'next/image'
 
+export const runtime = 'edge'
+
 interface Media {
   id: string
   filename: string
