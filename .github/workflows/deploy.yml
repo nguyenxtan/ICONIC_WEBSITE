@@ -49,6 +49,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: iconic-logistics
-          directory: .next
+          projectName: iconic-website
+          directory: .vercel/output/static
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
