@@ -39,15 +39,10 @@ export async function POST(request: NextRequest) {
       role: user.role,
     })
 
-    const response = NextResponse.json({
-      success: true,
-      user: {
-        id: user.id,
-        email: user.email,
-        role: user.role,
-      },
-    })
+    // Return success response with cookie
+    const response = NextResponse.json({ success: true })
 
+    // Set auth cookie
     response.cookies.set('auth-token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',

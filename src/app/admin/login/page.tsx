@@ -31,17 +31,13 @@ export default function AdminLoginPage() {
 
       const data = await response.json()
 
-      if (response.ok) {
+      if (response.ok && data.success) {
         toast({
           title: 'Đăng nhập thành công',
           description: 'Đang chuyển hướng...',
         })
-
-        // Wait a brief moment to ensure cookie is set
-        setTimeout(() => {
-          window.location.href = '/admin/dashboard'
-        }, 100)
-        return
+        // Redirect to dashboard
+        window.location.href = '/admin/dashboard'
       } else {
         toast({
           title: 'Đăng nhập thất bại',

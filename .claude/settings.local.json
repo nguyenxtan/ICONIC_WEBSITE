@@ -15,7 +15,14 @@
       "Bash(curl:*)",
       "Bash(git init:*)",
       "Bash(git remote add:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git branch:*)",
+      "Bash(node:*)",
+      "Bash(find:*)",
+      "Bash(sqlite3:*)",
+      "Bash(npx prisma:*)"
     ],
     "deny": [],
     "ask": []

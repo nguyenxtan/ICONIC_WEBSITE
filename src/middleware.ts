@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { verifyToken } from './lib/auth'
+import { verifyTokenEdge } from './lib/auth-edge'
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
   if (pathname === '/admin/login') {
     // If already logged in, redirect to dashboard
     const token = request.cookies.get('auth-token')?.value
-    if (token && verifyToken(token)) {
+    if (token && await verifyTokenEdge(token)) {
       return NextResponse.redirect(new URL('/admin/dashboard', request.url))
     }
     return NextResponse.next()
@@ -25,7 +25,7 @@ export async function middleware(request: NextRequest) {
     }
 
     // Verify token
-    const payload = verifyToken(token)
+    const payload = await verifyTokenEdge(token)
     if (!payload) {
       const response = NextResponse.redirect(new URL('/admin/login', request.url))
       response.cookies.delete('auth-token')

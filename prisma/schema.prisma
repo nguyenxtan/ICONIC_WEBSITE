@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,46 +8,47 @@ datasource db {
 }
 
 model User {
-  id            String   @id @default(cuid())
-  email         String   @unique
-  passwordHash  String   @map("password_hash")
-  role          String   @default("ADMIN")
-  createdAt     DateTime @default(now()) @map("created_at")
-  updatedAt     DateTime @updatedAt @map("updated_at")
-
-  posts         Post[]
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  role         String   @default("ADMIN")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  posts        Post[]
 
   @@map("users")
 }
 
 model Post {
-  id              String      @id @default(cuid())
-  slug            String      @unique
-  title           String
-  summary         String?
-  coverImageUrl   String?     @map("cover_image_url")
-  contentMd       String      @map("content_md")
-  status          String      @default("DRAFT")
-  publishedAt     DateTime?   @map("published_at")
-  createdById     String      @map("created_by_id")
-  createdBy       User        @relation(fields: [createdById], references: [id])
-  createdAt       DateTime    @default(now()) @map("created_at")
-  updatedAt       DateTime    @updatedAt @map("updated_at")
+  id            String    @id @default(cuid())
+  slug          String    @unique
+  title         String
+  summary       String?
+  coverImageUrl String?   @map("cover_image_url")
+  contentMd     String    @map("content_md")
+  status        String    @default("DRAFT")
+  publishedAt   DateTime? @map("published_at")
+  createdById   String    @map("created_by_id")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  createdBy     User      @relation(fields: [createdById], references: [id])
 
-  @@map("posts")
   @@index([status, publishedAt])
   @@index([slug])
+  @@map("posts")
 }
 
 model Service {
-  id            String   @id @default(cuid())
-  slug          String   @unique
-  title         String
-  descriptionMd String   @map("description_md")
-  sortOrder     Int      @default(0) @map("sort_order")
-  visible       Boolean  @default(true)
-  createdAt     DateTime @default(now()) @map("created_at")
-  updatedAt     DateTime @updatedAt @map("updated_at")
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String
+  content     String?
+  icon        String?
+  sortOrder   Int      @default(0) @map("sort_order")
+  visible     Boolean  @default(true)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
   @@map("services")
   @@index([visible, sortOrder])
@@ -73,10 +71,12 @@ model CompanyInfo {
 
 model Media {
   id        String   @id @default(cuid())
+  filename  String
   url       String
   alt       String?
   width     Int?
   height    Int?
+  size      Int?
   mimeType  String?  @map("mime_type")
   createdAt DateTime @default(now()) @map("created_at")
 
@@ -93,4 +93,18 @@ model ContactForm {
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("contact_forms")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model services_backup {
+  id             String?
+  slug           String?
+  title          String?
+  description_md String?
+  sort_order     Int?
+  visible        Unsupported("num")?
+  created_at     Unsupported("num")?
+  updated_at     Unsupported("num")?
+
+  @@ignore
 }
