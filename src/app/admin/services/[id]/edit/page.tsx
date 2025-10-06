@@ -11,10 +11,11 @@ import { ArrowLeft } from 'lucide-react'
 export default async function EditServicePage({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }) {
+  const { id } = await params
   const service = await prisma.service.findUnique({
-    where: { id: params.id },
+    where: { id },
   })
 
   if (!service) {
@@ -33,7 +34,7 @@ export default async function EditServicePage({
     const visible = formData.get('visible') === 'on'
 
     await prisma.service.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         title,
         slug,
