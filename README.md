@@ -26,86 +26,32 @@ Website giới thiệu và quản lý nội dung cho **CÔNG TY TNHH ICONIC LOGI
 
 ### Technical Features
 - ✅ Container tracking API với adapter pattern
-- ✅ PostgreSQL database với Prisma ORM
+- ✅ Self-hosted PostgreSQL với Prisma ORM
 - ✅ Tailwind CSS v4 + shadcn/ui components
 - ✅ TypeScript full-stack
 - ✅ Next.js 15 App Router
-- ✅ Server-side rendering (SSR)
-
-## 📁 Cấu Trúc Dự Án
-
-```
-ICONIC_CMS/
-├── prisma/
-│   ├── schema.prisma          # Database schema
-│   └── seed.ts                # Seed data (demo user, posts, services)
-├── src/
-│   ├── app/
-│   │   ├── (public routes)
-│   │   │   ├── page.tsx               # Trang chủ
-│   │   │   ├── about/page.tsx         # Giới thiệu
-│   │   │   ├── services/
-│   │   │   │   ├── page.tsx           # Danh sách dịch vụ
-│   │   │   │   └── tracking/page.tsx  # Container tracking
-│   │   │   ├── vision-mission/page.tsx
-│   │   │   ├── news/
-│   │   │   │   ├── page.tsx           # Danh sách tin tức
-│   │   │   │   └── [slug]/page.tsx    # Chi tiết tin tức
-│   │   │   └── contact/page.tsx       # Liên hệ
-│   │   ├── admin/
-│   │   │   ├── login/page.tsx
-│   │   │   ├── dashboard/page.tsx
-│   │   │   ├── posts/                 # CRUD tin tức
-│   │   │   ├── services/page.tsx
-│   │   │   ├── company-info/page.tsx
-│   │   │   └── media/page.tsx
-│   │   ├── api/
-│   │   │   ├── auth/                  # Login/Logout
-│   │   │   ├── admin/                 # Admin APIs
-│   │   │   ├── contact/route.ts       # Contact form
-│   │   │   └── tracking/
-│   │   │       └── evergreen/route.ts # Tracking API
-│   │   ├── layout.tsx
-│   │   ├── globals.css
-│   │   ├── sitemap.ts                 # Dynamic sitemap
-│   │   └── robots.ts                  # SEO robots.txt
-│   ├── components/
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   └── ui/                        # shadcn/ui components
-│   ├── lib/
-│   │   ├── db.ts                      # Prisma client
-│   │   ├── auth.ts                    # JWT authentication
-│   │   ├── seo.ts                     # SEO utilities
-│   │   ├── utils.ts                   # Helper functions
-│   │   └── adapters/                  # Tracking adapters
-│   │       ├── types.ts
-│   │       ├── evergreen.ts
-│   │       └── index.ts
-├── package.json
-├── tsconfig.json
-├── tailwind.config.ts
-└── next.config.js
-```
+- ✅ Docker & Docker Compose ready
+- ✅ CI/CD với GitHub Actions
 
 ## 🛠️ Stack Công Nghệ
 
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript
-- **Database**: PostgreSQL (Supabase)
+- **Database**: Self-hosted PostgreSQL
 - **ORM**: Prisma
 - **UI**: Tailwind CSS v4, shadcn/ui, Lucide Icons
 - **Authentication**: JWT + bcrypt
 - **Markdown**: react-markdown
 - **Web Scraping**: Cheerio (cho tracking)
-- **Deployment**: Cloudflare Pages + Supabase
+- **Deployment**: Self-hosted (PM2/Docker) + GitHub Actions CI/CD
 
-## 📦 Cài Đặt
+## 📦 Cài Đặt Development
 
 ### 1. Clone Repository
 
 ```bash
-cd ICONIC_CMS
+git clone https://github.com/nguyenxtan/ICONIC_WEBSITE.git
+cd ICONIC_WEBSITE
 ```
 
 ### 2. Cài Đặt Dependencies
@@ -114,9 +60,26 @@ cd ICONIC_CMS
 npm install
 ```
 
-### 3. Cấu Hình Environment
+### 3. Cấu Hình PostgreSQL Local
 
-Tạo file `.env`:
+```bash
+# Install PostgreSQL (Ubuntu/Debian)
+sudo apt install postgresql postgresql-contrib
+
+# Create database
+sudo -u postgres psql
+```
+
+```sql
+CREATE USER iconic_user WITH PASSWORD 'your_password';
+CREATE DATABASE iconic_logistics;
+GRANT ALL PRIVILEGES ON DATABASE iconic_logistics TO iconic_user;
+\c iconic_logistics
+GRANT ALL ON SCHEMA public TO iconic_user;
+\q
+```
+
+### 4. Cấu Hình Environment
 
 ```bash
 cp .env.example .env
@@ -125,166 +88,142 @@ cp .env.example .env
 Sửa file `.env`:
 
 ```env
-# Supabase PostgreSQL Connection
-DATABASE_URL="postgresql://postgres:[YOUR-PASSWORD]@db.[PROJECT-REF].supabase.co:6543/postgres?pgbouncer=true&connection_limit=1"
-DIRECT_URL="postgresql://postgres:[YOUR-PASSWORD]@db.[PROJECT-REF].supabase.co:5432/postgres"
-
+DATABASE_URL="postgresql://iconic_user:your_password@localhost:5432/iconic_logistics?schema=public"
+DIRECT_URL="postgresql://iconic_user:your_password@localhost:5432/iconic_logistics?schema=public"
 JWT_SECRET="your-super-secret-jwt-key-change-in-production"
 SITE_URL="http://localhost:3000"
 NODE_ENV="development"
 ```
 
-### 4. Setup Database với Supabase
-
-#### Tạo Project Supabase
-
-1. Đăng ký/đăng nhập tại [supabase.com](https://supabase.com)
-2. Tạo project mới (chọn region gần Việt Nam: Singapore)
-3. Chờ database khởi tạo (khoảng 2-3 phút)
-4. Vào **Settings** → **Database**
-5. Copy connection string:
-   - **Connection pooling** (cho `DATABASE_URL`) - Port `6543`
-   - **Direct connection** (cho `DIRECT_URL`) - Port `5432`
-6. Thay thế `[YOUR-PASSWORD]` và `[PROJECT-REF]` vào `.env`
-
-#### Chạy Migrations & Seed
+### 5. Setup Database
 
 ```bash
 # Generate Prisma Client
 npm run prisma:generate
 
-# Push schema to Supabase (development)
-npm run db:push
+# Run migrations
+npm run prisma:migrate
 
-# Hoặc chạy migrations (production)
-npm run prisma:deploy
-
-# Seed data mẫu
+# Seed initial data
 npm run prisma:seed
 ```
 
-**Lưu ý**:
-- `DATABASE_URL` sử dụng connection pooling (port `6543`) - dành cho serverless
-- `DIRECT_URL` sử dụng direct connection (port `5432`) - dành cho migrations
-
-### 5. Chạy Development Server
+### 6. Chạy Development Server
 
 ```bash
 npm run dev
 ```
 
-Mở [http://localhost:3000](http://localhost:3000) để xem website.
+Mở [http://localhost:3000](http://localhost:3000)
 
 ## 👤 Tài Khoản Demo
-
-Sau khi seed data, bạn có thể đăng nhập admin với:
 
 - **URL**: [http://localhost:3000/admin/login](http://localhost:3000/admin/login)
 - **Email**: admin@iconiclogs.com
 - **Password**: admin123
 
+⚠️ **Đổi password ngay khi deploy production!**
+
+## 🚢 Deploy Production
+
+### Phương án 1: PM2 (Traditional)
+
+```bash
+# Run automated setup script on Ubuntu server
+./scripts/server-setup.sh
+
+# Clone repository
+git clone https://github.com/nguyenxtan/ICONIC_WEBSITE.git /var/www/iconic-website
+cd /var/www/iconic-website
+
+# Configure .env.production
+cp .env.production.example .env
+# Edit .env with production values
+
+# Deploy
+./scripts/deploy.sh
+```
+
+### Phương án 2: Docker Compose
+
+```bash
+# Install Docker
+curl -fsSL https://get.docker.com | sh
+
+# Clone repository
+git clone https://github.com/nguyenxtan/ICONIC_WEBSITE.git
+cd ICONIC_WEBSITE
+
+# Configure .env for Docker
+cp .env.example .env
+# Edit: DB_PASSWORD, JWT_SECRET, SITE_URL
+
+# Start containers
+docker compose up -d
+
+# Run migrations
+docker compose exec web npx prisma migrate deploy
+
+# Seed data
+docker compose exec web npm run prisma:seed
+```
+
+### CI/CD với GitHub Actions
+
+Workflow tự động deploy khi push lên `main`:
+
+**Setup GitHub Secrets:**
+- `SERVER_HOST` - Server IP/domain
+- `SERVER_USER` - SSH username
+- `SERVER_SSH_KEY` - Private SSH key
+- `SERVER_PORT` - SSH port (default: 22)
+- `DEPLOY_PATH` - App path (default: `/var/www/iconic-website`)
+- `DATABASE_URL` - PostgreSQL connection string
+- `JWT_SECRET` - JWT secret key
+- `SITE_URL` - Production URL
+
+Xem chi tiết: [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
+
+## 📁 Cấu Trúc Dự Án
+
+```
+ICONIC_CMS/
+├── prisma/
+│   ├── schema.prisma          # Database schema
+│   └── seed.ts                # Seed data
+├── src/
+│   ├── app/                   # Next.js App Router
+│   │   ├── (public)/          # Public routes
+│   │   ├── admin/             # Admin dashboard
+│   │   └── api/               # API routes
+│   ├── components/            # React components
+│   └── lib/                   # Utilities & adapters
+├── scripts/
+│   ├── server-setup.sh        # Auto setup script
+│   └── deploy.sh              # Deploy script
+├── docker-compose.yml         # Docker orchestration
+├── Dockerfile                 # Docker image
+├── nginx.conf                 # Nginx config template
+└── DEPLOYMENT_GUIDE.md        # Chi tiết deploy
+```
+
 ## 🔧 Scripts
 
 ```bash
 # Development
-npm run dev              # Chạy dev server
-
-# Build
+npm run dev              # Dev server
 npm run build            # Build production
-npm run start            # Chạy production build
+npm run start            # Start production
 
 # Database
 npm run prisma:generate  # Generate Prisma Client
-npm run prisma:migrate   # Chạy migrations
-npm run prisma:seed      # Seed data mẫu
-npm run prisma:studio    # Mở Prisma Studio (GUI database)
+npm run prisma:migrate   # Run migrations
+npm run prisma:seed      # Seed data
+npm run prisma:studio    # Open Prisma Studio
 
 # Lint
-npm run lint             # Chạy ESLint
+npm run lint
 ```
-
-## 🌐 Deploy Production (Cloudflare Pages + Supabase)
-
-### 1. Setup Supabase Production
-
-1. Tạo project tại [supabase.com](https://supabase.com)
-2. Lấy connection strings từ **Settings** → **Database**
-3. Lưu lại:
-   - `DATABASE_URL` (Connection pooling - port 6543)
-   - `DIRECT_URL` (Direct connection - port 5432)
-
-### 2. Setup GitHub Secrets
-
-Vào repository Settings → Secrets and variables → Actions, thêm:
-
-```
-DATABASE_URL=postgresql://postgres:[PASSWORD]@db.[REF].supabase.co:6543/postgres?pgbouncer=true&connection_limit=1
-DIRECT_URL=postgresql://postgres:[PASSWORD]@db.[REF].supabase.co:5432/postgres
-JWT_SECRET=your-production-secret-key-min-32-characters
-SITE_URL=https://iconiclogs.com
-CLOUDFLARE_API_TOKEN=your-cloudflare-api-token
-CLOUDFLARE_ACCOUNT_ID=your-cloudflare-account-id
-```
-
-### 3. Tạo Cloudflare Pages Project
-
-1. Đăng nhập [dash.cloudflare.com](https://dash.cloudflare.com)
-2. Vào **Workers & Pages** → **Create application** → **Pages**
-3. Connect GitHub repository
-4. Cấu hình build settings:
-   - **Framework preset**: Next.js
-   - **Build command**: `npm run build`
-   - **Build output directory**: `.next`
-5. Thêm Environment Variables (same as GitHub Secrets)
-
-### 4. Lấy Cloudflare API Token
-
-1. Vào **My Profile** → **API Tokens**
-2. Tạo token mới với template **Edit Cloudflare Workers**
-3. Copy và thêm vào GitHub Secrets: `CLOUDFLARE_API_TOKEN`
-
-### 5. Lấy Account ID
-
-1. Vào Cloudflare dashboard
-2. Copy Account ID từ sidebar
-3. Thêm vào GitHub Secrets: `CLOUDFLARE_ACCOUNT_ID`
-
-### 6. Deploy
-
-```bash
-# Push code to main branch
-git add .
-git commit -m "chore(db): migrate project from SQLite to Supabase (Postgres) for Cloudflare deployment"
-git push origin main
-```
-
-GitHub Actions sẽ tự động:
-- Chạy Prisma migrations
-- Build Next.js
-- Deploy lên Cloudflare Pages
-
-### 7. Kiểm Tra Deployment
-
-- Xem logs tại **Actions** tab trên GitHub
-- Truy cập URL Cloudflare Pages sau khi deploy xong
-- Login admin: `https://your-site.pages.dev/admin/login`
-
-### Troubleshooting
-
-**Migration failed?**
-```bash
-# Chạy migration thủ công từ local
-DATABASE_URL="your-supabase-direct-url" npx prisma migrate deploy
-```
-
-**Build failed?**
-- Kiểm tra environment variables đã đủ chưa
-- Xem build logs trên Cloudflare Pages dashboard
-
-**Database connection error?**
-- Kiểm tra Supabase project có đang active
-- Verify connection strings (pooling vs direct)
-- Check IP allowlist nếu có bật
 
 ## 🔍 Container Tracking API
 
@@ -303,15 +242,6 @@ POST /api/tracking/evergreen
 }
 ```
 
-hoặc
-
-```json
-{
-  "type": "BOOKING",
-  "code": "BOOKING123456"
-}
-```
-
 ### Response
 
 ```json
@@ -323,109 +253,9 @@ hoặc
     "pol": "YANTIAN",
     "pod": "LOS ANGELES",
     "eta": "2024-02-15",
-    "etd": "2024-01-20",
-    "status": "In Transit",
-    "containers": [
-      {
-        "number": "TEMU1234567",
-        "type": "40HC",
-        "size": "40",
-        "status": "Loaded"
-      }
-    ]
+    "containers": [...]
   }
 }
-```
-
-### Adapter Pattern
-
-Dễ dàng thêm hãng tàu mới:
-
-```typescript
-// src/lib/adapters/maersk.ts
-export class MaerskAdapter implements TrackingAdapter {
-  async track(type: 'BOL' | 'BOOKING', code: string) {
-    // Implement Maersk tracking logic
-  }
-}
-
-// src/lib/adapters/index.ts
-import { MaerskAdapter } from './maersk'
-
-export const adapters = {
-  evergreen: new EvergreenAdapter(),
-  maersk: new MaerskAdapter(),
-  // ...
-}
-```
-
-## 📝 Quản Lý Nội Dung
-
-### Thêm Tin Tức Mới
-
-1. Đăng nhập admin: `/admin/login`
-2. Vào **Tin Tức** → **Thêm Tin Tức**
-3. Điền thông tin:
-   - Tiêu đề (auto-generate slug)
-   - Tóm tắt
-   - URL ảnh bìa
-   - Nội dung Markdown
-4. Chọn **Lưu nháp** hoặc **Xuất bản ngay**
-
-### Markdown Support
-
-Hỗ trợ đầy đủ Markdown syntax:
-
-```markdown
-# Tiêu đề H1
-## Tiêu đề H2
-
-**Bold text**
-*Italic text*
-
-- Bullet point 1
-- Bullet point 2
-
-1. Numbered list
-2. Item 2
-
-[Link text](https://example.com)
-
-![Alt text](https://example.com/image.jpg)
-
-> Blockquote
-
-` ``javascript
-code block
-` ``
-```
-
-### Chỉnh Sửa Dịch Vụ
-
-Dịch vụ được quản lý qua database. Sử dụng Prisma Studio:
-
-```bash
-npm run prisma:studio
-```
-
-Hoặc chỉnh sửa trong `prisma/seed.ts` và re-seed.
-
-## 🎨 Màu Thương Hiệu
-
-```css
-/* Cam chủ đạo */
---brand-orange: #FF4500
---brand-orange-primary: #FE4B00
---brand-orange-dark: #B23400
-
-/* Accent */
---brand-accent: #FFD2BF
---brand-accent-secondary: #FFA580
-
-/* Phụ */
---brand-brown: #C28331
---brand-brown-secondary: #BB6325
---brand-brown-dark: #801C18
 ```
 
 ## 🔒 Bảo Mật
@@ -436,28 +266,18 @@ Hoặc chỉnh sửa trong `prisma/seed.ts` và re-seed.
 - ✅ Environment variables cho secrets
 - ✅ CSRF protection (Next.js built-in)
 - ✅ SQL injection protection (Prisma ORM)
-
-## 📊 Database Schema
-
-### Bảng Chính
-
-- **users**: Admin users (email, password_hash, role)
-- **posts**: Tin tức (title, slug, content_md, status, published_at)
-- **services**: Dịch vụ (title, description_md, sort_order, visible)
-- **company_info**: Thông tin công ty (name, phone, email, vision, mission)
-- **media**: Thư viện media (url, alt, width, height, mime_type)
-- **contact_forms**: Form liên hệ (name, email, phone, company, message)
+- ✅ Security headers (Nginx)
 
 ## 🐛 Troubleshooting
 
 ### Database Connection Error
 
 ```bash
-# Kiểm tra PostgreSQL đang chạy
-pg_isready
+# Check PostgreSQL status
+sudo systemctl status postgresql
 
-# Kiểm tra DATABASE_URL
-echo $DATABASE_URL
+# Test connection
+psql -U iconic_user -d iconic_logistics -h localhost
 ```
 
 ### Prisma Client Not Generated
@@ -469,27 +289,18 @@ npm run prisma:generate
 ### Build Error
 
 ```bash
-# Clear cache
-rm -rf .next
+rm -rf .next node_modules
+npm install
 npm run build
-```
-
-### Port Already in Use
-
-```bash
-# Thay đổi port
-PORT=3001 npm run dev
 ```
 
 ## 📈 Roadmap
 
 - [ ] Thêm tracking cho Maersk, COSCO, ONE
-- [ ] Upload ảnh lên cloud storage (Cloudinary/S3)
+- [ ] Upload ảnh lên cloud storage
 - [ ] Multi-language (EN/VI)
 - [ ] Analytics integration
 - [ ] Newsletter subscription
-- [ ] Advanced search
-- [ ] Export data (PDF/Excel)
 
 ## 📞 Liên Hệ
 

@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    container_name: iconic_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: iconic_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-change_me_in_production}
+      POSTGRES_DB: iconic_logistics
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - iconic_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U iconic_user -d iconic_logistics"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Next.js Web Application
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: iconic_web
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://iconic_user:${DB_PASSWORD:-change_me_in_production}@db:5432/iconic_logistics?schema=public
+      DIRECT_URL: postgresql://iconic_user:${DB_PASSWORD:-change_me_in_production}@db:5432/iconic_logistics?schema=public
+      NODE_ENV: production
+      JWT_SECRET: ${JWT_SECRET:-generate_strong_secret_key}
+      SITE_URL: ${SITE_URL:-https://iconiclogs.com}
+    ports:
+      - "3000:3000"
+    networks:
+      - iconic_network
+    volumes:
+      # Mount uploads directory for persistent media storage
+      - ./public/uploads:/app/public/uploads
+    command: >
+      sh -c "
+        echo 'Running database migrations...' &&
+        npx prisma migrate deploy &&
+        echo 'Starting Next.js server...' &&
+        node server.js
+      "
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  iconic_network:
+    driver: bridge
