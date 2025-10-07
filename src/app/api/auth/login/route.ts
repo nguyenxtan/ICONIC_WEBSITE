@@ -27,6 +27,14 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Check if user is active
+    if (!user.active) {
+      return NextResponse.json(
+        { error: 'Tài khoản đã bị vô hiệu hóa' },
+        { status: 403 }
+      )
+    }
+
     const isValidPassword = await verifyPassword(password, user.passwordHash)
     if (!isValidPassword) {
       return NextResponse.json(
@@ -34,6 +42,12 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       )
     }
+
+    // Update last login time
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { lastLoginAt: new Date() },
+    })
 
     const token = generateToken({
       userId: user.id,

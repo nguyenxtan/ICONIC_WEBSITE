@@ -59,6 +59,7 @@ const roleColors: Record<Role, string> = {
 
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([])
+  const [currentUser, setCurrentUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [showCreateDialog, setShowCreateDialog] = useState(false)
   const [showEditDialog, setShowEditDialog] = useState(false)
@@ -88,6 +89,13 @@ export default function UsersPage() {
       if (!response.ok) throw new Error('Failed to fetch users')
       const data = await response.json()
       setUsers(data)
+
+      // Get current user from cookie/session
+      const currentResponse = await fetch('/api/admin/users/me')
+      if (currentResponse.ok) {
+        const current = await currentResponse.json()
+        setCurrentUser(current)
+      }
     } catch (error) {
       toast({
         title: 'Lỗi',
@@ -297,9 +305,15 @@ export default function UsersPage() {
                   </Button>
                 </TableCell>
                 <TableCell>
-                  {user.lastLoginAt
-                    ? new Date(user.lastLoginAt).toLocaleString('vi-VN')
-                    : 'Chưa đăng nhập'}
+                  {user.lastLoginAt ? (
+                    <span>
+                      {new Date(user.lastLoginAt).toLocaleString('vi-VN')}
+                    </span>
+                  ) : currentUser?.id === user.id ? (
+                    <span className="text-green-600 font-medium">Đang online</span>
+                  ) : (
+                    <span className="text-gray-400">Chưa đăng nhập</span>
+                  )}
                 </TableCell>
                 <TableCell className="text-right space-x-2">
                   <Button
@@ -328,13 +342,15 @@ export default function UsersPage() {
                   >
                     <Key className="h-4 w-4" />
                   </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleDeleteUser(user)}
-                  >
-                    <Trash2 className="h-4 w-4 text-red-500" />
-                  </Button>
+                  {user.role !== 'SUPER_ADMIN' && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleDeleteUser(user)}
+                    >
+                      <Trash2 className="h-4 w-4 text-red-500" />
+                    </Button>
+                  )}
                 </TableCell>
               </TableRow>
             ))}
