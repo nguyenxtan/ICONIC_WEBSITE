@@ -11,11 +11,21 @@ datasource db {
   directUrl = env("DIRECT_URL") // For migrations (same as DATABASE_URL for self-hosted)
 }
 
+enum Role {
+  SUPER_ADMIN // Toàn quyền: quản lý users, toàn bộ nội dung
+  ADMIN       // Quản lý nội dung: posts, services, company info
+  EDITOR      // Chỉnh sửa nội dung: tạo/sửa posts (draft), services
+  VIEWER      // Chỉ xem: read-only access
+}
+
 model User {
   id           String   @id @default(cuid())
   email        String   @unique
+  name         String?
   passwordHash String   @map("password_hash")
-  role         String   @default("ADMIN")
+  role         Role     @default(ADMIN)
+  active       Boolean  @default(true)
+  lastLoginAt  DateTime? @map("last_login_at")
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")
   posts        Post[]

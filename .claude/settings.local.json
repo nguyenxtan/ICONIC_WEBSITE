@@ -42,7 +42,8 @@
       "Bash(then)",
       "Bash(fi)",
       "Bash(lsof:*)",
-      "Bash(xargs kill:*)"
+      "Bash(xargs kill:*)",
+      "Bash(/Users/tannx/Documents/ICONIC_CMS/remove-edge-runtime.sh:*)"
     ],
     "deny": [],
     "ask": []

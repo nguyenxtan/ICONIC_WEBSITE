@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import NextImage from 'next/image'
-import { LayoutDashboard, FileText, Briefcase, Building2, Image, LogOut } from 'lucide-react'
+import { LayoutDashboard, FileText, Briefcase, Building2, Image, Users, LogOut } from 'lucide-react'
 import { getCurrentUser } from '@/lib/auth'
 
 export const runtime = 'nodejs'
@@ -36,8 +36,12 @@ export default async function AdminLayout({
                 {user.email[0].toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-xs font-medium text-gray-900 truncate">{user.email}</div>
-                <div className="text-xs text-gray-500">Admin</div>
+                <div className="text-xs font-medium text-gray-900 truncate">{user.name || user.email}</div>
+                <div className="text-xs text-gray-500">
+                  {user.role === 'SUPER_ADMIN' ? 'Super Admin' :
+                   user.role === 'ADMIN' ? 'Admin' :
+                   user.role === 'EDITOR' ? 'Editor' : 'Viewer'}
+                </div>
               </div>
             </div>
           </Link>
@@ -83,6 +87,21 @@ export default async function AdminLayout({
             <Image className="h-5 w-5 transition-transform group-hover:scale-110" />
             <span className="font-medium">Media</span>
           </Link>
+
+          {user.role === 'SUPER_ADMIN' && (
+            <>
+              <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mt-6 mb-3">
+                Quản trị hệ thống
+              </div>
+              <Link
+                href="/admin/users"
+                className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-orange-100 hover:text-brand-orange-primary transition-all group"
+              >
+                <Users className="h-5 w-5 transition-transform group-hover:scale-110" />
+                <span className="font-medium">Quản lý Users</span>
+              </Link>
+            </>
+          )}
         </nav>
 
         <div className="p-4 border-t border-gray-100">

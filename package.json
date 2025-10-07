@@ -15,7 +15,8 @@
     "prisma:reset": "prisma migrate reset",
     "db:setup": "prisma generate && prisma migrate deploy && prisma db seed",
     "db:push": "prisma db push",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "create:super-admin": "tsx scripts/create-super-admin.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -30,7 +31,7 @@
     "@radix-ui/react-toast": "^1.2.2",
     "bcryptjs": "^3.0.2",
     "cheerio": "^1.1.2",
-    "class-variance-authority": "^0.7.0",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "jose": "^6.1.0",
     "jsonwebtoken": "^9.0.2",

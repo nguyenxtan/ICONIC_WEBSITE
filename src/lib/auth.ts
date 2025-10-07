@@ -68,6 +68,7 @@ export async function getCurrentUser() {
     select: {
       id: true,
       email: true,
+      name: true,
       role: true,
     },
   })
@@ -80,5 +81,25 @@ export async function requireAuth() {
   if (!user) {
     throw new Error('Unauthorized')
   }
+  return user
+}
+
+export async function verifyAuth(request: Request) {
+  const token = request.headers.get('cookie')?.match(/auth-token=([^;]+)/)?.[1]
+  if (!token) return null
+
+  const payload = verifyToken(token)
+  if (!payload) return null
+
+  const user = await prisma.user.findUnique({
+    where: { id: payload.userId },
+    select: {
+      id: true,
+      email: true,
+      name: true,
+      role: true,
+    },
+  })
+
   return user
 }
