@@ -44,6 +44,7 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/scripts ./scripts
 
 # Copy built app with correct permissions
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
