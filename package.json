@@ -16,7 +16,7 @@
     "db:setup": "prisma generate && prisma migrate deploy && prisma db seed",
     "db:push": "prisma db push",
     "postinstall": "prisma generate",
-    "create:super-admin": "tsx scripts/create-super-admin.ts"
+    "create:super-admin": "node scripts/create-super-admin.js"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
