@@ -66,10 +66,12 @@ export default function AdminPostsPage() {
 
   useEffect(() => {
     fetchPosts()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     filterPosts()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [posts, searchQuery, statusFilter])
 
   const fetchPosts = async () => {
@@ -454,7 +456,7 @@ export default function AdminPostsPage() {
           <DialogHeader>
             <DialogTitle>Xác nhận xóa</DialogTitle>
             <DialogDescription>
-              Bạn có chắc muốn xóa tin tức "{selectedPost?.title}"? Hành động này
+              Bạn có chắc muốn xóa tin tức &quot;{selectedPost?.title}&quot;? Hành động này
               không thể hoàn tác.
             </DialogDescription>
           </DialogHeader>
