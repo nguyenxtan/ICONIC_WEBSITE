@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # Next.js Web Application (No database container)
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: iconic_web
+    restart: unless-stopped
+    environment:
+      # Connect to host PostgreSQL (n8n_postgres container)
+      DATABASE_URL: postgresql://iconic_user:${DB_PASSWORD}@host.docker.internal:5432/iconic_logistics?schema=public
+      DIRECT_URL: postgresql://iconic_user:${DB_PASSWORD}@host.docker.internal:5432/iconic_logistics?schema=public
+      NODE_ENV: production
+      JWT_SECRET: ${JWT_SECRET}
+      SITE_URL: ${SITE_URL:-https://iconiclogs.com}
+    ports:
+      - "3000:3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      # Mount uploads directory for persistent media storage
+      - ./public/uploads:/app/public/uploads
+    command: >
+      sh -c "
+        echo 'Running database migrations...' &&
+        npx prisma migrate deploy &&
+        echo 'Starting Next.js server...' &&
+        node server.js
+      "
+
+# No volumes or networks needed for single service
