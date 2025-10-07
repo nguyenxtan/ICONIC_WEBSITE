@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 
-export const runtime = 'edge'
+export const runtime = 'nodejs'
 
 export default async function EditServicePage({
   params,

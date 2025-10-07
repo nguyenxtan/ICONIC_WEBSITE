@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Plus, Pencil, Eye, EyeOff } from 'lucide-react'
 
-export const runtime = 'edge'
+export const runtime = 'nodejs'
 
 export default async function AdminServicesPage() {
   const services = await prisma.service.findMany({

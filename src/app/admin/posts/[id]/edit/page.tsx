@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useToast } from '@/components/ui/use-toast'
 
-export const runtime = 'edge'
+export const runtime = 'nodejs'
 
 interface Props {
   params: Promise<{ id: string }>

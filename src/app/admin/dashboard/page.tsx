@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { FileText, Briefcase, MessageSquare, Eye, TrendingUp } from 'lucide-react'
 import Link from 'next/link'
 
-export const runtime = 'edge'
+export const runtime = 'nodejs'
 
 export default async function AdminDashboardPage() {
   const [postsCount, servicesCount, contactFormsCount, publishedPostsCount] =

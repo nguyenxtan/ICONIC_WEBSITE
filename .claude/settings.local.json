@@ -32,7 +32,17 @@
       "Bash(echo:*)",
       "Bash(done)",
       "Bash(for file in \"src/app/(public)/services/page.tsx\" \"src/app/(public)/news/[slug]/page.tsx\")",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(brew:*)",
+      "Bash(/opt/homebrew/opt/postgresql@16/bin/psql:*)",
+      "Bash(/opt/homebrew/opt/postgresql@16/bin/createdb:*)",
+      "Bash(pkill:*)",
+      "Bash(for file in src/app/admin/**/*.tsx)",
+      "Bash(if grep -q \"export const runtime = ''edge''\" \"$file\")",
+      "Bash(then)",
+      "Bash(fi)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)"
     ],
     "deny": [],
     "ask": []

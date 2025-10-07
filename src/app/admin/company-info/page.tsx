@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { revalidatePath } from 'next/cache'
 
-export const runtime = 'edge'
+export const runtime = 'nodejs'
 
 export default async function AdminCompanyInfoPage() {
   const companyInfo = await prisma.companyInfo.findFirst()
