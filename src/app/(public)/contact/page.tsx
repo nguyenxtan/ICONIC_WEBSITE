@@ -9,7 +9,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { MapPin, Phone, Mail } from 'lucide-react'
 import { useToast } from '@/components/ui/use-toast'
 
-export const runtime = 'edge'
 
 export default function ContactPage() {
   const { toast } = useToast()
