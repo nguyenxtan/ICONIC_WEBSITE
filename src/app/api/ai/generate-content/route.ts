@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('AI content generation error:', error)
     return NextResponse.json(
-      { error: 'Failed to generate content', details: String(error) },
+      { error: 'Failed to generate content' },
       { status: 500 }
     )
   }

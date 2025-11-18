@@ -43,7 +43,10 @@
       "Bash(fi)",
       "Bash(lsof:*)",
       "Bash(xargs kill:*)",
-      "Bash(/Users/tannx/Documents/ICONIC_CMS/remove-edge-runtime.sh:*)"
+      "Bash(/Users/tannx/Documents/ICONIC_CMS/remove-edge-runtime.sh:*)",
+      "Bash(npm run lint:*)",
+      "Bash(grep:*)",
+      "Bash(psql:*)"
     ],
     "deny": [],
     "ask": []

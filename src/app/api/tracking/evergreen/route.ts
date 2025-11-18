@@ -1,25 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { ShipmentLinkAdapter } from '@/lib/adapters/shipmentlink'
-
+import { trackingSchema, validateRequestBody } from '@/lib/validations'
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { type, code } = body
-
-    if (!type || !code) {
+    const validation = await validateRequestBody(request, trackingSchema)
+    if (!validation.success) {
       return NextResponse.json(
-        { success: false, error: 'Missing type or code' },
+        { success: false, error: validation.error },
         { status: 400 }
       )
     }
 
-    if (type !== 'BOL' && type !== 'BOOKING') {
-      return NextResponse.json(
-        { success: false, error: 'Invalid type. Must be BOL or BOOKING' },
-        { status: 400 }
-      )
-    }
+    const { type, code } = validation.data
 
     // Use ShipmentLink adapter (supports multiple carriers)
     const adapter = new ShipmentLinkAdapter()
@@ -30,7 +23,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Internal server error',
+        error: 'Failed to retrieve tracking information. Please try again later.',
       },
       { status: 500 }
     )

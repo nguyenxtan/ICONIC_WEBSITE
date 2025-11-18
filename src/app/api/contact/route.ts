@@ -1,18 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
-
+import { contactFormSchema, validateRequestBody } from '@/lib/validations'
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { name, email, phone, company, message } = body
-
-    if (!name || !email || !message) {
+    const validation = await validateRequestBody(request, contactFormSchema)
+    if (!validation.success) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: validation.error },
         { status: 400 }
       )
     }
+
+    const { name, email, phone, company, message } = validation.data
 
     await prisma.contactForm.create({
       data: {

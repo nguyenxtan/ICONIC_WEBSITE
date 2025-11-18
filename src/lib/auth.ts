@@ -3,7 +3,15 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import { prisma } from './db'
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'
+const JWT_SECRET = (() => {
+  const secret = process.env.JWT_SECRET
+  if (!secret || secret.length < 32) {
+    throw new Error(
+      'JWT_SECRET environment variable must be set and at least 32 characters long'
+    )
+  }
+  return secret
+})()
 
 export interface JWTPayload {
   userId: string

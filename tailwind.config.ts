@@ -11,11 +11,11 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          orange: '#FF4500',
-          'orange-primary': '#FE4B00',
-          'orange-dark': '#B23400',
-          accent: '#FFD2BF',
-          'accent-secondary': '#FFA580',
+          orange: '#D75428',
+          'orange-primary': '#D75428',
+          'orange-dark': '#A83D1F',
+          accent: '#F5C8B8',
+          'accent-secondary': '#EE9E7E',
           brown: '#C28331',
           'brown-secondary': '#BB6325',
           'brown-dark': '#801C18',
@@ -65,6 +65,21 @@ const config: Config = {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      keyframes: {
+        fadeInUp: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(20px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+        },
+      },
+      animation: {
+        fadeInUp: 'fadeInUp 0.6s ease-out forwards',
       },
     },
   },

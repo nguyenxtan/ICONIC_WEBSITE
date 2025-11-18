@@ -19,7 +19,7 @@ export default async function AboutPage() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-900 mb-6">Về Chúng Tôi</h1>
 
-        <div className="prose prose-lg max-w-none">
+        <div>
           <div className="bg-brand-orange-primary/5 border-l-4 border-brand-orange-primary p-6 mb-8">
             <h2 className="text-2xl font-bold text-brand-orange-primary mb-2">
               {companyInfo?.nameVi || 'CÔNG TY TNHH ICONIC LOGISTICS'}

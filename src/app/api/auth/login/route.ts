@@ -1,18 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { verifyPassword, generateToken } from '@/lib/auth'
+import { rateLimit } from '@/lib/rate-limit'
+import { loginSchema, validateRequestBody } from '@/lib/validations'
 
 export const runtime = 'nodejs'
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { email, password } = body
-
-    if (!email || !password) {
+    // Validate request body
+    const validation = await validateRequestBody(request, loginSchema)
+    if (!validation.success) {
       return NextResponse.json(
-        { error: 'Email and password are required' },
+        { error: validation.error },
         { status: 400 }
+      )
+    }
+
+    const { email, password } = validation.data
+
+    // Rate limiting by email address
+    const rateLimitResult = rateLimit(`login:${email}`)
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        {
+          error: 'Too many login attempts. Please try again later.',
+        },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(rateLimitResult.resetIn),
+          },
+        }
       )
     }
 
