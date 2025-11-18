@@ -17,6 +17,14 @@ RUN npm ci
 FROM base AS builder
 WORKDIR /app
 
+# Accept build arguments for environment variables
+ARG JWT_SECRET
+ARG DB_PASSWORD
+
+# Set environment variables from build arguments
+ENV JWT_SECRET=${JWT_SECRET}
+ENV DB_PASSWORD=${DB_PASSWORD}
+
 # Copy dependencies from deps stage
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
