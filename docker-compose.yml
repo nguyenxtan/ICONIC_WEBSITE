@@ -32,6 +32,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    env_file: .env
     environment:
       DATABASE_URL: postgresql://iconic_user:${DB_PASSWORD:-change_me_in_production}@db:5432/iconic_logistics?schema=public
       DIRECT_URL: postgresql://iconic_user:${DB_PASSWORD:-change_me_in_production}@db:5432/iconic_logistics?schema=public
