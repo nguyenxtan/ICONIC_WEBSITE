@@ -485,16 +485,18 @@ export default function NewPostPage() {
                       {children}
                     </blockquote>
                   ),
-                  code: ({ inline, children }) =>
-                    inline ? (
+                  code: ({ className, children }) => {
+                    const isCodeBlock = className?.startsWith('language-')
+                    return isCodeBlock ? (
+                      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-4 text-sm font-mono">
+                        <code className={className}>{children}</code>
+                      </pre>
+                    ) : (
                       <code className="bg-gray-100 text-brand-orange-primary px-2 py-1 rounded text-sm font-mono">
                         {children}
                       </code>
-                    ) : (
-                      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-4 text-sm font-mono">
-                        <code>{children}</code>
-                      </pre>
-                    ),
+                    )
+                  },
                   a: ({ href, children }) => (
                     <a href={href} className="text-brand-orange-primary hover:text-brand-orange-dark underline transition-colors">
                       {children}
