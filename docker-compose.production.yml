@@ -6,6 +6,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        JWT_SECRET: ${JWT_SECRET}
+        DB_PASSWORD: ${DB_PASSWORD}
     container_name: iconic_web
     restart: unless-stopped
     environment:
