@@ -22,10 +22,21 @@ export default async function PartnersPage() {
   const internationalPartners = partners.filter(p => p.type === 'INTERNATIONAL')
 
   const PartnerCard = ({ partner }: { partner: any }) => (
-    <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
-      <h3 className="font-bold text-lg text-gray-900 mb-2">{partner.name}</h3>
+    <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow flex flex-col items-center justify-center min-h-[200px]">
+      {partner.logoUrl ? (
+        <img
+          src={partner.logoUrl}
+          alt={partner.name}
+          className="h-20 object-contain mb-4 max-w-full"
+        />
+      ) : (
+        <div className="h-16 w-16 rounded-lg bg-gradient-to-br from-brand-orange-primary/10 to-brand-orange-primary/5 flex items-center justify-center mb-4 border border-brand-orange-primary/20">
+          <Globe className="h-8 w-8 text-brand-orange-primary/60" />
+        </div>
+      )}
+      <h3 className="font-bold text-lg text-gray-900 mb-2 text-center">{partner.name}</h3>
       {partner.port && (
-        <p className="text-gray-600 text-sm">{partner.port}</p>
+        <p className="text-gray-600 text-sm text-center">{partner.port}</p>
       )}
     </div>
   )
