@@ -92,6 +92,7 @@ model Partner {
   id        String   @id @default(cuid())
   name      String
   port      String?
+  logoUrl   String?  @map("logo_url")
   type      String   @default("SHIPPING") // SHIPPING, AIRLINE, INTERNATIONAL
   sortOrder Int      @default(0) @map("sort_order")
   visible   Boolean  @default(true)
