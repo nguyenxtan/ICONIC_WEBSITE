@@ -79,7 +79,7 @@ export default async function AdminCompanyInfoPage() {
                   type="tel"
                   defaultValue={companyInfo?.phone}
                   required
-                  placeholder="0986066174"
+                  placeholder="0839037568"
                 />
               </div>
 
@@ -91,7 +91,7 @@ export default async function AdminCompanyInfoPage() {
                   type="email"
                   defaultValue={companyInfo?.email}
                   required
-                  placeholder="info@iconiclogs.com"
+                  placeholder="Info@iconiclogs.com"
                 />
               </div>
             </div>

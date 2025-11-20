@@ -101,10 +101,10 @@ export default function ContactPage() {
             </CardHeader>
             <CardContent>
               <a
-                href="tel:0986066174"
+                href="tel:0839037568"
                 className="text-brand-orange-primary hover:underline"
               >
-                0986066174
+                0839037568
               </a>
               <p className="text-sm text-gray-600 mt-2">
                 Thứ 2 - Thứ 6: 8:00 - 17:30
@@ -121,10 +121,10 @@ export default function ContactPage() {
             </CardHeader>
             <CardContent>
               <a
-                href="mailto:info@iconiclogs.com"
+                href="mailto:Info@iconiclogs.com"
                 className="text-brand-orange-primary hover:underline"
               >
-                info@iconiclogs.com
+                Info@iconiclogs.com
               </a>
               <p className="text-sm text-gray-600 mt-2">
                 Phản hồi trong vòng 24h

@@ -176,16 +176,16 @@ export default async function NewsDetailPage({ params }: Props) {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="tel:0986066174"
+                  href="tel:0839037568"
                   className="inline-flex items-center justify-center px-6 py-3 bg-brand-orange-primary text-white rounded-md hover:bg-brand-orange-dark transition-colors"
                 >
-                  Gọi: 0986066174
+                  Gọi: 0839037568
                 </a>
                 <a
-                  href="mailto:info@iconiclogs.com"
+                  href="mailto:Info@iconiclogs.com"
                   className="inline-flex items-center justify-center px-6 py-3 border-2 border-brand-orange-primary text-brand-orange-primary rounded-md hover:bg-brand-accent transition-colors"
                 >
-                  Email: info@iconiclogs.com
+                  Email: Info@iconiclogs.com
                 </a>
               </div>
             </div>

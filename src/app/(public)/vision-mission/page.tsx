@@ -1,6 +1,6 @@
 import { generateMetadata as genMeta } from '@/lib/seo'
 import { prisma } from '@/lib/db'
-import { Eye, Target, Award, Lightbulb, CheckCircle2, Zap } from 'lucide-react'
+import { Eye, Target, Award, Lightbulb } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
@@ -105,59 +105,6 @@ export default async function VisionMissionPage() {
               </div>
             </section>
 
-            {/* Commitments */}
-            <section className="bg-white border-2 border-brand-orange-primary/20 rounded-2xl p-8">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="h-12 w-12 rounded-full bg-brand-orange-primary flex items-center justify-center">
-                  <CheckCircle2 className="h-6 w-6 text-white" />
-                </div>
-                <h2 className="text-3xl font-bold text-gray-900">Cam Kết Với Khách Hàng</h2>
-              </div>
-              {companyInfo?.commitments ? (
-                <div className="text-gray-700 leading-relaxed">
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      p: ({ children }) => <p className="mb-3">{children}</p>,
-                      strong: ({ children }) => (
-                        <strong className="text-brand-orange-primary font-bold">{children}</strong>
-                      ),
-                      ul: ({ children }) => (
-                        <ul className="list-disc list-inside space-y-2 ml-4 mb-4">{children}</ul>
-                      ),
-                      li: ({ children }) => <li className="text-gray-700">{children}</li>,
-                    }}
-                  >
-                    {companyInfo.commitments}
-                  </ReactMarkdown>
-                </div>
-              ) : null}
-            </section>
-
-            {/* Strengths */}
-            <section className="bg-gradient-to-br from-orange-50 to-orange-100/50 rounded-2xl p-8 border border-orange-200">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="h-12 w-12 rounded-full bg-orange-600 flex items-center justify-center">
-                  <Zap className="h-6 w-6 text-white" />
-                </div>
-                <h2 className="text-3xl font-bold text-orange-900">Năng Lực & Thế Mạnh</h2>
-              </div>
-              {companyInfo?.strengths ? (
-                <div className="text-gray-700 leading-relaxed">
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      p: ({ children }) => <p className="mb-4">{children}</p>,
-                      strong: ({ children }) => (
-                        <strong className="text-orange-700 font-bold">{children}</strong>
-                      ),
-                    }}
-                  >
-                    {companyInfo.strengths}
-                  </ReactMarkdown>
-                </div>
-              ) : null}
-            </section>
           </div>
         </div>
       </div>

@@ -351,7 +351,7 @@ export default function TrackingPage() {
           <ul className="text-sm text-blue-800 space-y-1">
             <li>• Thông tin cập nhật từ hệ thống của hãng tàu</li>
             <li>• ETA/ETD có thể thay đổi tùy thuộc vào tình hình thực tế</li>
-            <li>• Liên hệ 0986066174 để được hỗ trợ chi tiết</li>
+            <li>• Liên hệ 0839037568 để được hỗ trợ chi tiết</li>
           </ul>
         </div>
       </div>

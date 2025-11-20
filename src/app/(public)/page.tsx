@@ -299,8 +299,8 @@ export default async function HomePage() {
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 backdrop-blur font-semibold" asChild>
-              <Link href="tel:0986066174">
-                Gọi: 0986066174
+              <Link href="tel:0839037568">
+                Gọi: 0839037568
               </Link>
             </Button>
           </div>

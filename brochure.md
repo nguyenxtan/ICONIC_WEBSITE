@@ -1,242 +1,278 @@
 
-
-# # 📄 **NỘI DUNG BROCHURE (BẢN SAO NGUYÊN VĂN – FULL CHỮ)**
-
-*(markdown format)*
+# # 📘 **ICONIC LOGISTICS BROCHURE – BẢN TỔNG HỢP ĐẦY ĐỦ**
 
 ---
 
-# ## **GIỚI THIỆU CHUNG**
+## **LỜI CHÀO TRÂN TRỌNG**
 
 ```
-Iconic Logistics Vietnam là doanh nghiệp hoạt động trong lĩnh vực Logistics
-quốc tế và nội địa, cung cấp các giải pháp vận tải đa phương thức, kho bãi,
-khai báo hải quan, và các dịch vụ xuất nhập khẩu chuyên nghiệp.
+LỜI CHÀO  
+TRÂN TRỌNG
 
-Chúng tôi không chỉ đơn thuần cung cấp dịch vụ mà còn đồng hành cùng khách
-hàng trong toàn bộ chuỗi cung ứng, đảm bảo sự an toàn, thời gian vận chuyển
-nhanh chóng, tối ưu hóa chi phí và nâng cao hiệu quả kinh doanh cho doanh
-nghiệp.
+Kính gửi Quý Khách hàng / Đối tác,
 
-Với đội ngũ nhân sự trẻ trung, năng động, nhiệt huyết và giàu kinh nghiệm,
-Iconic Logistics Vietnam luôn sẵn sàng hỗ trợ khách hàng trong mọi hoàn cảnh
-và mang đến những giải pháp tối ưu nhất.
-```
+Lời đầu tiên, Iconic Logistics Vietnam xin gửi đến Quý Khách hàng và Đối tác lời chào trân
+trọng, lời chúc sức khỏe và thành công.
 
----
+Iconic Logistics Vietnam là một Công ty Logistics định hướng dẫn đầu, cung cấp giải pháp
+chuỗi cung ứng toàn diện cho doanh nghiệp trong và ngoài nước. Với cam kết hiệu quả, tốc
+độ và sự tin cậy, chúng tôi đang kiến tạo vị thế thương hiệu biểu tượng của ngành Logistics tại
+Việt Nam.
 
-# ## **TẦM NHÌN – Định hướng dài hạn**
+Chúng tôi tự hào sở hữu đội ngũ nhân sự chuyên nghiệp, kinh nghiệm, áp dụng kỹ thuật cao và
+hệ thống dịch vụ đa dạng và mạng lới đối tác toàn cầu, luôn sẵn sàng đáp ứng nhu cầu ngày
+càng cao của thị trường. Với phương châm “BUILT ON RELIABILITY, GROWING
+THROUGH UNITY”, Iconic Logistics Vietnam cam kết trở thành người bạn đồng hành tin
+cậy của Quý Khách hàng, đoàn kết và thấu hiểu để tăng trưởng song phương. Chúng tôi không
+ngừng nỗ lực cải tiến dịch vụ, nâng cao chất lượng và tạo dựng giá trị bền vững, cùng Quý đối
+tác phát triển lâu dài trong bối cảnh hội nhập và cạnh tranh toàn cầu. Một lần nữa, chúng tôi xin
+gửi lời cảm ơn chân thành đến Quý Khách hàng đã luôn tin tưởng và đồng hành cùng
+Iconic Logistics Vietnam trong suốt thời gian qua. Rất mong tiếp tục nhận được sự hợp tác,
+đồng hành của Quý vị trong chặng đường sắp tới.
 
-```
-Iconic Logistics Vietnam hướng đến trở thành một trong những nhà cung ứng
-dịch vụ logistics hàng đầu tại Việt Nam và khu vực, với hệ thống kho bãi,
-mạng lưới vận tải và đối tác chiến lược trải dài trên khắp các tỉnh thành và
-các quốc gia lớn.
+Trân trọng,
 
-Chúng tôi liên tục mở rộng quy mô, áp dụng công nghệ hiện đại vào quá trình
-vận hành nhằm mang đến cho khách hàng những trải nghiệm dịch vụ nhanh chóng,
-hiệu quả và an toàn tuyệt đối.
-
-Iconic Logistics Vietnam cam kết mang đến giải pháp tối ưu nhất, giúp khách
-hàng và đối tác nâng cao năng lực cạnh tranh và phát triển bền vững.
+ICONIC LOGISTICS
 ```
 
 ---
 
-# ## **SỨ MỆNH – Vai trò & trách nhiệm**
+## **GIỚI THIỆU CHUNG**
 
 ```
-Xây dựng hệ thống vận hành Logistics một cách toàn diện, phát triển mạnh mẽ
-ở trong nước và quốc tế, nhằm đóng góp cho sự phát triển kinh tế – xã hội
-của Việt Nam trong thời kỳ mới.
+GIỚI THIỆU CHUNG
 
-Cam kết đem đến những dịch vụ hoàn hảo cho đối tác và khách hàng, đảm bảo
-mọi lô hàng đều được xử lý nhanh chóng, chính xác và an toàn tuyệt đối.
-
-Sứ mệnh của chúng tôi là trở thành “cánh tay phải” của doanh nghiệp trong
-mọi hoạt động liên quan đến vận chuyển, kho bãi, xuất nhập khẩu và dịch vụ
-hỗ trợ logistics.
-
-Iconic Logistics Vietnam tin rằng với sự nỗ lực, chuyên nghiệp và tinh thần
-trách nhiệm cao, chúng tôi sẽ mang lại giá trị thiết thực, bền vững cho khách
-hàng và cộng đồng.
+Iconic Logistics Vietnam là doanh nghiệp hoạt động trong lĩnh vực dịch vụ Logistics
+quốc tế và nội địa, cung cấp các giải pháp vận chuyển hàng hóa nhanh chóng, an toàn và
+hiệu quả. Với đội ngũ nhân sự chuyên nghiệp, áp dụng kĩ thuật công nghệ Logistics tiên
+tiến cùng mạng lưới đối tác rộng khắp thế giới, chúng tôi mang đến dịch vụ đa dạng từ
+vận tải đường biển quốc tế đa phương thức, đường hàng không, vận tải nội địa, khai báo
+Hải Quan đến dịch vụ kho vận. Chúng tôi luôn tối ưu vận tải và chất lượng làm nền tảng, cam
+kết đồng hành cùng khách hàng trong việc tối ưu chi phí, nâng cao hiệu quả chuỗi cung
+ứng và tạo dựng giá trị bền vững.
 ```
 
 ---
 
-# ## **GIÁ TRỊ CỐT LÕI**
+## **TẦM NHÌN – Định hướng dài hạn**
 
 ```
-Hướng đến khách hàng (Customer centric): Mọi giá trị phục vụ đều hướng đến
-việc mang lại lợi ích tốt nhất cho khách hàng thông qua chất lượng dịch vụ
-và hiệu quả vận hành.
+TẦM NHÌN
+Định hướng dài hạn
 
-Hợp tác và cùng phát triển (Collaboration): Xây dựng mối quan hệ hợp tác
-chặt chẽ, lâu dài với khách hàng và đối tác để cùng tạo ra giá trị bền vững.
+Iconic Logistics Vietnam ra đời trong bối cảnh đất nước bước vào kỷ
+nguyên vươn mình, chính vì thế làn động lực thúc đẩy cho một "biểu
+tượng" mới của ngành Logistics ra đời, trở thành đối tác Logistics mang
+tính biểu tượng hàng đầu tại Việt Nam, trung tâm kết nối hàng hóa Việt
+Nam với thị trường toàn cầu mang lại giá trị vượt trội thông qua mạng lưới
+logistics tối ưu, công nghệ tiên tiến và dịch vụ tận tâm — để mỗi hành
+trình hàng hóa đều hoàn hảo cam kết các giá trị cốt lõi cùng chuỗi cung
+ứng hiệu quả và bền trể, góp phần xây dựng thương hiệu Iconic tiếp cận thêm
+nhiều khách hàng và vươn xa quốc tế.
 
-Năng động & đổi mới (Innovation): Không ngừng cải tiến, đổi mới công nghệ
-và quy trình để tối ưu hóa chi phí và thời gian cho khách hàng.
-
-Minh bạch & hiệu quả (Efficiency and Transparency): Mọi giao dịch, thông tin
-đều được xử lý minh bạch, rõ ràng với cam kết mang lại hiệu quả cao nhất.
-
-Giải pháp tối ưu (Best-fit Solutions): Luôn đề xuất các giải pháp phù hợp
-nhất dành cho từng đối tượng khách hàng nhằm tiết kiệm tối đa chi phí và thời
-gian vận chuyển.
-```
-
----
-
-# ## **MỤC TIÊU PHÁT TRIỂN**
-
-```
-Mục tiêu của Iconic Logistics trong thời gian tới là không ngừng hoàn thiện,
-nâng cao năng lực vận hành và dịch vụ để đáp ứng nhu cầu ngày càng cao của
-khách hàng và thị trường trong và ngoài nước.
-
-Tập trung phát triển hệ thống dịch vụ bền vững và toàn diện, nhằm tối ưu hóa
-chuỗi cung ứng cho doanh nghiệp.
-
-Xây dựng đội ngũ nhân sự có trình độ chuyên môn cao, tinh thần trách nhiệm
-lớn, và luôn sẵn sàng đồng hành cùng khách hàng trong mọi hoàn cảnh.
-
-Đến năm 2030, chúng tôi đặt mục tiêu trở thành một trong những đơn vị logistics
-hàng đầu tại Việt Nam và mở rộng hoạt động ra thị trường khu vực.
+Xây dựng Iconic Logistics Việt Nam trở thành biểu tượng trong ngành
+dịch vụ vận tải nội địa mở rộng chất lượng, đổi mới kinh doanh và sự phát triển bền
+vững được ưu tiên hàng đầu.
 ```
 
 ---
 
-# ## **CAM KẾT ĐỐI VỚI KHÁCH HÀNG VÀ ĐỐI TÁC**
+## **SỨ MỆNH – Vai trò & trách nhiệm**
 
 ```
-Chuyên nghiệp, an toàn, tiết kiệm, công nghệ hiện đại...
+SỨ MỆNH
+Vai trò & trách nhiệm
 
-Iconic Logistics Vietnam luôn đặt lợi ích khách hàng lên hàng đầu, cam kết
-cung cấp dịch vụ với chất lượng tốt nhất, đảm bảo đúng tiến độ, tối ưu chi
-phí và xử lý các vấn đề phát sinh nhanh chóng.
+Xây dựng biểu tượng tiêu biểu trong ngành Logistics với một mạng lưới dịch vụ Logistics đa
+phương thức, uy tín, thông minh, nhanh chóng, tối ưu và minh bạch, giúp doanh nghiệp mở rộng
+thị trường xuất nhập khẩu sang các trung tâm kinh tế trọng điểm của thế giới.
 
-Chúng tôi cam kết:
-- Dịch vụ chuyên nghiệp chuẩn quốc tế
-- Chi phí hợp lý và tối ưu
-- An toàn hàng hóa tuyệt đối
-- Ứng dụng công nghệ trong quản lý vận hành
-- Hỗ trợ khách hàng 24/7
-```
+Con người: đội ngũ nhân sự của Iconic đã và đang góp một phần nhỏ vào sự thành công của các
+doanh nghiệp khách hàng, nhà máy, khu công nghiệp, chế xuất...với các tiêu chí chuyên nghiệp,
+đoàn kết, tận tâm, đạo đức cùng tinh thần trách nhiệm tạo ra giá trị bền vững, không
+ngừng đổi mới quy trình vận tải, ứng dụng công nghệ tiên tiến từ sự sáng lập bởi đội ngũ của
+Iconic, bồi xịp xu hướng thời đại từ đội ngũ có khả năng linh hoạt, ứng dụng linh hoạt mang lại giải pháp
+vận chuyển nhanh chóng — an toàn — hiệu quả.
 
----
-
-# ## **LĨNH VỰC HOẠT ĐỘNG / DỊCH VỤ**
-
-```
-Vận chuyển nội địa – quốc tế: Đường bộ, đường biển, đường hàng không
-Dịch vụ kho bãi – phân phối
-Dịch vụ khai báo hải quan, làm thủ tục XNK
-```
-
-### **Vận chuyển nội địa – quốc tế gồm ba mảng chính:**
-
-```
-ĐƯỜNG BỘ  
-ĐƯỜNG BIỂN  
-ĐƯỜNG HÀNG KHÔNG
+Xã hội: đồng góp vào sự phát triển thương mại quốc tế, thúc đẩy dòng chảy hàng hóa và nâng
+tầm vị thế Logistics Việt Nam trên bản đồ thế giới.
 ```
 
 ---
 
-# ## **DỊCH VỤ KHO BÃI, PHÂN PHỐI**
+## **GIÁ TRỊ CỐT LÕI**
 
 ```
-Dịch vụ lưu trữ hàng hóa
-Dịch vụ đóng gói, phân loại
-Dịch vụ quản lý hàng hóa
-Dịch vụ phân phối
-```
+GIÁ TRỊ CỐT LÕI
 
----
+Hướng khách hàng (Customer orientation): Xây dựng giải pháp Logistics dựa trên nhu cầu thật sự
+của doanh nghiệp, là người bạn đồng hành đáng tin cậy của khách hàng khi nhắc đến Logistics.
 
-# ## **DỊCH VỤ KHAI BÁO HẢI QUAN – THỦ TỤC XNK**
+Hướng thị trường quốc tế (Market orientation): Đã và đang handle với mong muốn mở rộng mạng
+lưới vận tải giữa Việt Nam với các nền kinh tế lớn của Châu Á, Châu Âu, Châu Phi, Châu Đại
+Dương và Nam Mỹ.
 
-```
-Dịch vụ khai báo hải quan
-Dịch vụ làm thủ tục xuất nhập khẩu
-```
+Hướng đổi mới (Innovation orientation): Luôn cập nhật và bắt kịp xu hướng thời đại, ứng dụng
+công nghệ tiên tiến độc quyền tại Việt Nam để quản lý chuỗi cung ứng minh bạch, tối ưu chi phí
+và thời gian.
 
----
-
-# ## **MỘT SỐ MẶT HÀNG CHỦ LỰC**
-
-(*Các mặt hàng được liệt kê kèm hình trong brochure, dưới đây là toàn bộ tên gọi:*)
-
-```
-THÉP CUỘN – NHÔM
-THÉP ĐÚC
-THÉP CUỘN
-LỐP XE
-MAY MẶC
-PHỤ KIỆN
-GẠO TIÊU
-NÔNG SẢN
-VẢI
-BỘT BÃ
-THỨC ĂN GIA SÚC
-SILICON
-GẠO
-CAO SU
-GIẤY – MỰC
-HẢI SẢN
+Hướng quan hệ đối tác (Partnership orientation): Iconic đang là đối tác chiến lược của các hãng
+tàu, hãng hàng không lớn, và nhà vận tải trên khắp thế giới, mang lại lợi ích song phương trên khắp các
+quốc gia. Trên chính, có vị thế Iconic là nơi mà nhiều khách hàng tin tưởng gửi gắm, đặt trọn tâm
+huyết cho mỗi chuyến hàng.
 ```
 
 ---
 
-# ## **NĂNG LỰC & THẾ MẠNH**
+## **MỤC TIÊU PHÁT TRIỂN**
 
 ```
-Đội ngũ nhân sự chuyên nghiệp và giàu kinh nghiệm, được đào tạo bài bản,
-thành thạo các quy trình vận chuyển quốc tế và nội địa.
+MỤC TIÊU PHÁT TRIỂN
 
-Hệ thống kho bãi, phương tiện vận tải và đối tác rộng khắp, giúp Iconic
-Logistics có khả năng xử lý đa dạng các loại hàng hóa từ nhỏ lẻ đến hàng
-siêu trường siêu trọng.
+Một biểu tượng Logistics được ra đời trong kỷ nguyên mới của đất nước, mang trong mình mục
+tiêu trở thành đơn vị Logistics uy tín, chuyên nghiệp, đáp ứng toàn diện nhu cầu vận chuyển và
+chuỗi cung ứng của khách hàng.
 
-Quy trình vận hành tối ưu, đảm bảo tốc độ – chính xác – an toàn.
+Ứng dụng công nghệ hiện đại để tối ưu hóa quá trình vận hành, tiết kiệm chi phí và rút ngắn thời
+gian giao nhận.
 
-Ứng dụng công nghệ vào công tác quản lý nhằm nâng cao hiệu quả và giảm thiểu
-rủi ro cho khách hàng.
+Xây dựng đội ngũ nhân sự chất lượng cao, giàu kinh nghiệm, mang đến dịch vụ nhanh chóng –
+chính xác – an toàn.
 
-Đảm bảo toàn bộ quy trình được theo dõi minh bạch, rõ ràng, giúp khách hàng
-yên tâm trong mọi giao dịch và vận chuyển.
+Phát triển bền vững, mở rộng mạng lưới trong nước và quốc tế, hướng tới vị thế cạnh tranh hàng
+đầu trong ngành logistics
+
+Trụ sở chính, văn phòng đại diện đặt tại trung tâm Logistics hàng đầu Việt Nam là thành phố Hồ
+Chí Minh và chi nhánh tại các điểm đầu tàu như Hà Nội, Hải Phòng, Đà Nẵng…
 ```
 
 ---
 
-# ## **ĐỐI TÁC CỦA ICONIC LOGISTICS**
-
-(*Danh sách liệt kê trong brochure, giữ nguyên thứ tự và tên gọi:*)
+## **CAM KẾT ĐỐI VỚI KHÁCH HÀNG VÀ ĐỐI TÁC**
 
 ```
-MAERSK – Cảng Vũng Tàu
-MSC – Cảng Hải Phòng
-CMA – Cảng Đà Nẵng
-OOCL – Cảng Hồ Chí Minh
-EVERGREEN – Cảng Hải Phòng
-HAPAG – Cảng Hồ Chí Minh
-YANG MING – Cảng Vũng Tàu
-ONE – Cảng Vũng Tàu
-EMIRATES – Hàng không
-QATAR – Hàng không
-VIETJET – Hàng không
-VIETNAM AIRLINES – Hàng không
-BAMBOO – Hàng không
-HANJIN – Cảng Hồ Chí Minh
-KLINE – Cảng Đà Nẵng
-WCA – Đối tác quốc tế
-PIL – Cảng Hải Phòng
-NYK – Cảng Hồ Chí Minh
-OOCL – Cảng Đà Nẵng
-MOL – Cảng Vũng Tàu
-UASC – Cảng Hồ Chí Minh
-WANHAI – Cảng Đà Nẵng
-NAMSUNG – Cảng Hải Phòng
-HEUNG-A – Cảng Hồ Chí Minh
+CAM KẾT ĐỐI VỚI
+KHÁCH HÀNG
+VÀ ĐỐI TÁC
+
+Chuyên nghiệp, an toàn, tiết kiệm,
+công nghệ hiện đại...
+
+Uy tín: Luôn đặt lợi ích và sự hài lòng của khách hàng làm trọng tâm trong mọi hoạt động.
+Chất lượng: Cung cấp dịch vụ logistics nhanh chóng, chính xác, an toàn và tiết kiệm.
+Đồng hành: Trở thành đối tác tin cậy, cùng khách hàng phát triển lâu dài.
+Đổi mới: Liên tục cập nhật, ứng dụng công nghệ hiện đại để tối ưu hiệu quả dịch vụ.
+Trách nhiệm: Cam kết minh bạch, tuân thủ pháp luật và đồng góp tích cực cho công đồng, xã hội.
 ```
 
+---
+
+## **LĨNH VỰC HOẠT ĐỘNG / DỊCH VỤ**
+
+```
+LĨNH VỰC
+HOẠT ĐỘNG/DỊCH VỤ
+
+• Vận chuyển nội địa – quốc tế: đường bộ, đường biển, đường hàng không
+• Dịch vụ kho bãi, phân phối
+• Dịch vụ khai báo hải quan, thủ tục XNK
+
+VẬN CHUYỂN NỘI ĐỊA – QUỐC TẾ  
+ĐƯỜNG BỘ     ĐƯỜNG BIỂN     ĐƯỜNG HÀNG KHÔNG
+
+DỊCH VỤ KHO BÃI, PHÂN PHỐI
+
+DỊCH VỤ KHAI BÁO HẢI QUAN,
+THỦ TỤC XNK
+```
+
+---
+
+## **MỘT SỐ MẶT HÀNG CHỦ LỰC**
+
+```
+MỘT SỐ MẶT          HÀNG CHỦ LỰC
+
+THÉP CUỘN - NHÔM      THÉP ỐNG      THÉP CUỘN      LỐP XE      MÁY MÓC      HOÁ CHẤT      HẠT ĐIỀU      NÔNG SẢN
+
+VẢI      BỘT ĐÁ      THỨC ĂN GIA SÚC      SILICON      GẠO      CAO SU      GIẤY - XỐP      HẢI SẢN
+```
+
+---
+
+## **NĂNG LỰC & THẾ MẠNH**
+
+```
+NĂNG LỰC & THẾ MẠNH
+
+Là đối tác nhiều năm cùng với mối quan hệ gắn kết, thân thiết với các hãng tàu lớn trên thế giới cũng
+như các Depot, ICDs, Cảng vụ Hải diện tại các trung tâm Logistics hàng đầu Việt Nam
+Đội ngũ Iconic Logistics Vietnam tự tin khẳng định rằng ra đời nhằm đem đến những giải pháp Logistics độc
+quyền tại Việt Nam mang tên Icontech một nền tảng quản lý Logistics toàn diện, giúp doanh nghiệp
+kiểm soát mọi hoạt động từ số liệu, vận tải, đến theo dõi đơn hàng: chứng từ, tracking... từ các trong một
+hệ thống truy cập quan và thông minh giúp doanh nghiệp theo dõi được chi tiết của mọi tuyến hàng,
+thính truyền thông phân tập, báo cáo tự động, tích hợp dễ dàng... tối ưu chuỗi cung ứng, tiết kiệm
+thời gian, chi phí, nâng cao hiệu quả công việc cho khách hàng của Iconic Logistics
+
+Đội ngũ nhân sự với kinh nghiệm nhiều năm trong ngành Logistics được đào tạo bày bản và tư duy
+xử lí hàng hoá chuyên nghiệp, xử lí tối đa được các rủi ro hàng từ các đề đơn phức tạp.
+Iconic đang là đối tác chiến lược của các hãng tàu, hãng hàng không, và như vận ta trền khắp thế
+giới, mang lưới đối tác y phía sống trên khắp các quốc gia. Tin rằng, chính vì thế Iconic là nơi mà nhiều
+khách hàng tin tưởng giao phó, đặt trọn tâm huyết cho thẻ mỗi chuyến hàng.
+Hệ thống văn phòng, kho xá dịch vụ tiêu biểu như: An Độ, Trung Quốc, Úc, Thái Lan, Nhật Bản, Hàn
+Quốc, Indonesia, Bangladesh, Hà Lan, Ba Lan, Pháp, Canada,BrasiI, Mexico...
+Lợi thế cạnh tranh (nhanh chóng, linh hoạt, chi phí tối ưu)
+```
+
+---
+
+## **ĐỐI TÁC CỦA ICONIC LOGISTICS**
+
+```
+ĐỐI TÁC CỦA ICONIC LOGISTICS
+
+MAERSK - Quốc gia: Đan Mạch - Năm thành lập: 1904
+MSC - Quốc gia: Thuỵ Sĩ (nguồn gốc Ý) - Năm thành lập: 1970
+CMA - Quốc gia: Pháp - Năm thành lập: 1978
+COSCO - Quốc gia: Trung Quốc -Năm thành lập: 1960
+HAPAG LLOYD - Quốc gia: Đức - Năm thành lập: 1970
+YANGMING - Quốc gia: Đài Loan -Năm thành lập: 1972
+ONE - Quốc gia: Nhật Bản- Năm thành lập: 2017
+WANHAI - Quốc gia: Đài Loan- Năm thành lập: 1965
+RCL - Quốc gia: Thái Lan- Năm thành lập: 1979
+KMTC - Quốc gia: Hàn Quốc - Năm thành lập: 1954
+PIL- Quốc gia: Singapore- Năm thành lập: 1967
+SAMUDERA-Quốc gia: Indonesia- Năm thành lập: 1964
+EVERGREEN - Quốc gia: Đài Loạn-Năm thành lập: 1968
+IAL - Quốc gia: Nhật Bản -Năm thành lập: 1967
+SJJ - Quốc gia: Trung Quốc- Năm thành lập: 1983
+TS LINE-Quốc gia: Đài Loan - Năm thành lập: 2001
+CK LINE - Quốc gia: Hàn Quốc - Năm thành lập: 1962
+OOCL - Quốc gia: Hongkong - Năm thành lập: 1969
+ZIM - Quốc gia: Israel - Năm thành lập: 1945
+HMM - Quốc gia: Hàn Quốc - Năm thành lập: 1969
+CU LINE - Quốc gia: Đài Loan - Năm thành lập: 2005
+EMIRATE - Quốc gia: UAE - Năm thành lập: 2006
+SITC - Quốc gia: Trung Quốc - Năm thành lập: 2000
+SINOKOR - Quốc gia: Hàn Quốc - Năm thành lập: 1989
+NAMSUNG - Quốc gia: Hàn Quốc - Năm thành lập: 1953
+PANCON - Quốc gia: Hàn Quốc - Năm thành lập: 1999
+DONG YOUNG - Quốc gia: Hàn Quốc - Năm thành lập: 1974
+TAILWIND - Quốc gia: Đức - Năm thành lập: 2022
+SINOTRANS - Quốc gia: Trung Quốc - Năm thành lập: 1950
+BENLINE - Quốc gia: Scotland - Năm thành lập: 1825
+VIMC - Quốc gia: Việt Nam - Năm thành lập: 1995
+```
+
+
+CÔNG TY TNHH ICONIC LOGISTICS VIỆT NAM
+
+Mã số doanh nghiệp: 0319140629
+Năm thành lập: 2025
+Địa chỉ trụ sở: 25/49 Đường 6, Khu phố 26, Phường Hiệp Bình, TP Hồ Chí Minh, Việt Nam
+Chi nhánh:
+Hotline: 0839037568
+Email: Info@iconiclogs.com
+Website: Iconiclogs.com
+Fanpage facebook: ICONIC LOGISTICS VIETNAM
+Hotline zalo: ICONIC LOGISTICS VIETNAM

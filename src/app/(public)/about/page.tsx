@@ -1,6 +1,8 @@
 import { generateMetadata as genMeta } from '@/lib/seo'
 import { prisma } from '@/lib/db'
-import { Building2, Phone, Mail, MapPin } from 'lucide-react'
+import { Building2, Phone, Mail, MapPin, CheckCircle2, Zap } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 export const metadata = genMeta({
   title: 'Về Chúng Tôi',
@@ -35,18 +37,74 @@ export default async function AboutPage() {
             </div>
 
             {/* Introduction */}
-            <section className="mb-12">
-              <div className="flex items-center gap-3 mb-4">
-                <Building2 className="h-8 w-8 text-brand-orange-primary" />
-                <h2 className="text-2xl font-bold">Giới Thiệu</h2>
+            <section className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl p-8 mb-12 border border-blue-200">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-12 w-12 rounded-full bg-blue-600 flex items-center justify-center">
+                  <Building2 className="h-6 w-6 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold text-blue-900">Giới Thiệu</h2>
               </div>
               {companyInfo?.introduction ? (
-                <div className="text-gray-700 leading-relaxed space-y-3">
+                <div className="text-gray-700 leading-relaxed space-y-4">
                   {companyInfo.introduction.split('\n\n').map((para, idx) => (
                     <p key={idx} className="text-base">
                       {para.trim()}
                     </p>
                   ))}
+                </div>
+              ) : null}
+            </section>
+
+            {/* Commitments Section */}
+            <section className="bg-white border-2 border-brand-orange-primary/20 rounded-2xl p-8 mb-12">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="h-12 w-12 rounded-full bg-brand-orange-primary flex items-center justify-center">
+                  <CheckCircle2 className="h-6 w-6 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900">Cam Kết Với Khách Hàng</h2>
+              </div>
+              {companyInfo?.commitments ? (
+                <div className="text-gray-700 leading-relaxed">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      p: ({ children }) => <p className="mb-3">{children}</p>,
+                      strong: ({ children }) => (
+                        <strong className="text-brand-orange-primary font-bold">{children}</strong>
+                      ),
+                      ul: ({ children }) => (
+                        <ul className="list-disc list-inside space-y-2 ml-4 mb-4">{children}</ul>
+                      ),
+                      li: ({ children }) => <li className="text-gray-700">{children}</li>,
+                    }}
+                  >
+                    {companyInfo.commitments}
+                  </ReactMarkdown>
+                </div>
+              ) : null}
+            </section>
+
+            {/* Strengths Section */}
+            <section className="bg-gradient-to-br from-orange-50 to-orange-100/50 rounded-2xl p-8 border border-orange-200 mb-12">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="h-12 w-12 rounded-full bg-orange-600 flex items-center justify-center">
+                  <Zap className="h-6 w-6 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold text-orange-900">Năng Lực & Thế Mạnh</h2>
+              </div>
+              {companyInfo?.strengths ? (
+                <div className="text-gray-700 leading-relaxed">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      p: ({ children }) => <p className="mb-4">{children}</p>,
+                      strong: ({ children }) => (
+                        <strong className="text-orange-700 font-bold">{children}</strong>
+                      ),
+                    }}
+                  >
+                    {companyInfo.strengths}
+                  </ReactMarkdown>
                 </div>
               ) : null}
             </section>
@@ -76,10 +134,10 @@ export default async function AboutPage() {
                     <div>
                       <h3 className="font-bold text-gray-900 mb-2">Điện Thoại</h3>
                       <a
-                        href={`tel:${companyInfo?.phone || '0986066174'}`}
+                        href={`tel:${companyInfo?.phone || '0839037568'}`}
                         className="text-brand-orange-primary hover:text-brand-orange-dark font-semibold transition-colors"
                       >
-                        {companyInfo?.phone || '0986066174'}
+                        {companyInfo?.phone || '0839037568'}
                       </a>
                     </div>
                   </div>
@@ -92,10 +150,10 @@ export default async function AboutPage() {
                     <div>
                       <h3 className="font-bold text-gray-900 mb-2">Email</h3>
                       <a
-                        href={`mailto:${companyInfo?.email || 'info@iconiclogs.com'}`}
+                        href={`mailto:${companyInfo?.email || 'Info@iconiclogs.com'}`}
                         className="text-brand-orange-primary hover:text-brand-orange-dark font-semibold transition-colors break-all"
                       >
-                        {companyInfo?.email || 'info@iconiclogs.com'}
+                        {companyInfo?.email || 'Info@iconiclogs.com'}
                       </a>
                     </div>
                   </div>

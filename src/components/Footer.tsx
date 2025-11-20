@@ -97,17 +97,17 @@ export default function Footer() {
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-brand-orange-primary" />
-                <a href="tel:0986066174" className="hover:text-brand-orange-primary">
-                  0986066174
+                <a href="tel:0839037568" className="hover:text-brand-orange-primary">
+                  0839037568
                 </a>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-brand-orange-primary" />
                 <a
-                  href="mailto:info@iconiclogs.com"
+                  href="mailto:Info@iconiclogs.com"
                   className="hover:text-brand-orange-primary"
                 >
-                  info@iconiclogs.com
+                  Info@iconiclogs.com
                 </a>
               </li>
             </ul>

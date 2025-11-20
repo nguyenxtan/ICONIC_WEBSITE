@@ -46,7 +46,9 @@
       "Bash(/Users/tannx/Documents/ICONIC_CMS/remove-edge-runtime.sh:*)",
       "Bash(npm run lint:*)",
       "Bash(grep:*)",
-      "Bash(psql:*)"
+      "Bash(psql:*)",
+      "Bash(ls:*)",
+      "Bash(npm run prisma:migrate:*)"
     ],
     "deny": [],
     "ask": []
