@@ -32,7 +32,7 @@ services:
         echo 'Seeding database...' &&
         npx prisma db seed &&
         echo 'Starting Next.js server...' &&
-        node .next/standalone/server.js
+        node server.js
       "
 
 # No volumes or networks needed for single service
