@@ -58,9 +58,8 @@ COPY --from=builder /app/scripts ./scripts
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Copy Prisma Client from builder (already generated)
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+# Copy node_modules (needed for Prisma CLI during migrations)
+COPY --from=builder /app/node_modules ./node_modules
 
 USER nextjs
 
