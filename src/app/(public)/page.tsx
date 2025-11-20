@@ -6,6 +6,7 @@ import { HeroSection } from '@/components/hero-section'
 import { AnimatedCounter } from '@/components/animated-counter'
 import { prisma } from '@/lib/db'
 import { formatDate } from '@/lib/utils'
+import styles from './page.module.css'
 
 
 export const dynamic = 'force-dynamic'
@@ -146,134 +147,69 @@ export default async function HomePage() {
       </section>
 
       {/* Partners Section */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50">
+      <section className="py-16 bg-white border-t border-gray-200">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-3">
-                Đối Tác Chiến Lược
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                ICONIC LOGISTICS vinh dự hợp tác với các hãng tàu, hãng hàng không và đối tác quốc tế hàng đầu thế giới
-              </p>
-            </div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">
+              Đối Tác Chiến Lược
+            </h2>
+            <p className="text-gray-600">
+              Hợp tác với các hãng tàu, hãng hàng không và đối tác quốc tế hàng đầu thế giới
+            </p>
+          </div>
 
-            <div className="space-y-16">
-              {/* Shipping Partners */}
-              {shippingPartners.length > 0 && (
-                <div>
-                  <div className="flex items-center gap-3 mb-10">
-                    <div className="p-3 bg-gradient-to-br from-blue-100 to-blue-50 rounded-lg">
-                      <Ship className="h-6 w-6 text-blue-600" />
+          {/* Marquee Container */}
+          <div className="relative w-full overflow-hidden">
+            <div className={styles.marquee}>
+              <div className={styles.marqueeContent}>
+                {/* First set of partners */}
+                {partners.map((partner) => (
+                  <div
+                    key={`${partner.id}-1`}
+                    className="flex-shrink-0 mx-4 group"
+                  >
+                    <div className="w-32 h-24 bg-white border border-gray-200 rounded-lg p-3 flex items-center justify-center hover:shadow-md hover:border-brand-orange-primary/50 transition-all duration-300">
+                      {partner.logoUrl ? (
+                        <img
+                          src={partner.logoUrl}
+                          alt={partner.name}
+                          className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                        />
+                      ) : (
+                        <span className="text-gray-400 text-xs text-center font-semibold">{partner.name}</span>
+                      )}
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">Hãng Tàu & Cảng</h3>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {shippingPartners.map((partner) => (
-                      <div
-                        key={partner.id}
-                        className="group bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-blue-300 transition-all duration-300 hover:-translate-y-1"
-                      >
-                        <div className="aspect-video bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-                          {partner.logoUrl ? (
-                            <img
-                              src={partner.logoUrl}
-                              alt={partner.name}
-                              className="max-w-full max-h-full object-contain p-2 group-hover:scale-110 transition-transform duration-300"
-                            />
-                          ) : (
-                            <span className="text-gray-400 text-sm">{partner.name}</span>
-                          )}
-                        </div>
-                        <p className="font-semibold text-gray-900 text-sm group-hover:text-blue-600 transition-colors text-center">{partner.name}</p>
-                        {partner.port && (
-                          <p className="text-xs text-gray-500 mt-2 text-center">{partner.port}</p>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+                ))}
 
-              {/* Airline Partners */}
-              {airlinePartners.length > 0 && (
-                <div>
-                  <div className="flex items-center gap-3 mb-10">
-                    <div className="p-3 bg-gradient-to-br from-purple-100 to-purple-50 rounded-lg">
-                      <Plane className="h-6 w-6 text-purple-600" />
+                {/* Duplicate set for seamless loop */}
+                {partners.map((partner) => (
+                  <div
+                    key={`${partner.id}-2`}
+                    className="flex-shrink-0 mx-4 group"
+                  >
+                    <div className="w-32 h-24 bg-white border border-gray-200 rounded-lg p-3 flex items-center justify-center hover:shadow-md hover:border-brand-orange-primary/50 transition-all duration-300">
+                      {partner.logoUrl ? (
+                        <img
+                          src={partner.logoUrl}
+                          alt={partner.name}
+                          className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                        />
+                      ) : (
+                        <span className="text-gray-400 text-xs text-center font-semibold">{partner.name}</span>
+                      )}
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">Hãng Hàng Không</h3>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {airlinePartners.map((partner) => (
-                      <div
-                        key={partner.id}
-                        className="group bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-purple-300 transition-all duration-300 hover:-translate-y-1"
-                      >
-                        <div className="aspect-video bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-                          {partner.logoUrl ? (
-                            <img
-                              src={partner.logoUrl}
-                              alt={partner.name}
-                              className="max-w-full max-h-full object-contain p-2 group-hover:scale-110 transition-transform duration-300"
-                            />
-                          ) : (
-                            <span className="text-gray-400 text-sm">{partner.name}</span>
-                          )}
-                        </div>
-                        <p className="font-semibold text-gray-900 text-sm group-hover:text-purple-600 transition-colors text-center">{partner.name}</p>
-                        {partner.port && (
-                          <p className="text-xs text-gray-500 mt-2 text-center">{partner.port}</p>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* International Partners */}
-              {internationalPartners.length > 0 && (
-                <div>
-                  <div className="flex items-center gap-3 mb-10">
-                    <div className="p-3 bg-gradient-to-br from-green-100 to-green-50 rounded-lg">
-                      <Globe className="h-6 w-6 text-green-600" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900">Đối Tác Quốc Tế</h3>
-                  </div>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {internationalPartners.map((partner) => (
-                      <div
-                        key={partner.id}
-                        className="group bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-green-300 transition-all duration-300 hover:-translate-y-1"
-                      >
-                        <div className="aspect-video bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-                          {partner.logoUrl ? (
-                            <img
-                              src={partner.logoUrl}
-                              alt={partner.name}
-                              className="max-w-full max-h-full object-contain p-2 group-hover:scale-110 transition-transform duration-300"
-                            />
-                          ) : (
-                            <span className="text-gray-400 text-sm">{partner.name}</span>
-                          )}
-                        </div>
-                        <p className="font-semibold text-gray-900 text-sm group-hover:text-green-600 transition-colors text-center">{partner.name}</p>
-                        {partner.port && (
-                          <p className="text-xs text-gray-500 mt-2 text-center">{partner.port}</p>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+                ))}
+              </div>
             </div>
+          </div>
 
-            {/* CTA Button */}
-            <div className="text-center mt-16">
-              <Button size="lg" className="bg-brand-orange-primary hover:bg-brand-orange-dark text-white" asChild>
-                <Link href="/partners">Xem Tất Cả Đối Tác</Link>
-              </Button>
-            </div>
+          {/* CTA Button */}
+          <div className="text-center mt-12">
+            <Button size="lg" className="bg-brand-orange-primary hover:bg-brand-orange-dark text-white" asChild>
+              <Link href="/partners">Xem Tất Cả Đối Tác</Link>
+            </Button>
           </div>
         </div>
       </section>
