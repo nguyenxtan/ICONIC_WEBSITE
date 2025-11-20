@@ -3,6 +3,7 @@ import { prisma } from '@/lib/db'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Package } from 'lucide-react'
 
 export const runtime = 'nodejs'
 
@@ -16,6 +17,11 @@ export const dynamic = 'force-dynamic'
 
 export default async function ServicesPage() {
   const services = await prisma.service.findMany({
+    where: { visible: true },
+    orderBy: { sortOrder: 'asc' },
+  })
+
+  const commodities = await prisma.commodity.findMany({
     where: { visible: true },
     orderBy: { sortOrder: 'asc' },
   })
@@ -99,6 +105,37 @@ export default async function ServicesPage() {
               </CardContent>
             </Card>
           ))}
+
+          {/* Commodities Section */}
+          {commodities.length > 0 && (
+            <div className="mt-16 pt-12 border-t-2 border-gray-200">
+              <div className="mb-10">
+                <h2 className="text-3xl font-bold text-gray-900 mb-3">
+                  Mặt Hàng Chủ Lực
+                </h2>
+                <p className="text-gray-600 text-lg">
+                  Chúng tôi chuyên vận chuyển các loại hàng hóa sau:
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                {commodities.map((commodity) => (
+                  <div
+                    key={commodity.id}
+                    className="flex items-center gap-3 p-4 bg-gradient-to-br from-brand-orange-primary/10 to-white border border-brand-orange-primary/20 rounded-lg hover:shadow-md transition-shadow"
+                  >
+                    <Package className="h-5 w-5 text-brand-orange-primary flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-gray-900 text-sm">{commodity.nameVi}</p>
+                      {commodity.nameEn && (
+                        <p className="text-xs text-gray-500">{commodity.nameEn}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

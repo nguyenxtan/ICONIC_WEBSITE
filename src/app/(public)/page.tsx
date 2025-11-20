@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Ship, FileText, Warehouse, Search, ArrowRight, Anchor, Truck, Package } from 'lucide-react'
+import { Ship, FileText, Warehouse, Search, ArrowRight, Anchor, Truck, Package, Globe, Plane } from 'lucide-react'
 import { HeroSection } from '@/components/hero-section'
 import { AnimatedCounter } from '@/components/animated-counter'
 import { prisma } from '@/lib/db'
@@ -17,6 +17,11 @@ export default async function HomePage() {
     take: 3,
   })
 
+  const partners = await prisma.partner.findMany({
+    where: { visible: true },
+    orderBy: { sortOrder: 'asc' },
+  })
+
   const posts = await prisma.post.findMany({
     where: { status: 'PUBLISHED' },
     orderBy: { publishedAt: 'desc' },
@@ -29,6 +34,10 @@ export default async function HomePage() {
       publishedAt: true,
     },
   })
+
+  const shippingPartners = partners.filter(p => p.type === 'SHIPPING').slice(0, 8)
+  const airlinePartners = partners.filter(p => p.type === 'AIRLINE').slice(0, 5)
+  const internationalPartners = partners.filter(p => p.type === 'INTERNATIONAL')
 
   const serviceIcons = [Ship, FileText, Warehouse]
 
@@ -132,6 +141,106 @@ export default async function HomePage() {
             <Button size="lg" className="bg-brand-orange-primary hover:bg-brand-orange-dark text-white" asChild>
               <Link href="/services">Xem Tất Cả Dịch Vụ</Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-3">
+                Đối Tác Chiến Lược
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                ICONIC LOGISTICS vinh dự hợp tác với các hãng tàu, hãng hàng không và đối tác quốc tế hàng đầu thế giới
+              </p>
+            </div>
+
+            <div className="space-y-12">
+              {/* Shipping Partners */}
+              {shippingPartners.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="p-3 bg-blue-100 rounded-lg">
+                      <Ship className="h-6 w-6 text-blue-600" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">Hãng Tàu & Cảng</h3>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {shippingPartners.map((partner) => (
+                      <div
+                        key={partner.id}
+                        className="group bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md hover:border-blue-200 transition-all"
+                      >
+                        <p className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{partner.name}</p>
+                        {partner.port && (
+                          <p className="text-xs text-gray-500 mt-1">{partner.port}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Airline Partners */}
+              {airlinePartners.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="p-3 bg-purple-100 rounded-lg">
+                      <Plane className="h-6 w-6 text-purple-600" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">Hãng Hàng Không</h3>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {airlinePartners.map((partner) => (
+                      <div
+                        key={partner.id}
+                        className="group bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md hover:border-purple-200 transition-all"
+                      >
+                        <p className="font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">{partner.name}</p>
+                        {partner.port && (
+                          <p className="text-xs text-gray-500 mt-1">{partner.port}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* International Partners */}
+              {internationalPartners.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="p-3 bg-green-100 rounded-lg">
+                      <Globe className="h-6 w-6 text-green-600" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">Đối Tác Quốc Tế</h3>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {internationalPartners.map((partner) => (
+                      <div
+                        key={partner.id}
+                        className="group bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md hover:border-green-200 transition-all"
+                      >
+                        <p className="font-semibold text-gray-900 group-hover:text-green-600 transition-colors">{partner.name}</p>
+                        {partner.port && (
+                          <p className="text-xs text-gray-500 mt-1">{partner.port}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* CTA Button */}
+            <div className="text-center mt-12">
+              <Button size="lg" className="bg-brand-orange-primary hover:bg-brand-orange-dark text-white" asChild>
+                <Link href="/partners">Xem Tất Cả Đối Tác</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
