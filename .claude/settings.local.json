@@ -48,7 +48,8 @@
       "Bash(grep:*)",
       "Bash(psql:*)",
       "Bash(ls:*)",
-      "Bash(npm run prisma:migrate:*)"
+      "Bash(npm run prisma:migrate:*)",
+      "Bash(docker logs:*)"
     ],
     "deny": [],
     "ask": []
