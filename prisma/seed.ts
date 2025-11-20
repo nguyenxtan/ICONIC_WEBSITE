@@ -19,10 +19,63 @@ async function main() {
   })
   console.log('✅ Created admin user:', admin.email)
 
-  // Create company info
+  // Create company info with brochure data
   const companyInfo = await prisma.companyInfo.upsert({
     where: { id: 'default' },
-    update: {},
+    update: {
+      introduction: `Iconic Logistics Vietnam là doanh nghiệp hoạt động trong lĩnh vực Logistics quốc tế và nội địa, cung cấp các giải pháp vận tải đa phương thức, kho bãi, khai báo hải quan, và các dịch vụ xuất nhập khẩu chuyên nghiệp.
+
+Chúng tôi không chỉ đơn thuần cung cấp dịch vụ mà còn đồng hành cùng khách hàng trong toàn bộ chuỗi cung ứng, đảm bảo sự an toàn, thời gian vận chuyển nhanh chóng, tối ưu hóa chi phí và nâng cao hiệu quả kinh doanh cho doanh nghiệp.
+
+Với đội ngũ nhân sự trẻ trung, năng động, nhiệt huyết và giàu kinh nghiệm, Iconic Logistics Vietnam luôn sẵn sàng hỗ trợ khách hàng trong mọi hoàn cảnh và mang đến những giải pháp tối ưu nhất.`,
+      vision: `Iconic Logistics Vietnam hướng đến trở thành một trong những nhà cung ứng dịch vụ logistics hàng đầu tại Việt Nam và khu vực, với hệ thống kho bãi, mạng lưới vận tải và đối tác chiến lược trải dài trên khắp các tỉnh thành và các quốc gia lớn.
+
+Chúng tôi liên tục mở rộng quy mô, áp dụng công nghệ hiện đại vào quá trình vận hành nhằm mang đến cho khách hàng những trải nghiệm dịch vụ nhanh chóng, hiệu quả và an toàn tuyệt đối.
+
+Iconic Logistics Vietnam cam kết mang đến giải pháp tối ưu nhất, giúp khách hàng và đối tác nâng cao năng lực cạnh tranh và phát triển bền vững.`,
+      mission: `Xây dựng hệ thống vận hành Logistics một cách toàn diện, phát triển mạnh mẽ ở trong nước và quốc tế, nhằm đóng góp cho sự phát triển kinh tế – xã hội của Việt Nam trong thời kỳ mới.
+
+Cam kết đem đến những dịch vụ hoàn hảo cho đối tác và khách hàng, đảm bảo mọi lô hàng đều được xử lý nhanh chóng, chính xác và an toàn tuyệt đối.
+
+Sứ mệnh của chúng tôi là trở thành "cánh tay phải" của doanh nghiệp trong mọi hoạt động liên quan đến vận chuyển, kho bãi, xuất nhập khẩu và dịch vụ hỗ trợ logistics.
+
+Iconic Logistics Vietnam tin rằng với sự nỗ lực, chuyên nghiệp và tinh thần trách nhiệm cao, chúng tôi sẽ mang lại giá trị thiết thực, bền vững cho khách hàng và cộng đồng.`,
+      coreValues: `**Hướng đến khách hàng (Customer centric)**: Mọi giá trị phục vụ đều hướng đến việc mang lại lợi ích tốt nhất cho khách hàng thông qua chất lượng dịch vụ và hiệu quả vận hành.
+
+**Hợp tác và cùng phát triển (Collaboration)**: Xây dựng mối quan hệ hợp tác chặt chẽ, lâu dài với khách hàng và đối tác để cùng tạo ra giá trị bền vững.
+
+**Năng động & đổi mới (Innovation)**: Không ngừng cải tiến, đổi mới công nghệ và quy trình để tối ưu hóa chi phí và thời gian cho khách hàng.
+
+**Minh bạch & hiệu quả (Efficiency and Transparency)**: Mọi giao dịch, thông tin đều được xử lý minh bạch, rõ ràng với cam kết mang lại hiệu quả cao nhất.
+
+**Giải pháp tối ưu (Best-fit Solutions)**: Luôn đề xuất các giải pháp phù hợp nhất dành cho từng đối tượng khách hàng nhằm tiết kiệm tối đa chi phí và thời gian vận chuyển.`,
+      goals: `Mục tiêu của Iconic Logistics trong thời gian tới là không ngừng hoàn thiện, nâng cao năng lực vận hành và dịch vụ để đáp ứng nhu cầu ngày càng cao của khách hàng và thị trường trong và ngoài nước.
+
+Tập trung phát triển hệ thống dịch vụ bền vững và toàn diện, nhằm tối ưu hóa chuỗi cung ứng cho doanh nghiệp.
+
+Xây dựng đội ngũ nhân sự có trình độ chuyên môn cao, tinh thần trách nhiệm lớn, và luôn sẵn sàng đồng hành cùng khách hàng trong mọi hoàn cảnh.
+
+Đến năm 2030, chúng tôi đặt mục tiêu trở thành một trong những đơn vị logistics hàng đầu tại Việt Nam và mở rộng hoạt động ra thị trường khu vực.`,
+      commitments: `**Chuyên nghiệp, an toàn, tiết kiệm, công nghệ hiện đại**
+
+Iconic Logistics Vietnam luôn đặt lợi ích khách hàng lên hàng đầu, cam kết cung cấp dịch vụ với chất lượng tốt nhất, đảm bảo đúng tiến độ, tối ưu chi phí và xử lý các vấn đề phát sinh nhanh chóng.
+
+Chúng tôi cam kết:
+- Dịch vụ chuyên nghiệp chuẩn quốc tế
+- Chi phí hợp lý và tối ưu
+- An toàn hàng hóa tuyệt đối
+- Ứng dụng công nghệ trong quản lý vận hành
+- Hỗ trợ khách hàng 24/7`,
+      strengths: `**Đội ngũ nhân sự**: Chuyên nghiệp và giàu kinh nghiệm, được đào tạo bài bản, thành thạo các quy trình vận chuyển quốc tế và nội địa.
+
+**Hệ thống kho bãi & phương tiện**: Rộng khắp, giúp Iconic Logistics có khả năng xử lý đa dạng các loại hàng hóa từ nhỏ lẻ đến hàng siêu trường siêu trọng.
+
+**Quy trình vận hành**: Tối ưu, đảm bảo tốc độ – chính xác – an toàn.
+
+**Công nghệ**: Ứng dụng công nghệ vào công tác quản lý nhằm nâng cao hiệu quả và giảm thiểu rủi ro cho khách hàng.
+
+**Minh bạch**: Đảm bảo toàn bộ quy trình được theo dõi minh bạch, rõ ràng, giúp khách hàng yên tâm trong mọi giao dịch và vận chuyển.`,
+    },
     create: {
       id: 'default',
       nameVi: 'CÔNG TY TNHH ICONIC LOGISTICS',
@@ -30,12 +83,58 @@ async function main() {
       phone: '0986066174',
       email: 'info@iconiclogs.com',
       address: '25/49 Đường 6, Khu phố 26, Phường Hiệp Bình, TP.HCM, Việt Nam',
-      vision: `Trở thành đối tác logistics đáng tin cậy hàng đầu tại Việt Nam, mang đến giải pháp vận chuyển
-và kho bãi toàn diện cho khách hàng trong và ngoài nước. Chúng tôi cam kết không ngừng đổi mới,
-áp dụng công nghệ hiện đại để tối ưu hóa quy trình và nâng cao trải nghiệm khách hàng.`,
-      mission: `Sứ mệnh của ICONIC LOGISTICS là cung cấp dịch vụ logistics chất lượng cao, an toàn và hiệu quả.
-Chúng tôi luôn đặt lợi ích khách hàng lên hàng đầu, xây dựng mối quan hệ đối tác bền vững thông qua
-sự chuyên nghiệp, minh bạch và tận tâm trong từng dịch vụ.`,
+      introduction: `Iconic Logistics Vietnam là doanh nghiệp hoạt động trong lĩnh vực Logistics quốc tế và nội địa, cung cấp các giải pháp vận tải đa phương thức, kho bãi, khai báo hải quan, và các dịch vụ xuất nhập khẩu chuyên nghiệp.
+
+Chúng tôi không chỉ đơn thuần cung cấp dịch vụ mà còn đồng hành cùng khách hàng trong toàn bộ chuỗi cung ứng, đảm bảo sự an toàn, thời gian vận chuyển nhanh chóng, tối ưu hóa chi phí và nâng cao hiệu quả kinh doanh cho doanh nghiệp.
+
+Với đội ngũ nhân sự trẻ trung, năng động, nhiệt huyết và giàu kinh nghiệm, Iconic Logistics Vietnam luôn sẵn sàng hỗ trợ khách hàng trong mọi hoàn cảnh và mang đến những giải pháp tối ưu nhất.`,
+      vision: `Iconic Logistics Vietnam hướng đến trở thành một trong những nhà cung ứng dịch vụ logistics hàng đầu tại Việt Nam và khu vực, với hệ thống kho bãi, mạng lưới vận tải và đối tác chiến lược trải dài trên khắp các tỉnh thành và các quốc gia lớn.
+
+Chúng tôi liên tục mở rộng quy mô, áp dụng công nghệ hiện đại vào quá trình vận hành nhằm mang đến cho khách hàng những trải nghiệm dịch vụ nhanh chóng, hiệu quả và an toàn tuyệt đối.
+
+Iconic Logistics Vietnam cam kết mang đến giải pháp tối ưu nhất, giúp khách hàng và đối tác nâng cao năng lực cạnh tranh và phát triển bền vững.`,
+      mission: `Xây dựng hệ thống vận hành Logistics một cách toàn diện, phát triển mạnh mẽ ở trong nước và quốc tế, nhằm đóng góp cho sự phát triển kinh tế – xã hội của Việt Nam trong thời kỳ mới.
+
+Cam kết đem đến những dịch vụ hoàn hảo cho đối tác và khách hàng, đảm bảo mọi lô hàng đều được xử lý nhanh chóng, chính xác và an toàn tuyệt đối.
+
+Sứ mệnh của chúng tôi là trở thành "cánh tay phải" của doanh nghiệp trong mọi hoạt động liên quan đến vận chuyển, kho bãi, xuất nhập khẩu và dịch vụ hỗ trợ logistics.
+
+Iconic Logistics Vietnam tin rằng với sự nỗ lực, chuyên nghiệp và tinh thần trách nhiệm cao, chúng tôi sẽ mang lại giá trị thiết thực, bền vững cho khách hàng và cộng đồng.`,
+      coreValues: `**Hướng đến khách hàng (Customer centric)**: Mọi giá trị phục vụ đều hướng đến việc mang lại lợi ích tốt nhất cho khách hàng thông qua chất lượng dịch vụ và hiệu quả vận hành.
+
+**Hợp tác và cùng phát triển (Collaboration)**: Xây dựng mối quan hệ hợp tác chặt chẽ, lâu dài với khách hàng và đối tác để cùng tạo ra giá trị bền vững.
+
+**Năng động & đổi mới (Innovation)**: Không ngừng cải tiến, đổi mới công nghệ và quy trình để tối ưu hóa chi phí và thời gian cho khách hàng.
+
+**Minh bạch & hiệu quả (Efficiency and Transparency)**: Mọi giao dịch, thông tin đều được xử lý minh bạch, rõ ràng với cam kết mang lại hiệu quả cao nhất.
+
+**Giải pháp tối ưu (Best-fit Solutions)**: Luôn đề xuất các giải pháp phù hợp nhất dành cho từng đối tượng khách hàng nhằm tiết kiệm tối đa chi phí và thời gian vận chuyển.`,
+      goals: `Mục tiêu của Iconic Logistics trong thời gian tới là không ngừng hoàn thiện, nâng cao năng lực vận hành và dịch vụ để đáp ứng nhu cầu ngày càng cao của khách hàng và thị trường trong và ngoài nước.
+
+Tập trung phát triển hệ thống dịch vụ bền vững và toàn diện, nhằm tối ưu hóa chuỗi cung ứng cho doanh nghiệp.
+
+Xây dựng đội ngũ nhân sự có trình độ chuyên môn cao, tinh thần trách nhiệm lớn, và luôn sẵn sàng đồng hành cùng khách hàng trong mọi hoàn cảnh.
+
+Đến năm 2030, chúng tôi đặt mục tiêu trở thành một trong những đơn vị logistics hàng đầu tại Việt Nam và mở rộng hoạt động ra thị trường khu vực.`,
+      commitments: `**Chuyên nghiệp, an toàn, tiết kiệm, công nghệ hiện đại**
+
+Iconic Logistics Vietnam luôn đặt lợi ích khách hàng lên hàng đầu, cam kết cung cấp dịch vụ với chất lượng tốt nhất, đảm bảo đúng tiến độ, tối ưu chi phí và xử lý các vấn đề phát sinh nhanh chóng.
+
+Chúng tôi cam kết:
+- Dịch vụ chuyên nghiệp chuẩn quốc tế
+- Chi phí hợp lý và tối ưu
+- An toàn hàng hóa tuyệt đối
+- Ứng dụng công nghệ trong quản lý vận hành
+- Hỗ trợ khách hàng 24/7`,
+      strengths: `**Đội ngũ nhân sự**: Chuyên nghiệp và giàu kinh nghiệm, được đào tạo bài bản, thành thạo các quy trình vận chuyển quốc tế và nội địa.
+
+**Hệ thống kho bãi & phương tiện**: Rộng khắp, giúp Iconic Logistics có khả năng xử lý đa dạng các loại hàng hóa từ nhỏ lẻ đến hàng siêu trường siêu trọng.
+
+**Quy trình vận hành**: Tối ưu, đảm bảo tốc độ – chính xác – an toàn.
+
+**Công nghệ**: Ứng dụng công nghệ vào công tác quản lý nhằm nâng cao hiệu quả và giảm thiểu rủi ro cho khách hàng.
+
+**Minh bạch**: Đảm bảo toàn bộ quy trình được theo dõi minh bạch, rõ ràng, giúp khách hàng yên tâm trong mọi giao dịch và vận chuyển.`,
     },
   })
   console.log('✅ Created company info')
@@ -278,6 +377,80 @@ ICONIC LOGISTICS cung cấp **dịch vụ tư vấn miễn phí** để giúp b�
     })
   }
   console.log('✅ Created posts')
+
+  // Create partners from brochure
+  const partners = [
+    // Shipping Lines
+    { name: 'MAERSK', port: 'Cảng Vũng Tàu', type: 'SHIPPING', sortOrder: 1 },
+    { name: 'MSC', port: 'Cảng Hải Phòng', type: 'SHIPPING', sortOrder: 2 },
+    { name: 'CMA', port: 'Cảng Đà Nẵng', type: 'SHIPPING', sortOrder: 3 },
+    { name: 'OOCL', port: 'Cảng Hồ Chí Minh', type: 'SHIPPING', sortOrder: 4 },
+    { name: 'EVERGREEN', port: 'Cảng Hải Phòng', type: 'SHIPPING', sortOrder: 5 },
+    { name: 'HAPAG', port: 'Cảng Hồ Chí Minh', type: 'SHIPPING', sortOrder: 6 },
+    { name: 'YANG MING', port: 'Cảng Vũng Tàu', type: 'SHIPPING', sortOrder: 7 },
+    { name: 'ONE', port: 'Cảng Vũng Tàu', type: 'SHIPPING', sortOrder: 8 },
+    { name: 'HANJIN', port: 'Cảng Hồ Chí Minh', type: 'SHIPPING', sortOrder: 9 },
+    { name: 'KLINE', port: 'Cảng Đà Nẵng', type: 'SHIPPING', sortOrder: 10 },
+    { name: 'PIL', port: 'Cảng Hải Phòng', type: 'SHIPPING', sortOrder: 11 },
+    { name: 'NYK', port: 'Cảng Hồ Chí Minh', type: 'SHIPPING', sortOrder: 12 },
+    { name: 'MOL', port: 'Cảng Vũng Tàu', type: 'SHIPPING', sortOrder: 13 },
+    { name: 'UASC', port: 'Cảng Hồ Chí Minh', type: 'SHIPPING', sortOrder: 14 },
+    { name: 'WANHAI', port: 'Cảng Đà Nẵng', type: 'SHIPPING', sortOrder: 15 },
+    { name: 'NAMSUNG', port: 'Cảng Hải Phòng', type: 'SHIPPING', sortOrder: 16 },
+    { name: 'HEUNG-A', port: 'Cảng Hồ Chí Minh', type: 'SHIPPING', sortOrder: 17 },
+    // Airlines
+    { name: 'EMIRATES', port: 'Hàng không', type: 'AIRLINE', sortOrder: 18 },
+    { name: 'QATAR', port: 'Hàng không', type: 'AIRLINE', sortOrder: 19 },
+    { name: 'VIETJET', port: 'Hàng không', type: 'AIRLINE', sortOrder: 20 },
+    { name: 'VIETNAM AIRLINES', port: 'Hàng không', type: 'AIRLINE', sortOrder: 21 },
+    { name: 'BAMBOO', port: 'Hàng không', type: 'AIRLINE', sortOrder: 22 },
+    // International Partner
+    { name: 'WCA', port: 'Đối tác quốc tế', type: 'INTERNATIONAL', sortOrder: 23 },
+  ]
+
+  for (const partner of partners) {
+    await prisma.partner.upsert({
+      where: { id: `${partner.name}-${partner.port}` },
+      update: {},
+      create: {
+        id: `${partner.name}-${partner.port}`,
+        ...partner,
+      },
+    })
+  }
+  console.log('✅ Created partners')
+
+  // Create commodities from brochure
+  const commodities = [
+    { nameVi: 'THÉP CUỘN – NHÔM', sortOrder: 1 },
+    { nameVi: 'THÉP ĐÚC', sortOrder: 2 },
+    { nameVi: 'THÉP CUỘN', sortOrder: 3 },
+    { nameVi: 'LỐP XE', sortOrder: 4 },
+    { nameVi: 'MAY MẶC', sortOrder: 5 },
+    { nameVi: 'PHỤ KIỆN', sortOrder: 6 },
+    { nameVi: 'GẠO TIÊU', sortOrder: 7 },
+    { nameVi: 'NÔNG SẢN', sortOrder: 8 },
+    { nameVi: 'VẢI', sortOrder: 9 },
+    { nameVi: 'BỘT BÃ', sortOrder: 10 },
+    { nameVi: 'THỨC ĂN GIA SÚC', sortOrder: 11 },
+    { nameVi: 'SILICON', sortOrder: 12 },
+    { nameVi: 'GẠO', sortOrder: 13 },
+    { nameVi: 'CAO SU', sortOrder: 14 },
+    { nameVi: 'GIẤY – MỰC', sortOrder: 15 },
+    { nameVi: 'HẢI SẢN', sortOrder: 16 },
+  ]
+
+  for (const commodity of commodities) {
+    await prisma.commodity.upsert({
+      where: { id: commodity.nameVi.replace(/\s+/g, '-').toLowerCase() },
+      update: {},
+      create: {
+        id: commodity.nameVi.replace(/\s+/g, '-').toLowerCase(),
+        ...commodity,
+      },
+    })
+  }
+  console.log('✅ Created commodities')
 
   console.log('🎉 Seed completed successfully!')
 }

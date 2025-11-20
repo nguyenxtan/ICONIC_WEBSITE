@@ -69,18 +69,50 @@ model Service {
 }
 
 model CompanyInfo {
+  id          String   @id @default(cuid())
+  nameVi      String   @map("name_vi")
+  nameEn      String   @map("name_en")
+  phone       String
+  email       String
+  address     String
+  introduction String?   @db.Text
+  vision      String   @db.Text
+  mission     String   @db.Text
+  coreValues  String?   @db.Text @map("core_values")
+  goals       String?   @db.Text
+  commitments String?   @db.Text
+  strengths   String?   @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("company_info")
+}
+
+model Partner {
   id        String   @id @default(cuid())
-  nameVi    String   @map("name_vi")
-  nameEn    String   @map("name_en")
-  phone     String
-  email     String
-  address   String
-  vision    String   @db.Text
-  mission   String   @db.Text
+  name      String
+  port      String?
+  type      String   @default("SHIPPING") // SHIPPING, AIRLINE, INTERNATIONAL
+  sortOrder Int      @default(0) @map("sort_order")
+  visible   Boolean  @default(true)
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("company_info")
+  @@index([visible, sortOrder])
+  @@map("partners")
+}
+
+model Commodity {
+  id        String   @id @default(cuid())
+  nameVi    String   @map("name_vi")
+  nameEn    String?  @map("name_en")
+  sortOrder Int      @default(0) @map("sort_order")
+  visible   Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([visible, sortOrder])
+  @@map("commodities")
 }
 
 model Media {
