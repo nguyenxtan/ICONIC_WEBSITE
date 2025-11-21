@@ -50,7 +50,22 @@
       "Bash(ls:*)",
       "Bash(npm run prisma:migrate:*)",
       "Bash(docker logs:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(xargs rm:*)",
+      "Bash(CHANGELOG.md )",
+      "Bash(COMMANDS.md )",
+      "Bash(CREATE_ADMIN.md )",
+      "Bash(DEPLOYMENT.md )",
+      "Bash(FEATURES.md )",
+      "Bash(GITHUB_ACTIONS_SETUP.md )",
+      "Bash(MIGRATION_SUMMARY.md )",
+      "Bash(PROJECT_STRUCTURE.md )",
+      "Bash(QUICKSTART.md )",
+      "Bash(QUẢN_LÝ_USERS.md )",
+      "Bash(README.md )",
+      "Bash(SERVER_SETUP.md )",
+      "Bash(USER_GUIDE.md )",
+      "Bash(brochure.md)"
     ],
     "deny": [],
     "ask": []
