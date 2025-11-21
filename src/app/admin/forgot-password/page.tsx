@@ -17,6 +17,8 @@ export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+  const [resetToken, setResetToken] = useState<string>('')
+  const [resetLink, setResetLink] = useState<string>('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -34,6 +36,14 @@ export default function ForgotPasswordPage() {
 
       if (response.ok && data.success) {
         setSubmitted(true)
+
+        // For development only - show reset token on UI
+        if (data.resetToken) {
+          setResetToken(data.resetToken)
+          const link = `${window.location.origin}/admin/reset-password?token=${data.resetToken}`
+          setResetLink(link)
+        }
+
         toast({
           title: 'Email đã được gửi',
           description: 'Vui lòng kiểm tra email để đặt lại mật khẩu',
@@ -61,7 +71,7 @@ export default function ForgotPasswordPage() {
   if (submitted) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-orange-50 flex items-center justify-center p-4">
-        <Card className="w-full max-w-md shadow-lg border-0">
+        <Card className="w-full max-w-2xl shadow-lg border-0">
           <CardHeader className="space-y-3 text-center">
             <div className="flex justify-center">
               <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
@@ -81,6 +91,40 @@ export default function ForgotPasswordPage() {
               </AlertDescription>
             </Alert>
 
+            {/* Development Mode - Show reset link */}
+            {resetLink && (
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-semibold text-yellow-800 bg-yellow-200 px-2 py-1 rounded">DEV MODE</span>
+                  <p className="text-sm text-yellow-800 font-medium">Reset link (chỉ dùng cho development):</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="bg-white border border-yellow-300 rounded p-3">
+                    <p className="text-xs text-gray-600 break-all font-mono">
+                      {resetLink}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(resetLink)
+                      toast({
+                        title: 'Đã copy',
+                        description: 'Link đã được copy vào clipboard',
+                      })
+                    }}
+                    className="text-xs text-yellow-700 hover:text-yellow-900 font-semibold underline"
+                  >
+                    Copy link
+                  </button>
+                </div>
+                <Link href={resetLink} className="block">
+                  <Button variant="outline" className="w-full text-sm border-yellow-300 hover:bg-yellow-50">
+                    Mở link trong tab mới
+                  </Button>
+                </Link>
+              </div>
+            )}
+
             <div className="pt-4 space-y-3">
               <p className="text-sm text-gray-600">
                 Không nhận được email?
@@ -89,6 +133,8 @@ export default function ForgotPasswordPage() {
                 onClick={() => {
                   setSubmitted(false)
                   setEmail('')
+                  setResetToken('')
+                  setResetLink('')
                 }}
                 variant="outline"
                 className="w-full"
