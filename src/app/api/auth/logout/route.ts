@@ -7,8 +7,13 @@ export async function POST(request: Request) {
   await removeAuthCookie()
 
   // Redirect to login page after logout
-  const loginUrl = new URL('/admin/login', request.url)
-  return NextResponse.redirect(loginUrl, {
+  // Use SITE_URL from environment or construct from origin header
+  const origin = request.headers.get('x-forwarded-proto') && request.headers.get('x-forwarded-host')
+    ? `${request.headers.get('x-forwarded-proto')}://${request.headers.get('x-forwarded-host')}`
+    : process.env.SITE_URL || 'http://localhost:3000'
+
+  const loginUrl = new URL('/admin/login', origin)
+  return NextResponse.redirect(loginUrl.toString(), {
     status: 302,
   })
 }
