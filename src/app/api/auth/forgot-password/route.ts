@@ -67,8 +67,8 @@ export async function POST(request: Request) {
     // })
 
     // Log for debugging (visible in server logs)
-    console.log('📧 Password Reset Token generated for:', user.email)
-    console.log('📧 Reset Link:', `${process.env.SITE_URL || 'http://localhost:3000'}/admin/reset-password?token=${resetToken}`)
+    console.log('[Password Reset] Token generated for:', user.email)
+    console.log('[Password Reset] Reset Link:', `${process.env.SITE_URL || 'http://localhost:3000'}/admin/reset-password?token=${resetToken}`)
 
     // Check if admin specifically requests the token (for testing)
     // Headers are case-insensitive, check for test mode flag

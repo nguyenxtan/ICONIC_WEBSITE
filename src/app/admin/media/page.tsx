@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
-import { Upload, Trash2, Copy, ImageIcon } from 'lucide-react'
+import { Upload, Trash2, Copy, ImageIcon, Lightbulb } from 'lucide-react'
 import Image from 'next/image'
 
 export const runtime = 'nodejs'
@@ -226,7 +226,10 @@ export default function AdminMediaPage() {
       </Card>
 
       <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-        <h3 className="font-semibold text-blue-900 mb-2">💡 Hướng dẫn sử dụng</h3>
+        <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
+          <Lightbulb className="w-5 h-5" />
+          Hướng dẫn sử dụng
+        </h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• Click &ldquo;Upload Hình Ảnh&rdquo; để upload file mới (tối đa 5MB)</li>
           <li>• Hỗ trợ định dạng: JPG, PNG, GIF, WebP</li>

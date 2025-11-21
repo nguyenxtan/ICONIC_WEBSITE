@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useToast } from '@/components/ui/use-toast'
-import { AlertCircle, Eye, EyeOff } from 'lucide-react'
+import { AlertCircle, Eye, EyeOff, CheckCircle2 } from 'lucide-react'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 
 export default function ResetPasswordPage() {
@@ -169,7 +169,7 @@ export default function ResetPasswordPage() {
         <Card className="w-full max-w-md shadow-lg border-0">
           <CardContent className="flex flex-col items-center justify-center py-12 space-y-4">
             <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
-              <span className="text-2xl">✓</span>
+              <CheckCircle2 className="w-8 h-8 text-green-600" />
             </div>
             <h2 className="text-xl font-semibold text-gray-900">Thành công!</h2>
             <p className="text-gray-600 text-center">

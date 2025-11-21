@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/db'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { FileText, Briefcase, MessageSquare, Eye, TrendingUp, ArrowUpRight, ArrowRight } from 'lucide-react'
+import { FileText, Briefcase, MessageSquare, Eye, TrendingUp, ArrowUpRight, ArrowRight, BarChart3, TrendingUp as TrendingUpIcon, CheckCircle2, Circle } from 'lucide-react'
 import Link from 'next/link'
 
 export const runtime = 'nodejs'
@@ -90,14 +90,13 @@ export default async function AdminDashboardPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-5xl font-bold mb-3 flex items-center gap-3">
-                <span>📊</span> Dashboard
+                <BarChart3 className="w-10 h-10" />
+                Dashboard
               </h1>
               <p className="text-orange-100 text-lg font-medium">Chào mừng! Đây là tổng quan hệ thống của bạn</p>
             </div>
             <div className="hidden lg:block">
-              <div className="text-7xl opacity-20 animate-bounce" style={{animationDelay: '0.5s'}}>
-                📈
-              </div>
+              <TrendingUpIcon className="w-24 h-24 opacity-20 animate-bounce" style={{animationDelay: '0.5s'}} />
             </div>
           </div>
         </div>
@@ -199,14 +198,12 @@ export default async function AdminDashboardPage() {
                         </div>
                       </div>
                     </div>
-                    <div
-                      className={`text-xs px-3 py-1 rounded-full font-bold ml-3 whitespace-nowrap ${
-                        post.status === 'PUBLISHED'
-                          ? 'bg-green-100 text-green-700'
-                          : 'bg-gray-100 text-gray-700'
-                      }`}
-                    >
-                      {post.status === 'PUBLISHED' ? '✓' : '○'}
+                    <div className="flex items-center gap-1 ml-3">
+                      {post.status === 'PUBLISHED' ? (
+                        <CheckCircle2 className="w-4 h-4 text-green-600" />
+                      ) : (
+                        <Circle className="w-4 h-4 text-gray-400" />
+                      )}
                     </div>
                   </Link>
                 ))}

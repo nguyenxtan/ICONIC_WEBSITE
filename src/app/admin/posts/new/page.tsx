@@ -25,6 +25,7 @@ import {
   Loader2,
   FileText,
   Wand2,
+  Lightbulb,
 } from 'lucide-react'
 
 export default function NewPostPage() {
@@ -406,9 +407,10 @@ export default function NewPostPage() {
               />
             </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p className="text-sm text-blue-800">
-                <strong>💡 Mẹo:</strong> Càng mô tả chi tiết, AI càng tạo ra
-                nội dung chất lượng cao. Hãy nêu rõ:
+              <p className="text-sm text-blue-800 flex items-center gap-2">
+                <Lightbulb className="w-5 h-5 flex-shrink-0" />
+                <span><strong>Mẹo:</strong> Càng mô tả chi tiết, AI càng tạo ra
+                nội dung chất lượng cao. Hãy nêu rõ:</span>
               </p>
               <ul className="text-sm text-blue-700 mt-2 space-y-1 list-disc list-inside">
                 <li>Chủ đề chính của bài viết</li>
