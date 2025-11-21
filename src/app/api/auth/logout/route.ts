@@ -3,7 +3,12 @@ import { removeAuthCookie } from '@/lib/auth'
 
 export const runtime = 'nodejs'
 
-export async function POST() {
+export async function POST(request: Request) {
   await removeAuthCookie()
-  return NextResponse.json({ success: true })
+
+  // Redirect to login page after logout
+  const loginUrl = new URL('/admin/login', request.url)
+  return NextResponse.redirect(loginUrl, {
+    status: 302,
+  })
 }
