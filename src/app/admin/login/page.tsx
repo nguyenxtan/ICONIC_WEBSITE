@@ -81,13 +81,13 @@ export default function AdminLoginPage() {
               <div className="absolute inset-0 bg-gradient-to-br from-brand-orange-primary to-brand-orange-dark rounded-full blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300 animate-pulse" />
 
               {/* Logo container */}
-              <div className="relative bg-white rounded-full p-5 shadow-2xl border border-orange-100">
+              <div className="relative bg-white rounded-full p-8 shadow-2xl border border-orange-100">
                 <Image
                   src="/logo.png"
                   alt="ICONIC LOGISTICS"
-                  width={280}
-                  height={84}
-                  className="h-20 w-auto transition-transform duration-300 group-hover:scale-105"
+                  width={420}
+                  height={126}
+                  className="h-32 w-auto transition-transform duration-300 group-hover:scale-110"
                   priority
                 />
               </div>
