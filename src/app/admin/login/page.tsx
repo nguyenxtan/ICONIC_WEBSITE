@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -91,7 +92,15 @@ export default function AdminLoginPage() {
               />
             </div>
             <div>
-              <Label htmlFor="password">Mật khẩu</Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="password">Mật khẩu</Label>
+                <Link
+                  href="/admin/forgot-password"
+                  className="text-xs text-brand-orange-primary hover:text-brand-orange-dark hover:underline"
+                >
+                  Quên mật khẩu?
+                </Link>
+              </div>
               <Input
                 id="password"
                 type="password"
