@@ -66,19 +66,23 @@ export async function POST(request: Request) {
     //   text: `Nhấp vào link để đặt lại mật khẩu: ${resetLink}`,
     // })
 
-    // For development, log the token (remove in production!)
-    if (process.env.NODE_ENV === 'development') {
-      console.log('📧 Password Reset Token:', resetToken)
-      console.log('📧 Reset Link:', `${process.env.SITE_URL || 'http://localhost:3000'}/admin/reset-password?token=${resetToken}`)
-    }
+    // Log for debugging (visible in server logs)
+    console.log('📧 Password Reset Token generated for:', user.email)
+    console.log('📧 Reset Link:', `${process.env.SITE_URL || 'http://localhost:3000'}/admin/reset-password?token=${resetToken}`)
+
+    // Check if admin specifically requests the token (for testing)
+    // Headers are case-insensitive, check for test mode flag
+    const isTestMode = request.headers.get('x-test-mode') === 'true'
 
     return NextResponse.json(
       {
         success: true,
         message: 'Link đặt lại mật khẩu đã được gửi đến email của bạn',
-        // Development only - remove in production!
-        ...(process.env.NODE_ENV === 'development' && {
-          resetToken, // Don't expose in production!
+        // For testing only - will only be included if x-test-mode header is set to 'true'
+        ...(isTestMode && {
+          resetToken, // Only expose for testing!
+          resetLink: `${process.env.SITE_URL || 'http://localhost:3000'}/admin/reset-password?token=${resetToken}`,
+          _testNote: 'This field is only visible because x-test-mode header was set to true. Remove in production!',
         }),
       },
       { status: 200 }
