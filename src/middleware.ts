@@ -5,8 +5,15 @@ import { verifyTokenEdge } from './lib/auth-edge'
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Skip auth check for login page
-  if (pathname === '/admin/login') {
+  // Public auth pages (no auth required)
+  const publicAuthPages = [
+    '/admin/login',
+    '/admin/forgot-password',
+    '/admin/reset-password',
+  ]
+
+  // Skip auth check for public auth pages
+  if (publicAuthPages.includes(pathname)) {
     // If already logged in, redirect to dashboard
     const token = request.cookies.get('auth-token')?.value
     if (token && await verifyTokenEdge(token)) {
@@ -15,7 +22,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // Only check auth for /admin/* routes (excluding login)
+  // Only check auth for /admin/* routes (excluding public pages)
   if (pathname.startsWith('/admin')) {
     // Get token from cookie
     const token = request.cookies.get('auth-token')?.value
