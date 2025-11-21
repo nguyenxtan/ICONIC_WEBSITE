@@ -27,9 +27,10 @@ export default function LogoutButton() {
           title: 'Đăng xuất thành công',
           description: 'Đang chuyển hướng...',
         })
-        // Client-side redirect to avoid URL issues
+        // Clear router cache and hard redirect to ensure navbar is cleared
         setTimeout(() => {
-          router.push(data.redirectUrl || '/admin/login')
+          router.refresh() // Clear Next.js cache
+          window.location.href = data.redirectUrl || '/admin/login' // Hard redirect
         }, 500)
       }
     } catch (error) {
