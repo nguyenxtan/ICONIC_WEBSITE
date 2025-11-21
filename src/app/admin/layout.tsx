@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import NextImage from 'next/image'
-import { LayoutDashboard, FileText, Briefcase, Building2, Image, Users, LogOut } from 'lucide-react'
+import { LayoutDashboard, FileText, Briefcase, Building2, Image, Users } from 'lucide-react'
 import { getCurrentUser } from '@/lib/auth'
+import LogoutButton from '@/components/LogoutButton'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -106,15 +107,7 @@ export default async function AdminLayout({
         </nav>
 
         <div className="p-4 border-t border-gray-100">
-          <form action="/api/auth/logout" method="POST">
-            <button
-              type="submit"
-              className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-red-50 hover:text-red-600 transition-all w-full text-left group"
-            >
-              <LogOut className="h-5 w-5 transition-transform group-hover:scale-110" />
-              <span className="font-medium">Đăng Xuất</span>
-            </button>
-          </form>
+          <LogoutButton />
         </div>
       </aside>
 
