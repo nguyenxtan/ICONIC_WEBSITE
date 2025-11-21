@@ -195,6 +195,25 @@ docker compose exec web npm run prisma:seed
 - [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) - Chi tiết deploy server
 - [GITHUB_ACTIONS_SETUP.md](./GITHUB_ACTIONS_SETUP.md) - Setup CI/CD từng bước
 
+## 📚 Documentation Map
+
+Dự án có các tài liệu chi tiết cho mục đích khác nhau:
+
+| File | Mục đích | Cho ai |
+|------|---------|--------|
+| **[QUICKSTART.md](./QUICKSTART.md)** | Setup trong 5 phút | Người bắt đầu |
+| **[USER_GUIDE.md](./USER_GUIDE.md)** | Hướng dẫn sử dụng admin | Editor/Content Manager |
+| **[FEATURES.md](./FEATURES.md)** | Chi tiết tất cả tính năng | Developer/PM |
+| **[PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md)** | Kiến trúc code & DB | Developer |
+| **[COMMANDS.md](./COMMANDS.md)** | Danh sách lệnh CLI | Developer |
+| **[DEPLOYMENT.md](./DEPLOYMENT.md)** | Deploy lên Vercel | DevOps/Developer |
+| **[GITHUB_ACTIONS_SETUP.md](./GITHUB_ACTIONS_SETUP.md)** | Setup CI/CD | DevOps |
+| **[CHANGELOG.md](./CHANGELOG.md)** | Lịch sử version | Everyone |
+| **[CREATE_ADMIN.md](./CREATE_ADMIN.md)** | Tạo admin user | Sysadmin |
+| **[SERVER_SETUP.md](./SERVER_SETUP.md)** | Setup server Ubuntu | Sysadmin |
+| **[QUẢN_LÝ_USERS.md](./QUẢN_LÝ_USERS.md)** | Quản lý users & roles | IT Admin |
+| **[051125_todo.md](./051125_todo.md)** | Improvement roadmap | PM/Developer |
+
 ## 📁 Cấu Trúc Dự Án
 
 ```
@@ -215,7 +234,7 @@ ICONIC_CMS/
 ├── docker-compose.yml         # Docker orchestration
 ├── Dockerfile                 # Docker image
 ├── nginx.conf                 # Nginx config template
-└── DEPLOYMENT_GUIDE.md        # Chi tiết deploy
+└── README.md                  # Tài liệu chính (file này)
 ```
 
 ## 🔧 Scripts
