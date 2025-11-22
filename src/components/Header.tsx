@@ -53,8 +53,11 @@ export default function Header() {
               <Link href="/partners" className="block px-4 py-2 text-sm hover:bg-brand-orange-primary/10 hover:text-brand-orange-primary">
                 Đối Tác
               </Link>
-              <Link href="/commodities" className="block px-4 py-2 text-sm hover:bg-brand-orange-primary/10 hover:text-brand-orange-primary last:rounded-b-lg">
+              <Link href="/commodities" className="block px-4 py-2 text-sm hover:bg-brand-orange-primary/10 hover:text-brand-orange-primary">
                 Mặt Hàng
+              </Link>
+              <Link href="/brochure" className="block px-4 py-2 text-sm hover:bg-brand-orange-primary/10 hover:text-brand-orange-primary last:rounded-b-lg">
+                Brochure
               </Link>
             </div>
           </div>
