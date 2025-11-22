@@ -66,9 +66,9 @@ export default function BrochurePage() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* Section Title */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <div className="inline-block mb-6">
             <div className="px-4 py-2 bg-gradient-to-r from-brand-orange-primary/20 to-brand-orange-dark/20 border border-brand-orange-primary/30 rounded-full">
               <p className="text-sm font-semibold text-brand-orange-primary">📖 {selectedLanguage === 'en' ? 'DIGITAL SHOWCASE' : 'TRƯNG BÀY KỸ THUẬT SỐ'}</p>
@@ -86,7 +86,7 @@ export default function BrochurePage() {
         </div>
 
         {/* Language Selection */}
-        <div className="flex justify-center gap-4 mb-16">
+        <div className="flex justify-center gap-4 mb-12">
           {Object.entries(brochures).map(([id, brochure]) => (
             <button
               key={id}
@@ -235,7 +235,7 @@ export default function BrochurePage() {
       </div>
 
       {/* Footer CTA */}
-      <div className="relative z-10 mt-20 py-16 lg:py-20">
+      <div className="relative z-10 mt-12 py-12 lg:py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative group">
             {/* Glow Effect */}
