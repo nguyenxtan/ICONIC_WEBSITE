@@ -3,33 +3,28 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FileText, Download, ChevronLeft, ChevronRight, ZoomIn, BookOpen } from 'lucide-react'
+import { Download, ChevronLeft, ChevronRight, ZoomIn, BookOpen } from 'lucide-react'
 
 export default function BrochurePage() {
   const [selectedLanguage, setSelectedLanguage] = useState<'en' | 'vi'>('en')
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
-  const [isFullscreen, setIsFullscreen] = useState(false)
 
   const brochures = {
     en: {
       title: 'English Brochure',
       language: 'English',
-      flag: '🇬🇧',
+      flag: 'English',
       description: 'Our company profile and services in English',
       color: 'from-blue-500 to-cyan-600',
-      bgColor: 'bg-blue-50',
-      iconColor: 'text-blue-600',
       pages: 8,
       filePrefix: 'iconic-brochure-en',
     },
     vi: {
       title: 'Vietnamese Brochure',
       language: 'Tiếng Việt',
-      flag: '🇻🇳',
+      flag: 'Vietnamese',
       description: 'Hồ sơ công ty và các dịch vụ của chúng tôi bằng tiếng Việt',
       color: 'from-red-500 to-orange-600',
-      bgColor: 'bg-red-50',
-      iconColor: 'text-red-600',
       pages: 8,
       filePrefix: 'iconic-brochure-vi',
     },
@@ -42,8 +37,8 @@ export default function BrochurePage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-brand-orange-primary/5 to-slate-900">
       {/* Hero Background Effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-brand-orange-primary via-brand-orange-dark to-transparent opacity-20 rounded-full blur-3xl -translate-y-1/2 animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-blue-500 via-brand-orange-primary to-transparent opacity-10 rounded-full blur-3xl translate-y-1/2" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-brand-orange-primary via-brand-orange-dark to-transparent opacity-20 rounded-full blur-3xl -translate-y-1/2 animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-blue-500 via-brand-orange-primary to-transparent opacity-10 rounded-full blur-3xl translate-y-1/2"></div>
       </div>
 
       {/* Header */}
@@ -92,7 +87,7 @@ export default function BrochurePage() {
 
         {/* Language Selection */}
         <div className="flex justify-center gap-4 mb-16">
-          {(Object.entries(brochures) as Array<[keyof typeof brochures, typeof brochures['en']]>).map(([id, brochure]) => (
+          {Object.entries(brochures).map(([id, brochure]) => (
             <button
               key={id}
               onClick={() => setSelectedLanguage(id as 'en' | 'vi')}
@@ -102,11 +97,8 @@ export default function BrochurePage() {
                   : 'bg-white/10 border-2 border-white/20 text-white hover:bg-white/20 hover:border-white/40'
               }`}
             >
-              <span className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-10 transition-opacity" />
-              <span className="relative flex items-center gap-3">
-                <span className="text-2xl">{brochure.flag}</span>
-                <span>{brochure.language}</span>
-              </span>
+              <span className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-10 transition-opacity"></span>
+              <span className="relative">{brochure.language}</span>
             </button>
           ))}
         </div>
@@ -117,18 +109,18 @@ export default function BrochurePage() {
             {/* Card with Premium Design */}
             <div className="relative group">
               {/* Glow Background */}
-              <div className={`absolute inset-0 bg-gradient-to-r ${selectedBrochure.color} opacity-20 blur-2xl rounded-3xl group-hover:opacity-40 transition-all duration-500 -z-10`} />
+              <div className={`absolute inset-0 bg-gradient-to-r ${selectedBrochure.color} opacity-20 blur-2xl rounded-3xl group-hover:opacity-40 transition-all duration-500 -z-10`}></div>
 
               <div className="bg-white/95 backdrop-blur-xl rounded-3xl border border-white/40 overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500">
                 {/* Header */}
                 <div className={`bg-gradient-to-br ${selectedBrochure.color} p-10 text-white relative overflow-hidden`}>
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl -mr-20 -mt-20" />
-                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full blur-3xl -ml-16 -mb-16" />
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full blur-3xl -ml-16 -mb-16"></div>
 
                   <div className="relative z-10 flex items-start justify-between">
                     <div>
                       <p className="text-white/80 text-sm font-semibold uppercase tracking-widest mb-3">
-                        {selectedLanguage === 'en' ? '📖 Document' : '📖 Tài Liệu'}
+                        {selectedLanguage === 'en' ? 'Document' : 'Tài Liệu'}
                       </p>
                       <h3 className="text-4xl lg:text-5xl font-black mb-3">{selectedBrochure.title}</h3>
                       <p className="text-white/90 text-lg leading-relaxed">{selectedBrochure.description}</p>
@@ -166,9 +158,9 @@ export default function BrochurePage() {
                     </div>
                   </div>
 
-                  {/* Image Display with Premium Styling */}
+                  {/* Image Display */}
                   <div className="relative mb-8 group/image">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${selectedBrochure.color} opacity-10 blur-xl rounded-2xl -z-10` } />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${selectedBrochure.color} opacity-10 blur-xl rounded-2xl -z-10`}></div>
                     <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl border-2 border-gray-200/50 overflow-hidden shadow-lg">
                       <div className="relative w-full bg-gray-900 flex items-center justify-center aspect-[8/11] overflow-hidden group/zoom">
                         <Image
@@ -180,7 +172,7 @@ export default function BrochurePage() {
                           className="w-full h-full object-contain group-hover/zoom:scale-105 transition-transform duration-500"
                         />
                         <button
-                          onClick={() => setIsFullscreen(true)}
+                          onClick={() => {}}
                           className="absolute top-4 right-4 p-3 bg-white/20 hover:bg-white/40 rounded-lg opacity-0 group-hover/image:opacity-100 transition-all duration-300 backdrop-blur-sm"
                         >
                           <ZoomIn className="w-5 h-5 text-white" />
@@ -192,7 +184,7 @@ export default function BrochurePage() {
                   {/* Thumbnail Navigation */}
                   <div className="mb-10">
                     <p className="text-sm font-bold text-gray-700 mb-4 uppercase tracking-widest">
-                      {selectedLanguage === 'en' ? '👁️ Page Preview' : '👁️ Xem Trước Trang'}
+                      {selectedLanguage === 'en' ? 'Page Preview' : 'Xem Trước Trang'}
                     </p>
                     <div className="grid grid-cols-4 md:grid-cols-8 gap-3">
                       {Array.from({ length: selectedBrochure.pages }).map((_, index) => (
@@ -201,7 +193,7 @@ export default function BrochurePage() {
                           onClick={() => setSelectedImageIndex(index)}
                           className={`group/thumb relative overflow-hidden rounded-xl border-2 transition-all duration-300 hover:shadow-lg ${
                             selectedImageIndex === index
-                              ? `${selectedBrochure.color.split('-')[0] === 'from' ? 'border-blue-500' : 'border-orange-500'} ring-2 ring-offset-2 shadow-lg scale-105`
+                              ? 'border-brand-orange-primary ring-2 ring-offset-2 shadow-lg scale-105'
                               : 'border-gray-200/50 hover:border-gray-300'
                           }`}
                         >
@@ -233,8 +225,9 @@ export default function BrochurePage() {
                     className={`w-full flex items-center justify-center gap-3 px-8 py-5 rounded-xl bg-gradient-to-r ${selectedBrochure.color} text-white font-bold text-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group/download`}
                   >
                     <Download className="w-6 h-6 group-hover/download:scale-125 group-hover/download:-translate-y-1 transition-transform" />
-                    <span>{selectedLanguage === 'en' ? '⬇️ Download This Page' : '⬇️ Tải Trang Này'}</span>
+                    <span>{selectedLanguage === 'en' ? 'Download This Page' : 'Tải Trang Này'}</span>
                   </button>
+                </div>
               </div>
             </div>
           </div>
@@ -246,12 +239,12 @@ export default function BrochurePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative group">
             {/* Glow Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-orange-primary via-brand-orange-dark to-brand-orange-primary opacity-20 blur-3xl rounded-3xl -z-10 group-hover:opacity-40 transition-all duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-orange-primary via-brand-orange-dark to-brand-orange-primary opacity-20 blur-3xl rounded-3xl -z-10 group-hover:opacity-40 transition-all duration-500"></div>
 
             <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl border border-white/10 p-12 lg:p-16 text-center overflow-hidden relative">
               {/* Background Elements */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-brand-orange-primary/20 to-transparent rounded-full blur-3xl -mr-48 -mt-48" />
-              <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tl from-blue-500/10 via-brand-orange-primary/10 to-transparent rounded-full blur-3xl -ml-40 -mb-40" />
+              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-brand-orange-primary/20 to-transparent rounded-full blur-3xl -mr-48 -mt-48"></div>
+              <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tl from-blue-500/10 via-brand-orange-primary/10 to-transparent rounded-full blur-3xl -ml-40 -mb-40"></div>
 
               <div className="relative z-10">
                 <div className="inline-block mb-6 px-4 py-2 bg-gradient-to-r from-brand-orange-primary/20 to-brand-orange-dark/20 border border-brand-orange-primary/30 rounded-full">

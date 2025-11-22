@@ -74,7 +74,9 @@
       "Bash(do if grep -q [🚀-🟿] $file)",
       "Bash(then echo $file)",
       "Bash(git restore:*)",
-      "Bash(pdftoppm:*)"
+      "Bash(pdftoppm:*)",
+      "Bash(git diff:*)",
+      "Bash(npx tsc:*)"
     ],
     "deny": [],
     "ask": []
