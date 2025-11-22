@@ -16,6 +16,29 @@ const nextConfig = {
   experimental: {
     isrMemoryCacheSize: 0,
   },
+
+  // Add response headers to prevent caching
+  async headers() {
+    return [
+      {
+        source: '/brochure',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'private, no-cache, no-store, must-revalidate',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
+          },
+        ],
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
