@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { Download, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 
 // Disable static generation - always render dynamically
-export const revalidate = 0
+export const dynamic = 'force-dynamic'
 
 export default function BrochurePage() {
   const [selectedLanguage, setSelectedLanguage] = useState<'en' | 'vi'>('vi')
