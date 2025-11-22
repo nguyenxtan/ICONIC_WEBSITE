@@ -64,10 +64,13 @@ export default function BrochurePage() {
         {/* Section Title */}
         <div className="text-center mb-12">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Our Company Brochures
+            {selectedLanguage === 'en' ? 'Our Company Brochures' : 'Brochure Công Ty'}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Download our comprehensive brochures to learn more about ICONIC LOGISTICS and our services.
+            {selectedLanguage === 'en'
+              ? 'Download our comprehensive brochures to learn more about ICONIC LOGISTICS and our services.'
+              : 'Tải các brochure toàn diện của chúng tôi để tìm hiểu thêm về ICONIC LOGISTICS và các dịch vụ của chúng tôi.'
+            }
           </p>
         </div>
 
@@ -110,7 +113,7 @@ export default function BrochurePage() {
                 {/* Page Counter */}
                 <div className="flex items-center justify-between mb-6">
                   <p className="text-sm font-semibold text-gray-600">
-                    Page <span className="text-brand-orange-primary font-bold">{selectedImageIndex + 1}</span> of <span className="font-bold">{selectedBrochure.pages}</span>
+                    {selectedLanguage === 'en' ? 'Page' : 'Trang'} <span className="text-brand-orange-primary font-bold">{selectedImageIndex + 1}</span> {selectedLanguage === 'en' ? 'of' : 'trong'} <span className="font-bold">{selectedBrochure.pages}</span>
                   </p>
                   <div className="flex gap-2">
                     <button
@@ -118,14 +121,14 @@ export default function BrochurePage() {
                       disabled={selectedImageIndex === 0}
                       className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm"
                     >
-                      ← Previous
+                      ← {selectedLanguage === 'en' ? 'Previous' : 'Trước'}
                     </button>
                     <button
                       onClick={() => setSelectedImageIndex(Math.min(selectedBrochure.pages - 1, selectedImageIndex + 1))}
                       disabled={selectedImageIndex === selectedBrochure.pages - 1}
                       className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm"
                     >
-                      Next →
+                      {selectedLanguage === 'en' ? 'Next' : 'Tiếp'} →
                     </button>
                   </div>
                 </div>
@@ -146,7 +149,9 @@ export default function BrochurePage() {
 
                 {/* Thumbnail Navigation */}
                 <div className="mb-8">
-                  <p className="text-sm font-semibold text-gray-600 mb-3">Quick Navigation</p>
+                  <p className="text-sm font-semibold text-gray-600 mb-3">
+                    {selectedLanguage === 'en' ? 'Quick Navigation' : 'Điều hướng nhanh'}
+                  </p>
                   <div className="grid grid-cols-4 md:grid-cols-8 gap-2">
                     {Array.from({ length: selectedBrochure.pages }).map((_, index) => (
                       <button
@@ -185,44 +190,10 @@ export default function BrochurePage() {
                     className={`flex-1 flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r ${selectedBrochure.color} text-white font-bold text-lg hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group`}
                   >
                     <Download className="w-6 h-6 group-hover:scale-110 transition-transform" />
-                    <span>Download This Page</span>
+                    <span>{selectedLanguage === 'en' ? 'Download This Page' : 'Tải trang này'}</span>
                   </button>
                 </div>
-
-                {/* Features */}
-                <div className="mt-12 grid md:grid-cols-3 gap-6">
-                  <div className="bg-white rounded-xl p-6 border border-gray-200 text-center">
-                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg ${selectedBrochure.bgColor} mb-4`}>
-                      <FileText className={`w-6 h-6 ${selectedBrochure.iconColor}`} />
-                    </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Comprehensive</h4>
-                    <p className="text-sm text-gray-600">{selectedBrochure.pages} pages of detailed content</p>
-                  </div>
-
-                  <div className="bg-white rounded-xl p-6 border border-gray-200 text-center">
-                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg ${selectedBrochure.bgColor} mb-4`}>
-                      <Globe className={`w-6 h-6 ${selectedBrochure.iconColor}`} />
-                    </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Professional</h4>
-                    <p className="text-sm text-gray-600">High-quality documentation of our operations</p>
-                  </div>
-
-                  <div className="bg-white rounded-xl p-6 border border-gray-200 text-center">
-                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg ${selectedBrochure.bgColor} mb-4`}>
-                      <ZoomIn className={`w-6 h-6 ${selectedBrochure.iconColor}`} />
-                    </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Clear & Readable</h4>
-                    <p className="text-sm text-gray-600">High-resolution images for easy viewing</p>
-                  </div>
-                </div>
               </div>
-            </div>
-
-            {/* Info Box */}
-            <div className="mt-8 bg-blue-50 border-l-4 border-blue-500 rounded-lg p-6">
-              <p className="text-gray-700">
-                <span className="font-semibold text-blue-600">Note:</span> You can browse through all pages using the navigation buttons or click on the thumbnails below to jump to a specific page. Each page can be downloaded individually.
-              </p>
             </div>
           </div>
         )}
@@ -231,15 +202,20 @@ export default function BrochurePage() {
       {/* Footer CTA */}
       <div className="bg-white border-t border-gray-200 py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">Interested in Our Services?</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            {selectedLanguage === 'en' ? 'Interested in Our Services?' : 'Quan tâm đến dịch vụ của chúng tôi?'}
+          </h3>
           <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            Download our brochure and contact us to learn how ICONIC LOGISTICS can help your business.
+            {selectedLanguage === 'en'
+              ? 'Download our brochure and contact us to learn how ICONIC LOGISTICS can help your business.'
+              : 'Tải brochure của chúng tôi và liên hệ với chúng tôi để tìm hiểu cách ICONIC LOGISTICS có thể giúp doanh nghiệp của bạn.'
+            }
           </p>
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-gradient-to-r from-brand-orange-primary to-brand-orange-dark text-white font-semibold hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
           >
-            Get in Touch
+            {selectedLanguage === 'en' ? 'Get in Touch' : 'Liên hệ ngay'}
           </Link>
         </div>
       </div>

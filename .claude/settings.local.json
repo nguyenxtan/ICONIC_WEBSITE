@@ -72,7 +72,9 @@
       "Bash(NEXT_OUTPUT_MODE=default npm run build:*)",
       "Bash(while read file)",
       "Bash(do if grep -q [🚀-🟿] $file)",
-      "Bash(then echo $file)"
+      "Bash(then echo $file)",
+      "Bash(git restore:*)",
+      "Bash(pdftoppm:*)"
     ],
     "deny": [],
     "ask": []
