@@ -11,6 +11,11 @@ const nextConfig = {
       },
     ],
   },
+
+  // Disable service worker caching to prevent stale content
+  experimental: {
+    isrMemoryCacheSize: 0,
+  },
 }
 
 module.exports = nextConfig
