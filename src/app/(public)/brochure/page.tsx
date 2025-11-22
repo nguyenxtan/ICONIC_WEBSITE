@@ -34,11 +34,11 @@ export default function BrochurePage() {
   const currentImagePath = `/brochures/${selectedBrochure.filePrefix}-page-${selectedImageIndex + 1}.png`
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-brand-orange-primary/5 to-slate-900">
+    <div className="min-h-screen bg-white">
       {/* Hero Background Effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-brand-orange-primary via-brand-orange-dark to-transparent opacity-20 rounded-full blur-3xl -translate-y-1/2 animate-pulse"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-blue-500 via-brand-orange-primary to-transparent opacity-10 rounded-full blur-3xl translate-y-1/2"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-brand-orange-primary/10 via-brand-orange-dark/5 to-transparent opacity-20 rounded-full blur-3xl -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-blue-500/5 via-brand-orange-primary/5 to-transparent opacity-10 rounded-full blur-3xl translate-y-1/2"></div>
       </div>
 
       {/* Header */}
@@ -241,24 +241,24 @@ export default function BrochurePage() {
             {/* Glow Effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-brand-orange-primary via-brand-orange-dark to-brand-orange-primary opacity-20 blur-3xl rounded-3xl -z-10 group-hover:opacity-40 transition-all duration-500"></div>
 
-            <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl border border-white/10 p-12 lg:p-16 text-center overflow-hidden relative">
+            <div className="bg-white rounded-3xl border border-gray-100 p-12 lg:p-16 text-center overflow-hidden relative shadow-lg">
               {/* Background Elements */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-brand-orange-primary/20 to-transparent rounded-full blur-3xl -mr-48 -mt-48"></div>
-              <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tl from-blue-500/10 via-brand-orange-primary/10 to-transparent rounded-full blur-3xl -ml-40 -mb-40"></div>
+              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-brand-orange-primary/5 to-transparent rounded-full blur-3xl -mr-48 -mt-48"></div>
+              <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tl from-blue-500/5 via-brand-orange-primary/5 to-transparent rounded-full blur-3xl -ml-40 -mb-40"></div>
 
               <div className="relative z-10">
                 <div className="inline-block mb-6 px-4 py-2 bg-gradient-to-r from-brand-orange-primary/20 to-brand-orange-dark/20 border border-brand-orange-primary/30 rounded-full">
                   <p className="text-sm font-semibold text-brand-orange-primary">💼 {selectedLanguage === 'en' ? 'NEXT STEP' : 'BƯỚC TIẾP THEO'}</p>
                 </div>
 
-                <h3 className="text-4xl lg:text-5xl font-black text-white mb-6 leading-tight">
+                <h3 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-tight">
                   {selectedLanguage === 'en'
                     ? 'Ready to Transform Your Logistics?'
                     : 'Sẵn Sàng Chuyển Đổi Logistics Của Bạn?'
                   }
                 </h3>
 
-                <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+                <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
                   {selectedLanguage === 'en'
                     ? 'Join hundreds of satisfied clients who trust ICONIC LOGISTICS. Get in touch today to discuss how we can optimize your supply chain.'
                     : 'Tham gia với hàng trăm khách hàng hài lòng tin tưởng ICONIC LOGISTICS. Liên hệ hôm nay để thảo luận cách chúng tôi có thể tối ưu hóa chuỗi cung ứng của bạn.'
