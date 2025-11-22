@@ -162,59 +162,44 @@ export default function BrochurePage() {
           </div>
         </div>
 
-        {/* Navigation Buttons - Bottom Center */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-6">
-          <button
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
-            disabled={currentPage === 0}
-            className={`p-2 rounded-lg transition-all duration-200 ${
-              currentPage === 0
-                ? 'text-slate-600 cursor-not-allowed opacity-50'
-                : 'text-slate-300 hover:text-white hover:bg-slate-700/40 hover:shadow-lg hover:shadow-brand-orange-primary/20'
-            }`}
-            aria-label={selectedLanguage === 'en' ? 'Previous page' : 'Trang trước'}
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
+        {/* Previous Button - Left Edge */}
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
+          disabled={currentPage === 0}
+          className={`absolute left-4 sm:left-8 bottom-1/2 transform translate-y-1/2 p-2 rounded-lg transition-all duration-200 z-20 ${
+            currentPage === 0
+              ? 'text-slate-600 cursor-not-allowed opacity-50'
+              : 'text-slate-300 hover:text-white hover:bg-slate-700/40 hover:shadow-lg hover:shadow-brand-orange-primary/20'
+          }`}
+          aria-label={selectedLanguage === 'en' ? 'Previous page' : 'Trang trước'}
+        >
+          <ChevronLeft className="w-8 h-8" />
+        </button>
 
-          {currentPage < brochure.pages - 1 && (
-            <div className="flex flex-col items-center gap-2 animate-bounce">
-              <span className="text-slate-400 text-xs font-medium uppercase tracking-widest">
-                {selectedLanguage === 'en' ? 'Scroll' : 'Cuộn'}
-              </span>
-              <ChevronDown className="w-5 h-5 text-brand-orange-primary" />
-            </div>
-          )}
+        {/* Scroll Indicator - Bottom Center */}
+        {currentPage < brochure.pages - 1 && (
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+            <span className="text-slate-400 text-xs font-medium uppercase tracking-widest">
+              {selectedLanguage === 'en' ? 'Scroll' : 'Cuộn'}
+            </span>
+            <ChevronDown className="w-5 h-5 text-brand-orange-primary" />
+          </div>
+        )}
 
-          <button
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, brochure.pages - 1))}
-            disabled={currentPage === brochure.pages - 1}
-            className={`p-2 rounded-lg transition-all duration-200 ${
-              currentPage === brochure.pages - 1
-                ? 'text-slate-600 cursor-not-allowed opacity-50'
-                : 'text-slate-300 hover:text-white hover:bg-slate-700/40 hover:shadow-lg hover:shadow-brand-orange-primary/20'
-            }`}
-            aria-label={selectedLanguage === 'en' ? 'Next page' : 'Trang tiếp theo'}
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-        </div>
+        {/* Next Button - Right Edge */}
+        <button
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, brochure.pages - 1))}
+          disabled={currentPage === brochure.pages - 1}
+          className={`absolute right-4 sm:right-8 bottom-1/2 transform translate-y-1/2 p-2 rounded-lg transition-all duration-200 z-20 ${
+            currentPage === brochure.pages - 1
+              ? 'text-slate-600 cursor-not-allowed opacity-50'
+              : 'text-slate-300 hover:text-white hover:bg-slate-700/40 hover:shadow-lg hover:shadow-brand-orange-primary/20'
+          }`}
+          aria-label={selectedLanguage === 'en' ? 'Next page' : 'Trang tiếp theo'}
+        >
+          <ChevronRight className="w-8 h-8" />
+        </button>
 
-        {/* Page Number Dots - Right Side */}
-        <div className="absolute right-4 sm:right-8 top-1/2 transform -translate-y-1/2 flex flex-col gap-3 z-20">
-          {Array.from({ length: brochure.pages }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentPage(index)}
-              className={`transition-all duration-300 rounded-full ${
-                currentPage === index
-                  ? 'w-3 h-3 bg-brand-orange-primary shadow-lg shadow-brand-orange-primary/50'
-                  : 'w-2 h-2 bg-slate-600 hover:bg-slate-500'
-              }`}
-              aria-label={`Go to page ${index + 1}`}
-            />
-          ))}
-        </div>
       </main>
 
       {/* Footer Hint */}
