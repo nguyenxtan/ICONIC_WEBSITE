@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Download, ChevronDown } from 'lucide-react'
+import { Download, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 
 export default function BrochurePage() {
   const [selectedLanguage, setSelectedLanguage] = useState<'en' | 'vi'>('en')
@@ -162,17 +162,43 @@ export default function BrochurePage() {
           </div>
         </div>
 
-        {/* Scroll Indicator - Bottom Center */}
-        {currentPage < brochure.pages - 1 && (
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <div className="flex flex-col items-center gap-2">
+        {/* Navigation Buttons - Bottom Center */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-6">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
+            disabled={currentPage === 0}
+            className={`p-2 rounded-lg transition-all duration-200 ${
+              currentPage === 0
+                ? 'text-slate-600 cursor-not-allowed opacity-50'
+                : 'text-slate-300 hover:text-white hover:bg-slate-700/40 hover:shadow-lg hover:shadow-brand-orange-primary/20'
+            }`}
+            aria-label={selectedLanguage === 'en' ? 'Previous page' : 'Trang trước'}
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+
+          {currentPage < brochure.pages - 1 && (
+            <div className="flex flex-col items-center gap-2 animate-bounce">
               <span className="text-slate-400 text-xs font-medium uppercase tracking-widest">
                 {selectedLanguage === 'en' ? 'Scroll' : 'Cuộn'}
               </span>
-              <ChevronDown className="w-6 h-6 text-brand-orange-primary" />
+              <ChevronDown className="w-5 h-5 text-brand-orange-primary" />
             </div>
-          </div>
-        )}
+          )}
+
+          <button
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, brochure.pages - 1))}
+            disabled={currentPage === brochure.pages - 1}
+            className={`p-2 rounded-lg transition-all duration-200 ${
+              currentPage === brochure.pages - 1
+                ? 'text-slate-600 cursor-not-allowed opacity-50'
+                : 'text-slate-300 hover:text-white hover:bg-slate-700/40 hover:shadow-lg hover:shadow-brand-orange-primary/20'
+            }`}
+            aria-label={selectedLanguage === 'en' ? 'Next page' : 'Trang tiếp theo'}
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </div>
 
         {/* Page Number Dots - Right Side */}
         <div className="absolute right-4 sm:right-8 top-1/2 transform -translate-y-1/2 flex flex-col gap-3 z-20">
