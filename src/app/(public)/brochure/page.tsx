@@ -5,6 +5,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Download, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 
+// Disable static generation - always render dynamically
+export const dynamic = 'force-dynamic'
+
 export default function BrochurePage() {
   const [selectedLanguage, setSelectedLanguage] = useState<'en' | 'vi'>('vi')
   const [currentPage, setCurrentPage] = useState(0)
