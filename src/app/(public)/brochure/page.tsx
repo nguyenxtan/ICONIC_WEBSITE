@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { Download, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 
 export default function BrochurePage() {
-  const [selectedLanguage, setSelectedLanguage] = useState<'en' | 'vi'>('en')
+  const [selectedLanguage, setSelectedLanguage] = useState<'en' | 'vi'>('vi')
   const [currentPage, setCurrentPage] = useState(0)
   const [isAtBottom, setIsAtBottom] = useState(false)
 
