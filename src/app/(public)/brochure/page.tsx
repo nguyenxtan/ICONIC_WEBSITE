@@ -1,291 +1,202 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Download, ChevronLeft, ChevronRight, ZoomIn, BookOpen } from 'lucide-react'
+import { Download, ChevronDown } from 'lucide-react'
 
 export default function BrochurePage() {
   const [selectedLanguage, setSelectedLanguage] = useState<'en' | 'vi'>('en')
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0)
+  const [isAtBottom, setIsAtBottom] = useState(false)
 
   const brochures = {
     en: {
-      title: 'English Brochure',
       language: 'English',
-      flag: 'English',
-      description: 'Our company profile and services in English',
-      color: 'from-blue-500 to-cyan-600',
       pages: 8,
       filePrefix: 'iconic-brochure-en',
     },
     vi: {
-      title: 'Vietnamese Brochure',
       language: 'Tiếng Việt',
-      flag: 'Vietnamese',
-      description: 'Hồ sơ công ty và các dịch vụ của chúng tôi bằng tiếng Việt',
-      color: 'from-red-500 to-orange-600',
       pages: 8,
       filePrefix: 'iconic-brochure-vi',
     },
   }
 
-  const selectedBrochure = brochures[selectedLanguage]
-  const currentImagePath = `/brochures/${selectedBrochure.filePrefix}-page-${selectedImageIndex + 1}.png`
+  const brochure = brochures[selectedLanguage]
+  const imageUrl = `/brochures/${brochure.filePrefix}-page-${currentPage + 1}.png`
+
+  useEffect(() => {
+    let lastScrollTime = 0
+    const scrollCooldown = 800 // 800ms cooldown between pages
+
+    const handleWheel = (e: WheelEvent) => {
+      const now = Date.now()
+      if (now - lastScrollTime < scrollCooldown) {
+        e.preventDefault()
+        return
+      }
+
+      // Threshold to prevent accidental small scrolls
+      if (Math.abs(e.deltaY) < 30) {
+        return
+      }
+
+      if (e.deltaY > 0) {
+        // Scroll down
+        if (currentPage < brochure.pages - 1) {
+          e.preventDefault()
+          lastScrollTime = now
+          setCurrentPage((prev) => Math.min(prev + 1, brochure.pages - 1))
+        }
+      } else {
+        // Scroll up
+        if (currentPage > 0) {
+          e.preventDefault()
+          lastScrollTime = now
+          setCurrentPage((prev) => Math.max(prev - 1, 0))
+        }
+      }
+    }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowDown' || e.key === ' ') {
+        e.preventDefault()
+        setCurrentPage((prev) => Math.min(prev + 1, brochure.pages - 1))
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        setCurrentPage((prev) => Math.max(prev - 1, 0))
+      }
+    }
+
+    window.addEventListener('wheel', handleWheel, { passive: false })
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('wheel', handleWheel)
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [currentPage, brochure.pages])
+
+  const switchLanguage = (lang: 'en' | 'vi') => {
+    setSelectedLanguage(lang)
+    setCurrentPage(0)
+  }
+
+  const downloadPage = () => {
+    const link = document.createElement('a')
+    link.href = imageUrl
+    link.download = `${brochure.filePrefix}-page-${currentPage + 1}.png`
+    link.click()
+  }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Background Effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-brand-orange-primary/10 via-brand-orange-dark/5 to-transparent opacity-20 rounded-full blur-3xl -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-blue-500/5 via-brand-orange-primary/5 to-transparent opacity-10 rounded-full blur-3xl translate-y-1/2"></div>
-      </div>
-
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
       {/* Header */}
-      <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-lg">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <Link
-              href="/"
-              className="flex items-center gap-2 text-gray-700 hover:text-brand-orange-primary transition-all duration-300 group"
-            >
-              <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-              <span className="text-sm font-semibold">{selectedLanguage === 'en' ? 'Back to Home' : 'Quay lại'}</span>
-            </Link>
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-brand-orange-primary to-brand-orange-dark rounded-xl shadow-lg">
-                <BookOpen className="w-6 h-6 text-white" />
-              </div>
-              <h1 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-brand-orange-primary to-brand-orange-dark bg-clip-text text-transparent">
-                {selectedLanguage === 'en' ? 'Company Brochures' : 'Brochure Công Ty'}
-              </h1>
-            </div>
-            <div className="w-32"></div>
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-700/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-slate-300 hover:text-brand-orange-primary transition-colors duration-200"
+          >
+            <span className="text-sm font-medium">← {selectedLanguage === 'en' ? 'Back' : 'Quay lại'}</span>
+          </Link>
+          <h1 className="text-xl font-bold text-white">
+            {selectedLanguage === 'en' ? 'Company Brochure' : 'Brochure Công Ty'}
+          </h1>
+          <div className="w-24"></div>
+        </div>
+      </header>
+
+      {/* Main Viewer */}
+      <main className="h-screen flex flex-col items-center justify-center pt-20 px-4">
+        {/* Language Toggle - Modern Segment Control */}
+        <div className="absolute top-24 left-4 sm:left-8 z-30">
+          <div className="flex gap-1 bg-slate-700/40 backdrop-blur-md p-1 rounded-lg border border-slate-600/50">
+            {Object.entries(brochures).map(([id, data]) => (
+              <button
+                key={id}
+                onClick={() => switchLanguage(id as 'en' | 'vi')}
+                className={`px-3 py-1.5 rounded-md font-medium transition-all duration-300 text-xs sm:text-sm ${
+                  selectedLanguage === id
+                    ? 'bg-brand-orange-primary text-white shadow-lg shadow-brand-orange-primary/50'
+                    : 'text-slate-300 hover:text-slate-100'
+                }`}
+              >
+                {id === 'en' ? 'EN' : 'VI'}
+              </button>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        {/* Section Title */}
-        <div className="text-center mb-12">
-          <div className="inline-block mb-6">
-            <div className="px-4 py-2 bg-gradient-to-r from-brand-orange-primary/20 to-brand-orange-dark/20 border border-brand-orange-primary/30 rounded-full">
-              <p className="text-sm font-semibold text-brand-orange-primary">📖 {selectedLanguage === 'en' ? 'DIGITAL SHOWCASE' : 'TRƯNG BÀY KỸ THUẬT SỐ'}</p>
+        {/* Download Button - Top Right */}
+        <button
+          onClick={downloadPage}
+          className="absolute top-24 right-4 sm:right-8 z-30 px-4 py-2 bg-brand-orange-primary text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-brand-orange-primary/50 transition-all duration-200 flex items-center gap-2 text-sm"
+        >
+          <Download className="w-4 h-4" />
+          <span className="hidden sm:inline">{selectedLanguage === 'en' ? 'Download' : 'Tải'}</span>
+        </button>
+
+        {/* Image Container - Centered */}
+        <div className="w-full max-w-4xl mx-auto">
+          <div className="relative bg-slate-800 rounded-2xl overflow-hidden shadow-2xl aspect-[8.5/11]">
+            <Image
+              src={imageUrl}
+              alt={`Page ${currentPage + 1} of ${brochure.pages}`}
+              fill
+              priority
+              className="object-contain"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 95vw, 90vw"
+            />
+
+            {/* Page Indicator - Bottom Center */}
+            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/50 backdrop-blur-md px-6 py-3 rounded-full flex items-center gap-4">
+              <span className="text-white text-sm font-semibold">
+                {currentPage + 1} / {brochure.pages}
+              </span>
+              <div className="h-6 w-1 bg-gradient-to-b from-brand-orange-primary to-transparent"></div>
+              <span className="text-slate-300 text-xs">
+                {selectedLanguage === 'en' ? 'Scroll to navigate' : 'Cuộn để điều hướng'}
+              </span>
             </div>
           </div>
-          <h2 className="text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-            {selectedLanguage === 'en' ? 'Discover Our Excellence' : 'Khám Phá Sự Xuất Sắc'}
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            {selectedLanguage === 'en'
-              ? 'Explore comprehensive insights into ICONIC LOGISTICS - our mission, services, and commitment to excellence.'
-              : 'Khám phá những hiểu biết toàn diện về ICONIC LOGISTICS - sứ mệnh, dịch vụ và cam kết hướng tới sự xuất sắc của chúng tôi.'
-            }
-          </p>
         </div>
 
-        {/* Language Selection */}
-        <div className="flex justify-center gap-4 mb-12">
-          {Object.entries(brochures).map(([id, brochure]) => (
-            <button
-              key={id}
-              onClick={() => setSelectedLanguage(id as 'en' | 'vi')}
-              className={`group relative px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 overflow-hidden ${
-                selectedLanguage === id
-                  ? `bg-gradient-to-r ${brochure.color} text-white shadow-2xl scale-110`
-                  : 'bg-white/10 border-2 border-white/20 text-white hover:bg-white/20 hover:border-white/40'
-              }`}
-            >
-              <span className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-10 transition-opacity"></span>
-              <span className="relative">{brochure.language}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Brochure Display */}
-        {selectedBrochure && (
-          <div className="max-w-6xl mx-auto">
-            {/* Card with Premium Design */}
-            <div className="relative group">
-              {/* Glow Background */}
-              <div className={`absolute inset-0 bg-gradient-to-r ${selectedBrochure.color} opacity-20 blur-2xl rounded-3xl group-hover:opacity-40 transition-all duration-500 -z-10`}></div>
-
-              <div className="bg-white/95 backdrop-blur-xl rounded-3xl border border-white/40 overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500">
-                {/* Header */}
-                <div className={`bg-gradient-to-br ${selectedBrochure.color} p-10 text-white relative overflow-hidden`}>
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
-                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full blur-3xl -ml-16 -mb-16"></div>
-
-                  <div className="relative z-10 flex items-start justify-between">
-                    <div>
-                      <p className="text-white/80 text-sm font-semibold uppercase tracking-widest mb-3">
-                        {selectedLanguage === 'en' ? 'Document' : 'Tài Liệu'}
-                      </p>
-                      <h3 className="text-4xl lg:text-5xl font-black mb-3">{selectedBrochure.title}</h3>
-                      <p className="text-white/90 text-lg leading-relaxed">{selectedBrochure.description}</p>
-                    </div>
-                    <BookOpen className="w-24 h-24 opacity-20 flex-shrink-0" />
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-8 lg:p-14">
-                  {/* Page Counter & Navigation */}
-                  <div className="flex items-center justify-between mb-8 pb-8 border-b border-gray-200/50">
-                    <div className="flex items-center gap-3">
-                      <div className="px-4 py-2 bg-gradient-to-r from-brand-orange-primary/20 to-brand-orange-dark/20 border border-brand-orange-primary/30 rounded-full">
-                        <p className="text-sm font-bold text-brand-orange-primary">
-                          {selectedLanguage === 'en' ? 'Page' : 'Trang'} <span className="text-brand-orange-primary font-black text-lg">{selectedImageIndex + 1}</span> /{selectedBrochure.pages}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <button
-                        onClick={() => setSelectedImageIndex(Math.max(0, selectedImageIndex - 1))}
-                        disabled={selectedImageIndex === 0}
-                        className="p-3 rounded-full bg-gray-100 hover:bg-brand-orange-primary/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 group/btn"
-                      >
-                        <ChevronLeft className="w-6 h-6 text-gray-700 group-hover/btn:text-brand-orange-primary transition-colors" />
-                      </button>
-                      <button
-                        onClick={() => setSelectedImageIndex(Math.min(selectedBrochure.pages - 1, selectedImageIndex + 1))}
-                        disabled={selectedImageIndex === selectedBrochure.pages - 1}
-                        className="p-3 rounded-full bg-gray-100 hover:bg-brand-orange-primary/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 group/btn"
-                      >
-                        <ChevronRight className="w-6 h-6 text-gray-700 group-hover/btn:text-brand-orange-primary transition-colors" />
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Image Display */}
-                  <div className="relative mb-8 group/image">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${selectedBrochure.color} opacity-10 blur-xl rounded-2xl -z-10`}></div>
-                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl border-2 border-gray-200/50 overflow-hidden shadow-lg">
-                      <div className="relative w-full bg-gray-900 flex items-center justify-center aspect-[8/11] overflow-hidden group/zoom">
-                        <Image
-                          src={currentImagePath}
-                          alt={`${selectedBrochure.title} - Page ${selectedImageIndex + 1}`}
-                          width={800}
-                          height={1100}
-                          priority
-                          className="w-full h-full object-contain group-hover/zoom:scale-105 transition-transform duration-500"
-                        />
-                        <button
-                          onClick={() => {}}
-                          className="absolute top-4 right-4 p-3 bg-white/20 hover:bg-white/40 rounded-lg opacity-0 group-hover/image:opacity-100 transition-all duration-300 backdrop-blur-sm"
-                        >
-                          <ZoomIn className="w-5 h-5 text-white" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Thumbnail Navigation */}
-                  <div className="mb-10">
-                    <p className="text-sm font-bold text-gray-700 mb-4 uppercase tracking-widest">
-                      {selectedLanguage === 'en' ? 'Page Preview' : 'Xem Trước Trang'}
-                    </p>
-                    <div className="grid grid-cols-4 md:grid-cols-8 gap-3">
-                      {Array.from({ length: selectedBrochure.pages }).map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setSelectedImageIndex(index)}
-                          className={`group/thumb relative overflow-hidden rounded-xl border-2 transition-all duration-300 hover:shadow-lg ${
-                            selectedImageIndex === index
-                              ? 'border-brand-orange-primary ring-2 ring-offset-2 shadow-lg scale-105'
-                              : 'border-gray-200/50 hover:border-gray-300'
-                          }`}
-                        >
-                          <div className="relative overflow-hidden bg-gray-100">
-                            <Image
-                              src={`/brochures/${selectedBrochure.filePrefix}-page-${index + 1}.png`}
-                              alt={`Page ${index + 1}`}
-                              width={100}
-                              height={140}
-                              className="w-full h-auto group-hover/thumb:scale-110 transition-transform duration-300"
-                            />
-                          </div>
-                          <p className={`absolute bottom-1 right-1 px-2 py-1 rounded-lg text-xs font-bold text-white ${selectedImageIndex === index ? 'bg-brand-orange-primary' : 'bg-black/60'}`}>
-                            {index + 1}
-                          </p>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Download Button */}
-                  <button
-                    onClick={() => {
-                      const link = document.createElement('a')
-                      link.href = currentImagePath
-                      link.download = `${selectedBrochure.filePrefix}-page-${selectedImageIndex + 1}.png`
-                      link.click()
-                    }}
-                    className={`w-full flex items-center justify-center gap-3 px-8 py-5 rounded-xl bg-gradient-to-r ${selectedBrochure.color} text-white font-bold text-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group/download`}
-                  >
-                    <Download className="w-6 h-6 group-hover/download:scale-125 group-hover/download:-translate-y-1 transition-transform" />
-                    <span>{selectedLanguage === 'en' ? 'Download This Page' : 'Tải Trang Này'}</span>
-                  </button>
-                </div>
-              </div>
+        {/* Scroll Indicator - Bottom Center */}
+        {currentPage < brochure.pages - 1 && (
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-slate-400 text-xs font-medium uppercase tracking-widest">
+                {selectedLanguage === 'en' ? 'Scroll' : 'Cuộn'}
+              </span>
+              <ChevronDown className="w-6 h-6 text-brand-orange-primary" />
             </div>
           </div>
         )}
-      </div>
 
-      {/* Footer CTA */}
-      <div className="relative z-10 mt-12 py-12 lg:py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative group">
-            {/* Glow Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-orange-primary via-brand-orange-dark to-brand-orange-primary opacity-20 blur-3xl rounded-3xl -z-10 group-hover:opacity-40 transition-all duration-500"></div>
-
-            <div className="bg-white rounded-3xl border border-gray-100 p-12 lg:p-16 text-center overflow-hidden relative shadow-lg">
-              {/* Background Elements */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-brand-orange-primary/5 to-transparent rounded-full blur-3xl -mr-48 -mt-48"></div>
-              <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tl from-blue-500/5 via-brand-orange-primary/5 to-transparent rounded-full blur-3xl -ml-40 -mb-40"></div>
-
-              <div className="relative z-10">
-                <div className="inline-block mb-6 px-4 py-2 bg-gradient-to-r from-brand-orange-primary/20 to-brand-orange-dark/20 border border-brand-orange-primary/30 rounded-full">
-                  <p className="text-sm font-semibold text-brand-orange-primary">💼 {selectedLanguage === 'en' ? 'NEXT STEP' : 'BƯỚC TIẾP THEO'}</p>
-                </div>
-
-                <h3 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-tight">
-                  {selectedLanguage === 'en'
-                    ? 'Ready to Transform Your Logistics?'
-                    : 'Sẵn Sàng Chuyển Đổi Logistics Của Bạn?'
-                  }
-                </h3>
-
-                <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-                  {selectedLanguage === 'en'
-                    ? 'Join hundreds of satisfied clients who trust ICONIC LOGISTICS. Get in touch today to discuss how we can optimize your supply chain.'
-                    : 'Tham gia với hàng trăm khách hàng hài lòng tin tưởng ICONIC LOGISTICS. Liên hệ hôm nay để thảo luận cách chúng tôi có thể tối ưu hóa chuỗi cung ứng của bạn.'
-                  }
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <Link
-                    href="/contact"
-                    className="px-8 py-4 rounded-xl bg-gradient-to-r from-brand-orange-primary to-brand-orange-dark text-white font-bold text-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 group/btn"
-                  >
-                    <span>📞 {selectedLanguage === 'en' ? 'Contact Us Now' : 'Liên Hệ Ngay'}</span>
-                    <ChevronRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-                  </Link>
-                  <Link
-                    href="/services"
-                    className="px-8 py-4 rounded-xl bg-white/10 border-2 border-white/30 hover:border-white/50 text-white font-bold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-2 group/btn"
-                  >
-                    <span>🚀 {selectedLanguage === 'en' ? 'Explore Services' : 'Khám Phá Dịch Vụ'}</span>
-                    <ChevronRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* Page Number Dots - Right Side */}
+        <div className="absolute right-4 sm:right-8 top-1/2 transform -translate-y-1/2 flex flex-col gap-3 z-20">
+          {Array.from({ length: brochure.pages }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(index)}
+              className={`transition-all duration-300 rounded-full ${
+                currentPage === index
+                  ? 'w-3 h-3 bg-brand-orange-primary shadow-lg shadow-brand-orange-primary/50'
+                  : 'w-2 h-2 bg-slate-600 hover:bg-slate-500'
+              }`}
+              aria-label={`Go to page ${index + 1}`}
+            />
+          ))}
         </div>
-      </div>
+      </main>
+
+      {/* Footer Hint */}
+      {currentPage === brochure.pages - 1 && (
+        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 text-slate-400 text-sm">
+          {selectedLanguage === 'en' ? 'End of brochure' : 'Kết thúc brochure'}
+        </div>
+      )}
     </div>
   )
 }
